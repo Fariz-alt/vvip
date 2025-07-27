@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proses Stokastik - LMSVVIP</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+    <style>
+        /* Reuse existing variables from your main CSS */
+        :root {
+            --primary-color: #4361ee;
+            --primary-dark: #3a0ca3;
+            --secondary-color: #4cc9f0;
+            --accent-color: #f72585;
+            --dark-color: #14213d;
+            --light-color: #f8f9fa;
+            --background-light: #f5f7ff;
+            --sidebar-bg: linear-gradient(135deg, #14213d 0%, #1b263b 100%);
+            --text-light: #e2e8f0;
+            --highlight-text: #4cc9f0;
+            --border-color: rgba(255, 255, 255, 0.1);
+            --card-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+            --section-padding: 60px 0;
+            --section-margin: 60px 0;
+        }
+
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--background-light);
+            color: var(--dark-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+            position: relative;
+        }
+
+         /* Sidebar Styles - Modern Gradient */
+        .sidebar {
+            width: 260px;
+            background: var(--sidebar-bg);
+            color: white;
+            padding: 20px 0;
+            position: fixed;
+            height: 100vh;
+            z-index: 1000;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+            box-shadow: 10px 0 30px rgba(0, 0, 0, 0.2);
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .sidebar-header {
+            display: flex;
+            align-items: center;
+            padding: 0 20px 20px;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 15px;
+        }
+
+        .sidebar-header img {
+            width: 40px;
+            height: 40px;
+            margin-right: 12px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .sidebar-header h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            background: linear-gradient(to right, #f72585, #4361ee);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .sidebar-menu {
+            padding: 15px;
+            height: calc(100vh - 100px);
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary-color) transparent;
+        }
+
+        .sidebar-menu::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .sidebar-menu::-webkit-scrollbar-thumb {
+            background-color: var(--primary-color);
+            border-radius: 3px;
+        }
+
+        .menu-category {
+            margin-bottom: 25px;
+        }
+
+        .menu-category h3 {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            color: var(--highlight-text);
+            margin-bottom: 15px;
+            letter-spacing: 0.8px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+
+        .menu-category h3::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: var(--border-color);
+            margin-left: 10px;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            margin-bottom: 6px;
+            border-radius: 7px;
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+            font-size: 0.95rem;
+        }
+
+        .menu-item i {
+            margin-right: 10px;
+            font-size: 1.1rem;
+            min-width: 20px;
+            text-align: center;
+        }
+
+        .menu-item::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: 0.5s;
+        }
+
+        .menu-item:hover::before {
+            left: 100%;
+        }
+
+        .menu-item:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+            color: white;
+            transform: translateX(3px);
+        }
+
+        .menu-item.active {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: white;
+            box-shadow: 0 6px 15px rgba(67, 97, 238, 0.3);
+            font-weight: 600;
+        }
+
+        /* Main Content Styles */
+        .main-content {
+            flex: 1;
+            margin-left: 260px;
+            transition: margin-left 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 35px;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .menu-button {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark-color);
+            display: none; /* Hide on desktop */
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .user-profile img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--primary-color);
+        }
+
+        /* Course Detail Specific Styles */
+        .course-detail-header {
+            background: var(--primary-color);
+            color: white;
+            padding: 50px 40px;
+            text-align: center;
+            border-bottom-left-radius: 25px;
+            border-bottom-right-radius: 25px;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 40px;
+        }
+
+        .course-detail-header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .course-detail-header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto 20px;
+        }
+
+        .course-info-meta {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .course-info-meta span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .course-info-meta i {
+            font-size: 1.2rem;
+        }
+
+        .course-main-content {
+            padding: 0 40px 40px;
+            display: grid;
+            grid-template-columns: 3fr 1fr; /* Main content and sidebar */
+            gap: 40px;
+            align-items: start;
+        }
+
+        .course-modules {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .course-modules h2 {
+            font-size: 1.8rem;
+            color: var(--dark-color);
+            margin-bottom: 25px;
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 10px;
+        }
+
+        .module-list {
+            list-style: none;
+        }
+
+        .module-item {
+            background-color: var(--background-light);
+            border-radius: 12px;
+            margin-bottom: 15px;
+            padding: 20px 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+
+        .module-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .module-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+
+        .module-header h3 {
+            font-size: 1.25rem;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .module-header i {
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .module-item.open .module-header i {
+            transform: rotate(90deg); /* Rotate icon when module is open */
+        }
+
+        .module-content {
+            display: none; /* Hidden by default */
+            padding-top: 15px;
+            border-top: 1px dashed #ddd;
+            margin-top: 10px;
+        }
+
+        .module-item.open .module-content {
+            display: block; /* Show when module is open */
+        }
+
+        .lesson-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .lesson-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            padding: 10px 0;
+            border-bottom: 1px dotted #eee;
+        }
+
+        .lesson-item:last-child {
+            border-bottom: none;
+        }
+
+        .lesson-item i {
+            font-size: 1.1rem;
+            color: var(--secondary-color);
+            margin-right: 10px;
+        }
+
+        .lesson-item a {
+            color: var(--dark-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .lesson-item a:hover {
+            color: var(--primary-color);
+        }
+
+        .lesson-actions {
+            margin-left: auto;
+            display: flex;
+            gap: 15px;
+        }
+
+        .lesson-actions a {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.9rem;
+            color: var(--primary-dark);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .lesson-actions a:hover {
+            color: var(--accent-color);
+        }
+
+        .lesson-actions i {
+            font-size: 1.1rem;
+        }
+
+        .task-list {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 15px;
+        }
+
+        .task-item {
+            display: flex;
+            align-items: center;
+            background-color: white;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+        }
+
+        .task-item i {
+            font-size: 1.3rem;
+            color: var(--accent-color);
+            margin-right: 10px;
+        }
+
+        .task-item h5 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--dark-color);
+            flex-grow: 1;
+        }
+
+        .task-item .task-deadline {
+            font-size: 0.85rem;
+            color: #777;
+            margin-left: 15px;
+        }
+
+        .task-item .task-link {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .task-item .task-link:hover {
+            background-color: var(--primary-dark);
+        }
+
+        /* Right Sidebar (Related Info) */
+        .side-info {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .info-card {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .info-card h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--dark-color);
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .info-card h3::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--secondary-color);
+            border-radius: 3px;
+        }
+
+        .lecturer-profile {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .lecturer-profile img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 15px;
+            border: 2px solid var(--primary-color);
+        }
+
+        .lecturer-details h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary-dark);
+        }
+
+        .lecturer-details p {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .contact-info {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .contact-info li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+            color: #555;
+        }
+
+        .contact-info i {
+            font-size: 1.2rem;
+            color: var(--accent-color);
+            margin-right: 10px;
+        }
+
+        .course-outline-list {
+            list-style: none;
+        }
+
+        .course-outline-list li {
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+            color: #555;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .course-outline-list li::before {
+            content: "\2022"; /* Bullet point */
+            color: var(--primary-color);
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+            font-size: 1.2em;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 1200px) {
+            .sidebar {
+                width: 250px;
+            }
+            .main-content {
+                margin-left: 250px;
+            }
+            .course-main-content {
+                grid-template-columns: 1fr; /* Stack columns on smaller screens */
+                padding: 30px;
+            }
+            .course-detail-header {
+                padding: 40px 30px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .sidebar {
+                transform: translateX(-100%);
+                width: 280px;
+            }
+            .sidebar.active {
+                transform: translateX(0);
+            }
+            .main-content {
+                margin-left: 0;
+            }
+            .course-detail-header h1 {
+                font-size: 2.2rem;
+            }
+            .course-detail-header p {
+                font-size: 1rem;
+            }
+            .menu-button {
+                display: block; /* Show menu button on smaller screens */
+            }
+        }
+
+        @media (max-width: 768px) {
+            .course-main-content {
+                padding: 25px;
+            }
+            .course-modules h2 {
+                font-size: 1.6rem;
+            }
+            .module-header h3 {
+                font-size: 1.1rem;
+            }
+            .lesson-actions {
+                flex-direction: column;
+                gap: 5px;
+                align-items: flex-end;
+            }
+            .task-item {
+                flex-wrap: wrap;
+                justify-content: center;
+                text-align: center;
+                gap: 10px;
+            }
+            .task-item h5, .task-item .task-deadline, .task-item .task-link {
+                width: 100%;
+                text-align: center;
+                margin-left: 0;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .course-detail-header {
+                padding: 30px 15px;
+                text-align: left;
+            }
+            .course-detail-header h1 {
+                font-size: 1.8rem;
+            }
+            .course-info-meta {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            .course-main-content {
+                padding: 15px;
+            }
+            .course-modules, .info-card {
+                padding: 20px;
+            }
+            .module-header h3 {
+                font-size: 1rem;
+            }
+            .lecturer-profile img {
+                width: 50px;
+                height: 50px;
+            }
+        }
+           .course-outline-list a.button-link {
+        display: inline-block;
+        padding: 6px 12px;
+        margin-right: 8px;
+        font-size: 14px;
+        color: white;
+        background-color: #4CAF50;
+        border-radius: 6px;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+    }
+
+    .course-outline-list a.button-link:hover {
+        background-color: #45a049;
+    }
+
+    .course-outline-list a.button-link i {
+        margin-right: 4px;
+    }
+
+    .course-progress {
+        font-weight: bold;
+        margin-bottom: 8px;
+        display: inline-block;
+    }
+
+    .course-details {
+        margin-bottom: 8px;
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="logo.png" alt="Library Logo">
+                <h2>LMSVVIP</h2>
+            </div>
+            <div class="sidebar-menu">
+                <div class="menu-category">
+                    <h3>Menu Utama</h3>
+                    <a href="index.html" class="menu-item">
+                        <i class="uil uil-estate"></i>
+                        <span>Beranda</span>
+                    </a>
+                </div>
+                <div class="menu-category">
+                    <h3>Fitur</h3>
+                    <a href="e-library.html" class="menu-item">
+                        <i class="uil uil-book-open"></i>
+                        <span>e-Library</span>
+                    </a>
+                    <a href="datasumber.html" class="menu-item">
+                        <i class="uil uil-download-alt"></i>
+                        <span>Datasets</span>
+                    </a>
+                    <a href="course.html" class="menu-item active">
+                        <i class="uil uil-flask"></i>
+                        <span>Course</span>
+                    </a>
+                    <a href="yth.html" class="menu-item">
+                        <i class="uil uil-tv-retro"></i>
+                        <span>Meowtube</span>
+                    </a>
+                    <a href="#" class="menu-item">
+                        <i class="uil uil-calculator-alt"></i>
+                        <span>Statistic Calculator</span>
+                    </a>
+                </div>
+            </div>
+        </aside>
+
+        <div class="main-content">
+            <nav class="navbar glass-card">
+                <button class="menu-button" aria-label="Toggle sidebar">
+                    <i class="uil uil-bars"></i>
+                </button>
+                <div class="user-profile">
+                    <img src="logo.png" alt="User Profile">
+                </div>
+            </nav>
+
+            <header class="course-detail-header">
+                <h1>Proses Stokastik</h1>
+                <p>Mempelajari model matematika yang menggambarkan fenomena yang berkembang secara acak seiring waktu, dengan fokus pada rantai Markov, proses Poisson, dan aplikasi di berbagai bidang.</p>
+                <div class="course-info-meta">
+                    <span><i class="uil uil-calendar-alt"></i> Semester: 3</span>
+                    <span><i class="uil uil-graduation-cap"></i> SKS: 3</span>
+                </div>
+            </header>
+
+            <div class="course-main-content">
+                <section class="course-modules">
+                    <h2>Materi Perkuliahan</h2>
+                    <ul class="module-list">
+                        <li class="module-item">
+                            <div class="module-header">
+                                <h3><i class="uil uil-one"></i> Pertemuan 1 : Pengantar</h3>
+                                <i class="uil uil-angle-right"></i>
+                            </div>
+                            <div class="module-content">
+                                <ul class="lesson-list">
+                                    <li class="lesson-item">
+                                        <i class="uil uil-file-alt"></i>
+                                        <span>Pengantar, Peluang, dan Operasi Kejadian</span>
+                                        <div class="lesson-actions">
+                                            <a href="https://drive.google.com/file/d/11Hwp7vUpld3P7PEcikTJwHI4miKcu9Ag/view?usp=drive_link" download><i class="uil uil-download-alt"></i> Materi</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+
+                        <li class="module-item">
+                            <div class="module-header">
+                                <h3><i class="uil uil"></i> Pertemuan 2 : Aljabar Peluang</h3>
+                                <i class="uil uil-angle-right"></i>
+                            </div>
+                            <div class="module-content">
+                                <ul class="lesson-list">
+                                    <li class="lesson-item">
+                                        <i class="uil uil-file-alt"></i>
+                                        <span>Aljabar Peluang </span>
+                                        <div class="lesson-actions">
+                                            <a href="https://drive.google.com/file/d/13_GoPgqvtCFCx9MeJ4AHM9JuQxfNkLQB/view?usp=drive_link" download><i class="uil uil-download-alt"></i> Materi</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+
+                        <li class="module-item">
+                            <div class="module-header">
+                                <h3><i class="uil uil"></i> Pertemuan 3: Peluang Bersyarat</h3>
+                                <i class="uil uil-angle-right"></i>
+                            </div>
+                            <div class="module-content">
+                                <ul class="lesson-list">
+                                    <li class="lesson-item">
+                                        <i class="uil uil-file-alt"></i>
+                                        <span>Peluang dan Nilai Ekspektasi Bersyarat</span>
+                                        <div class="lesson-actions">
+                                            <a href="https://drive.google.com/file/d/1Ko73ZCWppXn5Flg2564WdkFxyljKMto5/view?usp=drive_link" download><i class="uil uil-download-alt"></i> Materi</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <ul class="task-list">
+                                    <li class="task-item">
+                                        <i class="uil uil-clipboard-notes"></i>
+                                        <h5>Tugas 1: Melakukan Penurunan Rumus Mean, Variansi, dan MGF Distribusi </h5>
+                                        <a href="https://drive.google.com/file/d/1Wx80hO6eaXEUz26vw_QWlu3YvKByD5_P/view?usp=drive_link" class="task-link" download>Jawaban</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+
+                        <li class="module-item">
+                            <div class="module-header">
+                                <h3><i class="uil uil"></i> Pertemuan 4: Pengenalan Rantai Markov</h3>
+                                <i class="uil uil-angle-right"></i>
+                            </div>
+                            <div class="module-content">
+                                <ul class="lesson-list">
+                                    <li class="lesson-item">
+                                        <i class="uil uil-file-alt"></i>
+                                        <span>Rantai Markov</span>
+                                        <div class="lesson-actions">
+                                            <a href="https://drive.google.com/file/d/1QFCPXVXrFaDdakBAXbv6-6JSDg1ihY1W/view?usp=drive_link" download><i class="uil uil-download-alt"></i> Materi</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+
+                        <li class="module-item">
+                            <div class="module-header">
+                                <h3><i class="uil uil-vector-"></i> Pertemuan 5: Introduction</h3>
+                                <i class="uil uil-angle-right"></i>
+                            </div>
+                            <div class="module-content">
+                                <ul class="lesson-list">
+                                    <li class="lesson-item">
+                                        <i class="uil uil-file-alt"></i>
+                                        <span>Introduction(English) </span>
+                                        <div class="lesson-actions">
+                                            <a href="https://drive.google.com/file/d/14WpJEyrzHJfwX1jQmQanqn1OBkChiDfY/view?usp=drive_link" download><i class="uil uil-download-alt"></i> Materi</a>
+                                        </div>
+                                    </li>
+                                    <li class="lesson-item">
+                                        <i class="uil uil-file-alt"></i>
+                                        <span>Introduction(Indonesian)</span>
+                                        <div class="lesson-actions">
+                                            <a href="https://drive.google.com/file/d/14QVYHr4ObnQxZ2yZOWm7QXP6sh4Fj-S7/view?usp=drive_link" download><i class="uil uil-download-alt"></i> Materi</a>
+                                        </div>
+                                    </li>
+                                    <ul class="task-list">
+                                    <li class="task-item">
+                                        <i class="uil uil-clipboard-notes"></i>
+                                        <h5>Tugas 2: Menjelaskan Contoh 1.1, 1.2, 1.3, dan 1.4 </h5>
+                                        <a href="https://drive.google.com/file/d/1jkqn0JBpbATtc3PmRpBTsJcTDLhvJUui/view?usp=drive_link" class="task-link" download>Jawaban</a>
+                                    </li>
+                                </ul>
+                                </ul>
+                            </div>
+                        </li>
+
+                        <li class="module-item">
+                            <div class="module-header">
+                                <h3><i class="uil uil"></i> Pertemuan 6:  Discrete-Time Markov Models</h3>
+                                <i class="uil uil-angle-right"></i>
+                            </div>
+                            <div class="module-content">
+                                <ul class="lesson-list">
+                                    <li class="lesson-item">
+                                        <i class="uil uil-file-alt"></i>
+                                        <span>Discrete-Time Markov Chains dan Example (English) </span>
+                                        <div class="lesson-actions">
+                                            <a href="https://drive.google.com/file/d/1bn76Dglm1uA4RDUZl_lqMgV8C0Pu_kiU/view?usp=drive_link" download><i class="uil uil-download-alt"></i> Materi</a>
+                                        </div>
+                                    </li>
+                                    <li class="lesson-item">
+                                        <i class="uil uil-file-alt"></i>
+                                        <span>Discrete-Time Markov Chains dan Example (Indonesian)</span>
+                                        <div class="lesson-actions">
+                                            <a href="" download><i class="uil uil-download-alt"></i> NA</a>
+                                        </div>
+                                    </li>
+                                    <ul class="task-list">
+                                    <li class="task-item">
+                                        <i class="uil uil-clipboard-notes"></i>
+                                        <h5>Tugas 3: Mengerjakan Example 2.2 dengan 3 Mesin  </h5>
+                                        <a href="https://drive.google.com/file/d/1xAflg0fkqSAB_WCEsAavMxGjbCC9rZtq/view?usp=drive_link" class="task-link" download>Jawaban</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+
+                        <li class="module-item">
+                            <div class="module-header">
+                                <h3><i class="uil uil"></i> Pertemuan 7:  Discrete-Time Markov Models</h3>
+                                <i class="uil uil-angle-right"></i>
+                            </div>
+                            <div class="module-content">
+                                <ul class="lesson-list">
+                                    <li class="lesson-item">
+                                        <i class="uil uil-file-alt"></i>
+                                        <span>Transient Distributions (English) </span>
+                                        <div class="lesson-actions">
+                                            <a href="https://drive.google.com/file/d/1GZLxsZeZW0FqQbBxj82dqf2zAeBf6kt2/view?usp=drive_link" download><i class="uil uil-download-alt"></i> Materi</a>
+                                        </div>
+                                    </li>
+                                    <li class="lesson-item">
+                                        <i class="uil uil-file-alt"></i>
+                                        <span>Transient Distributions (Indonesia)</span>
+                                        <div class="lesson-actions">
+                                            <a href="" download><i class="uil uil-download-alt"></i> NA</a>
+                                        </div>
+                                    </li>
+                                    <ul class="task-list">
+                                    <li class="task-item">
+                                        <i class="uil uil-clipboard-notes"></i>
+                                        <h5>Tugas 4: Mengerjakan Example 2.10 - 2.12</h5>
+                                        <a href="https://drive.google.com/file/d/1er-46lMN0_Zi3_Nblq7WUyMw8jqCKwGe/view?usp=sharing" class="task-link" download>Jawaban</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="module-item">
+                            <div class="module-header">
+                                <h3><i class="uil uil"></i> Pertemuan 8:  Discrete-Time Markov Models</h3>
+                                <i class="uil uil-angle-right"></i>
+                            </div>
+                            <div class="module-content">
+                                <ul class="lesson-list">
+                                    <li class="lesson-item">
+                                        <i class="uil uil-file-alt"></i>
+                                        <span>Occupancy Times & Limiting Behavior (English) </span>
+                                        <div class="lesson-actions">
+                                            <a href="https://drive.google.com/file/d/14-iwjDuimwGsJkMBkxMMq0psC09YqXQ4/view?usp=drive_link" download><i class="uil uil-download-alt"></i> Materi</a>
+                                        </div>
+                                    </li>
+                                    <li class="lesson-item">
+                                        <i class="uil uil-file-alt"></i>
+                                        <span>Occupancy Times & Limiting Behavior (Indonesia)</span>
+                                        <div class="lesson-actions">
+                                            <a href="" download><i class="uil uil-download-alt"></i> NA</a>
+                                        </div>
+                                    </li>
+                                    <ul class="task-list">
+                                    <li class="task-item">
+                                        <i class="uil uil-clipboard-notes"></i>
+                                        <h5>Tugas 5: Mengerjakan Contoh Soal Buatan</h5>
+                                        <a href="https://drive.google.com/file/d/1jb75zMIoTdHwD4-Mi1vQqS2b172B56uW/view?usp=drive_link" class="task-link" download>Jawaban</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="module-item">
+                            <div class="module-header">
+                                <h3><i class="uil uil"></i> Pertemuan 9:  Discrete-Time Markov Models</h3>
+                                <i class="uil uil-angle-right"></i>
+                            </div>
+                            <div class="module-content">
+                                <ul class="lesson-list">
+                                    <li class="lesson-item">
+                                        <i class="uil uil-file-alt"></i>
+                                        <span>Cost Model (English) </span>
+                                        <div class="lesson-actions">
+                                            <a href="https://drive.google.com/file/d/1Pdlz9ut7NvXOPR2sLz9-LtRFES4fza9q/view?usp=drive_link" download><i class="uil uil-download-alt"></i> Materi</a>
+                                        </div>
+                                    </li>
+                                    <li class="lesson-item">
+                                        <i class="uil uil-file-alt"></i>
+                                        <span>Cost Model (Indonesia)</span>
+                                        <div class="lesson-actions">
+                                            <a href="" download><i class="uil uil-download-alt"></i> NA</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="module-item">
+                            <div class="module-header">
+                                <h3><i class="uil uil"></i> Pertemuan 10:  UAS</h3>
+                                <i class="uil uil-angle-right"></i>
+                            </div>
+                            <div class="module-content">
+                                    <ul class="task-list">
+                                    <li class="task-item">
+                                        <i class="uil uil-clipboard-notes"></i>
+                                        <h5>Tugas UAS: Mengerjakan Soal </h5>
+                                        <a href="https://drive.google.com/file/d/1jmgZ4vYfGNuxjQ506OKOnU4XCRMDU6DG/view?usp=drive_link" class="task-link" download>Soal</a>
+                                        <a href="https://drive.google.com/file/d/1yV7aX6Bn-oO6Lkw3Dt6OV9QvhEXebXEk/view?usp=drive_link" class="task-link" download>Jawaban</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </section>
+
+                <aside class="side-info">
+                    <div class="info-card">
+                        <h3>Dosen Pengampu</h3>
+                        <div class="lecturer-profile">
+                            <img src="https://statistika.fmipa.unm.ac.id/wp-content/uploads/sites/16/2021/03/RHS-min-800x784.png" alt="Foto Dosen Muhammad Kasim Aidid">
+                            <div class="lecturer-details">
+                                <h4>Rahmat H.S, S.Pd., M.Si</h4>
+                            </div>
+                        </div>
+                        <ul class="contact-info">
+                            <li><i class="uil uil-phone"></i> +62 852-5584-7418</li>
+                        </ul>
+                    </div>
+                    <div class="info-card">
+                        <h3>Dosen Pengampu</h3>
+                        <div class="lecturer-profile">
+                            <img src="https://statistika.fmipa.unm.ac.id/wp-content/uploads/sites/16/2021/03/MKA-min-400x392.png" alt="Foto Dosen Muhammad Kasim Aidid">
+                            <div class="lecturer-details">
+                                <h4>Muhammad Kasim Aidid, S.Si., M.Si.</h4>
+                            </div>
+                        </div>
+                        <ul class="contact-info">
+                            <li><i class="uil uil-phone"></i> +62 813-4226-6092</li>
+                        </ul>
+                    </div>
+                    <div class="info-card">
+                        <h3>Referensi</h3>
+                        <ul class="course-outline-list">
+                            <li>An Introduction To Stochastic Model- Howard M Taylor dan Samuel Karlin</li>
+                            <li>Introduction to Probability Model-Sheldon M.Ross</li>
+                            <li>Introduction to Probability and Mathematical Statistics-Robert V. Hogg </li>
+                            <a href="e-library.html" class="button-link" target="_blank">
+                            <i class="uil uil-eye"></i> Cari
+                            </a>
+                        </ul>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Toggle sidebar on mobile
+        document.querySelector('.menu-button').addEventListener('click', function() {
+            document.querySelector('.sidebar').classList.toggle('active');
+        });
+        // Close sidebar when clicking outside (for mobile)
+        document.addEventListener('click', function(event) {
+            const sidebar = document.querySelector('.sidebar');
+            const menuButton = document.querySelector('.menu-button');
+            // Check if sidebar is active AND click is outside sidebar AND click is not on menu button
+            if (sidebar.classList.contains('active') && !sidebar.contains(event.target) && !menuButton.contains(event.target)) {
+                sidebar.classList.remove('active');
+                document.body.classList.remove('sidebar-open'); // Remove class from body
+            }
+        });
+        // Toggle module content visibility
+        document.querySelectorAll('.module-header').forEach(header => {
+            header.addEventListener('click', function() {
+                const moduleItem = this.closest('.module-item');
+                moduleItem.classList.toggle('open');
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Aljabar Matriks page loaded successfully!');
+        });
+    </script>
+</body>
+</html>
