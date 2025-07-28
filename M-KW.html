@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kewirausahaan - Course LMSVVIP</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+    <style>
+        /* Reuse existing variables from your main CSS */
+        :root {
+            --primary-color: #4361ee;
+            --primary-dark: #3a0ca3;
+            --secondary-color: #4cc9f0;
+            --accent-color: #f72585;
+            --dark-color: #14213d;
+            --light-color: #f8f9fa;
+            --background-light: #f5f7ff;
+            --sidebar-bg: linear-gradient(135deg, #14213d 0%, #1b263b 100%);
+            --text-light: #e2e8f0;
+            --highlight-text: #4cc9f0;
+            --border-color: rgba(255, 255, 255, 0.1);
+            --card-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+            --section-padding: 60px 0;
+            --section-margin: 60px 0;
+        }
+
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--background-light);
+            color: var(--dark-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+            position: relative;
+        }
+
+         /* Sidebar Styles - Modern Gradient */
+        .sidebar {
+            width: 260px;
+            background: var(--sidebar-bg);
+            color: white;
+            padding: 20px 0;
+            position: fixed;
+            height: 100vh;
+            z-index: 1000;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+            box-shadow: 10px 0 30px rgba(0, 0, 0, 0.2);
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .sidebar-header {
+            display: flex;
+            align-items: center;
+            padding: 0 20px 20px;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 15px;
+        }
+
+        .sidebar-header img {
+            width: 40px;
+            height: 40px;
+            margin-right: 12px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .sidebar-header h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            background: linear-gradient(to right, #f72585, #4361ee);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .sidebar-menu {
+            padding: 15px;
+            height: calc(100vh - 100px);
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary-color) transparent;
+        }
+
+        .sidebar-menu::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .sidebar-menu::-webkit-scrollbar-thumb {
+            background-color: var(--primary-color);
+            border-radius: 3px;
+        }
+
+        .menu-category {
+            margin-bottom: 25px;
+        }
+
+        .menu-category h3 {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            color: var(--highlight-text);
+            margin-bottom: 15px;
+            letter-spacing: 0.8px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+
+        .menu-category h3::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: var(--border-color);
+            margin-left: 10px;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            margin-bottom: 6px;
+            border-radius: 7px;
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+            font-size: 0.95rem;
+        }
+
+        .menu-item i {
+            margin-right: 10px;
+            font-size: 1.1rem;
+            min-width: 20px;
+            text-align: center;
+        }
+
+        .menu-item::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: 0.5s;
+        }
+
+        .menu-item:hover::before {
+            left: 100%;
+        }
+
+        .menu-item:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+            color: white;
+            transform: translateX(3px);
+        }
+
+        .menu-item.active {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: white;
+            box-shadow: 0 6px 15px rgba(67, 97, 238, 0.3);
+            font-weight: 600;
+        }
+
+        /* Main Content Styles (reused) */
+        .main-content {
+            flex: 1;
+            margin-left: 260px;
+            transition: margin-left 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+        }
+
+        /* Navbar Styles (reused) */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 35px;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .menu-button {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark-color);
+            display: none;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .user-profile img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--primary-color);
+        }
+
+        /* Course Page Specific Styles */
+        .course-header {
+            background: var(--primary-color);
+            color: white;
+            padding: 50px 40px;
+            text-align: center;
+            border-bottom-left-radius: 25px;
+            border-bottom-right-radius: 25px;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden; /* For pseudo-element background */
+        }
+
+        .course-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://source.unsplash.com/random/1200x400/?entrepreneurship,startup,business') no-repeat center center/cover; /* Dynamic background image */
+            opacity: 0.2;
+            z-index: 0;
+        }
+
+        .course-header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .course-header h1 {
+            font-size: 3.2rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .course-header p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            max-width: 900px;
+            margin: 0 auto 20px;
+        }
+
+        .course-meta {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 25px;
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 500;
+        }
+
+        .course-meta span i {
+            margin-right: 8px;
+            color: var(--secondary-color);
+        }
+
+        .course-info-section {
+            padding: 0 40px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .info-card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: var(--card-shadow);
+            border-left: 5px solid var(--primary-color);
+        }
+
+        .info-card h2 {
+            font-size: 2.2rem;
+            color: var(--primary-dark);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .info-card h3 {
+            font-size: 1.5rem;
+            color: var(--dark-color);
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        .info-card p, .info-card ul {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .info-card ul {
+            list-style: none; /* Remove default list style */
+            padding-left: 0;
+        }
+
+        .info-card ul li {
+            position: relative;
+            padding-left: 25px; /* Space for custom bullet */
+            margin-bottom: 8px;
+        }
+
+        .info-card ul li::before {
+            content: "\f058"; /* Unicons check circle icon */
+            font-family: 'Unicons Line';
+            color: var(--secondary-color);
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 1.1rem;
+        }
+
+        .module-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .module-card {
+            background-color: var(--background-light);
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .module-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .module-card h3 {
+            font-size: 1.6rem;
+            color: var(--primary-dark);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .module-card h3 i {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+        }
+
+        .module-card p {
+            font-size: 0.95rem;
+            color: #666;
+            margin-bottom: 20px;
+            flex-grow: 1; /* Allow content to push buttons to bottom */
+        }
+
+        .module-links {
+            display: flex;
+            flex-wrap: wrap; /* Allow wrapping for multiple buttons */
+            gap: 10px;
+            margin-top: auto; /* Push links to the bottom */
+        }
+
+        .module-links a {
+            display: inline-flex;
+            align-items: center;
+            padding: 10px 18px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .module-links a i {
+            margin-right: 8px;
+            font-size: 1rem;
+        }
+
+        .module-links .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .module-links .btn-primary:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .module-links .btn-secondary {
+            background-color: var(--secondary-color);
+            color: var(--dark-color);
+        }
+
+        .module-links .btn-secondary:hover {
+            background-color: #3aa2c0;
+        }
+
+        .module-links .btn-outline {
+            background-color: transparent;
+            color: var(--dark-color);
+            border: 1px solid var(--dark-color);
+        }
+
+        .module-links .btn-outline:hover {
+            background-color: var(--dark-color);
+            color: white;
+        }
+
+        .project-section {
+            background: var(--background-light);
+            border: 1px solid #e0e0e0;
+            border-radius: 16px;
+            padding: 30px;
+            margin-top: 40px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            border-left: 5px solid var(--accent-color);
+        }
+
+        .project-section h2 {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+        }
+
+        .project-section p {
+            font-size: 1.1rem;
+            color: #444;
+            margin-bottom: 25px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .project-section .btn-accent {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .project-section .btn-accent:hover {
+            background-color: #d12170;
+            transform: translateY(-2px);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 1200px) {
+            .sidebar { width: 250px; }
+            .main-content { margin-left: 250px; }
+            .course-info-section { padding: 0 30px 30px; }
+            .info-card { padding: 25px; }
+        }
+
+        @media (max-width: 992px) {
+            .sidebar { transform: translateX(-100%); width: 280px; }
+            .sidebar.active { transform: translateX(0); }
+            .main-content { margin-left: 0; }
+            .menu-button { display: block; }
+            .course-header h1 { font-size: 2.5rem; }
+            .course-header p { font-size: 1.1rem; }
+            .module-list { grid-template-columns: 1fr; } /* Single column on tablets */
+            .info-card h2 { font-size: 1.8rem; }
+            .project-section h2 { font-size: 2rem; }
+            .project-section p { font-size: 1rem; }
+            .project-section .btn-accent { padding: 12px 25px; font-size: 1rem; }
+        }
+
+        @media (max-width: 768px) {
+            .course-info-section { padding: 0 25px 25px; }
+            .info-card { padding: 20px; }
+            .info-card h2 { font-size: 1.6rem; }
+            .info-card h3 { font-size: 1.3rem; }
+            .course-meta {
+                flex-direction: column;
+                gap: 10px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .course-header {
+                padding: 30px 15px;
+                text-align: left;
+            }
+            .course-header h1 { font-size: 2rem; }
+            .course-header p { font-size: 1rem; }
+            .course-info-section { padding: 0 15px 15px; }
+            .module-card h3 { font-size: 1.4rem; }
+            .module-links a {
+                padding: 8px 15px;
+                font-size: 0.85rem;
+            }
+            .project-section { padding: 20px; }
+            .project-section h2 { font-size: 1.8rem; }
+            .project-section .btn-accent { padding: 10px 20px; font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="/assets/logo.png" alt="Library Logo">
+                <h2>LMSVVIP</h2>
+            </div>
+            <div class="sidebar-menu">
+                <div class="menu-category">
+                    <h3>Menu Utama</h3>
+                    <a href="Home.html" class="menu-item">
+                        <i class="uil uil-estate"></i>
+                        <span>Beranda</span>
+                    </a>
+                </div>
+                <div class="menu-category">
+                    <h3>Fitur</h3>
+                    <a href="e-library.html" class="menu-item">
+                        <i class="uil uil-book-open"></i>
+                        <span>e-Library</span>
+                    </a>
+                    <a href="datasumber.html" class="menu-item">
+                        <i class="uil uil-download-alt"></i>
+                        <span>Datasets</span>
+                    </a>
+                    <a href="course.html" class="menu-item active">
+                        <i class="uil uil-flask"></i>
+                        <span>Course</span>
+                    </a>
+                    <a href="yth.html" class="menu-item">
+                        <i class="uil uil-tv-retro"></i>
+                        <span>Meowtube</span>
+                    </a>
+                    <a href="#" class="menu-item">
+                        <i class="uil uil-calculator-alt"></i>
+                        <span>Statistic Calculator</span>
+                    </a>
+                    <a href="syntax_index.html" class="menu-item">
+                        <i class="uil uil-brackets-curly"></i>
+                        <span>Daftar Sintaks</span>
+                    </a>
+                    <a href="repokode.html" class="menu-item">
+                        <i class="uil uil-github-alt"></i>
+                        <span>RepoKode</span>
+                    </a>
+                </div>
+            </div>
+        </aside>
+
+        <div class="main-content">
+            <nav class="navbar glass-card">
+                <button class="menu-button" aria-label="Toggle sidebar">
+                    <i class="uil uil-bars"></i>
+                </button>
+                <div class="user-profile">
+                    <img src="/assets/logo.png" alt="User Profile">
+                </div>
+            </nav>
+
+            <header class="course-header">
+                <div class="course-header-content">
+                    <h1>Kewirausahaan</h1>
+                    <p>Mata kuliah ini membekali mahasiswa dengan pola pikir, keterampilan, dan strategi untuk mengidentifikasi peluang bisnis, mengembangkan ide inovatif, dan meluncurkan startup yang berkelanjutan.</p>
+                    <div class="course-meta"> <span><i class="uil uil-book-alt"></i> SKS: 3</span>
+                        <span><i class="uil uil-calendar-alt"></i> Semester: 3</span>
+                    </div>
+                </div>
+            </header>
+                <div class="project-section">
+                    <h2><i class="uil uil-building"></i> Tugas Proyek : Membuat Usaha Barang atau Jasa</h2>
+                    <p>Ini adalah tugas utama mata kuliah Kewirausahaan. Anda dan tim akan diminta untuk mengembangkan sebuah ide usaha, menyusun rencana bisnis yang lengkap, dan mempresentasikannya. Proyek ini dapat berupa usaha barang (produk fisik) atau jasa.</p>
+                    <a href="https://drive.google.com/file/d/1IzAC9TJzaPxAmk8jtJl-r6BQ0ncOJV8X/view?usp=drive_link" class="btn-accent"><i class="uil uil-file-bookmark-alt"></i> Laporan Proyek</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Toggle sidebar on mobile
+        document.querySelector('.menu-button').addEventListener('click', function() {
+            document.querySelector('.sidebar').classList.toggle('active');
+        });
+        // Close sidebar when clicking outside (for mobile)
+        document.addEventListener('click', function(event) {
+            const sidebar = document.querySelector('.sidebar');
+            const menuButton = document.querySelector('.menu-button');
+            // Check if sidebar is active AND click is outside sidebar AND click is not on menu button
+            if (sidebar.classList.contains('active') && !sidebar.contains(event.target) && !menuButton.contains(event.target)) {
+                sidebar.classList.remove('active');
+                document.body.classList.remove('sidebar-open'); // Remove class from body
+            }
+        });
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Course page for Kewirausahaan (Project-focused) loaded successfully!');
+        });
+    </script>
+</body>
+</html>
