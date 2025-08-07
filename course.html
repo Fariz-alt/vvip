@@ -565,6 +565,161 @@
     .course-details {
         margin-bottom: 8px;
     }
+        /* Schedule Page Specific Styles */
+        .schedule-header {
+            text-align: center;
+            padding: 40px 20px;
+            background-color: var(--primary-color);
+            color: white;
+            border-bottom-left-radius: 25px;
+            border-bottom-right-radius: 25px;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 40px;
+        }
+
+        .schedule-header h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .schedule-header h2 {
+            font-size: 1.5rem;
+            font-weight: 400;
+            opacity: 0.9;
+        }
+
+        .schedule-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px 40px;
+        }
+
+        .schedule-table-container {
+            overflow-x: auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: var(--card-shadow);
+            padding: 20px;
+        }
+
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 900px;
+        }
+
+        .schedule-table thead th {
+            background-color: var(--dark-color);
+            color: white;
+            text-align: center;
+            padding: 15px 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .schedule-table tbody td {
+            padding: 0; /* Important for the flip card effect */
+            text-align: center;
+            border: 1px solid #ddd;
+            font-size: 0.95rem;
+            vertical-align: middle;
+            perspective: 1000px; /* Perspective for 3D effect */
+        }
+
+        .schedule-table tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .schedule-table .time-cell {
+            padding: 15px 10px;
+            font-weight: 600;
+            background-color: #f0f0f0;
+            color: var(--dark-color);
+        }
+
+        /* Custom cell colors from the image */
+        .class-cell-green {
+            background-color: #a9e0a9;
+            font-weight: 500;
+            position: relative;
+            height: 100px; /* Fixed height for consistent flip effect */
+        }
+        .class-cell-orange {
+            background-color: #ffb799;
+            font-weight: 500;
+        }
+        .class-cell-yellow {
+            background-color: #ffffa3;
+            color: var(--dark-color);
+            font-weight: 500;
+            font-style: italic;
+            padding: 15px 10px;
+        }
+
+        /* Flip card container */
+        .flip-container {
+            width: 100%;
+            height: 100%;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+            cursor: pointer;
+        }
+
+        /* Trigger flip on hover */
+        .class-cell-green:hover .flip-container {
+            transform: rotateY(180deg);
+        }
+
+        .flipper-front,
+        .flipper-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .flipper-front {
+            background-color: #a9e0a9; /* Match cell background color */
+            z-index: 2;
+        }
+
+        .flipper-back {
+            background-color: var(--primary-color); /* New color for the back side */
+            transform: rotateY(180deg);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+        }
+
+        .flipper-back .cell-link {
+            color: white;
+            text-align: center;
+        }
+        
+        .flipper-back .cell-link:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .cell-link {
+            display: block;
+            width: 100%;
+            height: 100%;
+            padding: 15px 10px;
+            text-decoration: none;
+            color: var(--dark-color);
+            transition: background-color 0.3s ease;
+        }
+
+        .cell-link:hover {
+            background-color: rgba(0, 0, 0, 0.1);
+        }
     </style>
 </head>
 <body>
@@ -1069,6 +1224,124 @@
                     </div>
                 </div>
             </div>
+
+            <div class="schedule-content">
+                <div class="schedule-table-container">
+                    <table class="schedule-table">
+                        <thead>
+                            <tr>
+                                <th>JAM</th>
+                                <th>WAKTU</th>
+                                <th>SENIN</th>
+                                <th>SELASA</th>
+                                <th>RABU</th>
+                                <th>KAMIS</th>
+                                <th>JUMAT</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="time-cell">I</td>
+                                <td class="time-cell">07.30-08.20</td>
+                                <td class="class-cell-green" rowspan="4">
+                                    <div class="flip-container" tabindex="0">
+                                        <div class="flipper-front">Sosiometri<br>02<br>ISM/MFS<br>FF 205
+
+                                        </div>
+                                        <div class="flipper-back">Manajemen Data<br>03<br>RHS/HRD/ZMH<br>FF 305
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="class-cell-gren" rowspan="4">
+
+                                </td>
+                                <td class="class-cell-gren" rowspan="4">
+                                    </a>
+                                </td>
+                                <td class="class-cell-green" rowspan="4">Model Linear 01<br>ISM<br> FF 305
+                                </td>
+                                <td class="class-cell-gree" rowspan="4">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="time-cell">II</td>
+                                <td class="time-cell">08.20-09.10</td>
+                            </tr>
+                            <tr>
+                            <tr>
+                                <td class="time-cell">III</td>
+                                <td class="time-cell">09.10-10.00</td>
+                            </tr>
+                            <tr>
+                                <td class="time-cell">IV</td>
+                                <td class="time-cell">10.05-10.55</td>
+                                <td class="class-cell-green" rowspan="4"> Statistika PB I<br>01<br>RLN/ZMH/NWN<br>FF 306
+                                </td>
+                                <td class="class-cell-green" rowspan="4">Regresi Nonpar<br>03<br>FF 306<br>RLN/MKA/HRD/RHT
+                                </td>
+                                <td class="class-cell-yellow" rowspan="4">Rabuan</td>
+                                <td class="class-cell-green" rowspan="4">Analisis Survival<br>01<br>ASW/ANS<br> FF 305
+                                </td>
+                                <td class="class-cell-gren" rowspan="2">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="time-cell">V</td>
+                                <td class="time-cell">10.55-11.45</td>
+                            </tr>
+                            <tr>
+                                <td class="time-cell">VI</td>
+                                <td class="time-cell">11.45-12.35</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                            </tr>
+                            <tr>
+                                <td class="time-cell">VII</td>
+                                <td class="time-cell">13.10 - 14.00</td>
+                                <td class="class-cell-gren" rowspan="3">
+                                </td>
+                                <td class="class-cell-green" rowspan="3">Rancangan Percobaan<br>01<br>MNG/ZMH<br>FF 206
+                                </td>
+                                <td class="class-cell-green" rowspan="3">Sistem Informasi Manajemen<br>03<br>MKA/ASA<br>FF 305  
+                                </td>
+                                <td class="class-cell-green" rowspan="3">Data Mining<br>01<br>SWA/ZLR/RHS/AMO
+                                </td>
+                                <td class="class-cell-oange" rowspan="3">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="time-cell">VIII</td>
+                                <td class="time-cell">14.00 - 14.50</td>
+                            </tr>
+                            <tr>
+                                <td class="time-cell">IX</td>
+                                <td class="time-cell">14.50 - 15.40</td>
+                            </tr>
+                            <tr>
+                                <td class="time-cell">X</td>
+                                <td class="time-cell">16.10 - 17.00</td>
+                                <td></td>
+                                <td class="class-cell-gren" rowspan="2">
+                                </td>
+                                <td class="class-cell-gn" rowspan="2">
+                                </td>
+                                <td class="class-cell-grn" rowspan="2">
+                                <td class="class-cell-gn" rowspan="2">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="time-cell">XI</td>
+                                <td class="time-cell">17.00 - 17.50</td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+
         </div>
     </div>
 
@@ -1119,6 +1392,9 @@
             semesterSelect.addEventListener('change', filterSemesters);
 
             console.log('LMSVVIP Course page loaded successfully with semester filter!');
+        });
+            document.addEventListener('DOMContentLoaded', function() {
+            console.log('Updated schedule page for FF 205 with flip card effect loaded successfully!');
         });
     </script>
 </body>
