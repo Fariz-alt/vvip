@@ -9,21 +9,25 @@
     <style>
         /* Reuse existing variables from your main CSS */
         :root {
-            --primary-color: #4361ee;
             --primary-dark: #3a0ca3;
             --secondary-color: #4cc9f0;
-            --accent-color: #f72585;
-            --dark-color: #14213d;
+            --dark-color: #333d4d;
             --light-color: #f8f9fa;
             --background-light: #f5f7ff;
             --sidebar-bg: linear-gradient(135deg, #14213d 0%, #1b263b 100%);
             --text-light: #e2e8f0;
             --highlight-text: #4cc9f0;
-            --border-color: rgba(255, 255, 255, 0.1);
-            --card-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
             --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
             --section-padding: 60px 0;
             --section-margin: 60px 0;
+            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); /* Softer, modern shadow */
+            --primary-color: #14213d; /* Dark blue, almost black */
+            --accent-color: #5a7d9a;  /* A sophisticated blue-gray */
+            --light-bg-color: #f5f7fa; /* A soft, off-white background */
+            --border-color: #e9ecef;   /* Light gray border */
+            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); /* Soft, modern shadow */
+            --border-radius-lg: 16px;
+            --border-radius-sm: 8px;
         }
 
         /* Base Styles */
@@ -565,102 +569,119 @@
     .course-details {
         margin-bottom: 8px;
     }
-        /* Schedule Page Specific Styles */
         .schedule-header {
             text-align: center;
-            padding: 40px 20px;
-            background-color: var(--primary-color);
+            padding: 60px 20px 40px; /* More vertical space */
+            background: linear-gradient(135deg, var(--primary-color), #4a6881); /* Subtle gradient */
             color: white;
-            border-bottom-left-radius: 25px;
-            border-bottom-right-radius: 25px;
+            border-bottom-left-radius: var(--border-radius-lg);
+            border-bottom-right-radius: var(--border-radius-lg);
             box-shadow: var(--card-shadow);
-            margin-bottom: 40px;
+            margin-bottom: 50px;
         }
 
         .schedule-header h1 {
-            font-size: 2.8rem;
+            font-size: 3rem;
             font-weight: 700;
-            margin-bottom: 5px;
+            margin-bottom: 10px;
+            letter-spacing: -1px; /* Tighter letter spacing for a modern look */
         }
 
         .schedule-header h2 {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             font-weight: 400;
             opacity: 0.9;
         }
-
+        
         .schedule-content {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 0 20px 40px;
+            padding: 0 30px 60px; /* More horizontal padding */
         }
 
         .schedule-table-container {
             overflow-x: auto;
             background: white;
-            border-radius: 16px;
+            border-radius: var(--border-radius-lg);
             box-shadow: var(--card-shadow);
-            padding: 20px;
+            padding: 25px;
         }
 
         .schedule-table {
             width: 100%;
-            border-collapse: collapse;
-            min-width: 900px;
+            border-collapse: separate;
+            border-spacing: 0;
+            min-width: 1000px; /* Increased minimum width */
         }
 
         .schedule-table thead th {
             background-color: var(--dark-color);
             color: white;
             text-align: center;
-            padding: 15px 10px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 18px 15px;
+            font-weight: 600;
+            border: none; /* Removed borders for a cleaner look */
+        }
+        
+        .schedule-table thead th:first-child {
+            border-top-left-radius: var(--border-radius-sm);
+        }
+        
+        .schedule-table thead th:last-child {
+            border-top-right-radius: var(--border-radius-sm);
         }
 
         .schedule-table tbody td {
-            padding: 0; /* Important for the flip card effect */
+            padding: 0;
             text-align: center;
-            border: 1px solid #ddd;
-            font-size: 0.95rem;
+            border-bottom: 1px solid #e0e6ed;
+            border-left: 1px solid #e0e6ed;
+            font-size: 1rem;
             vertical-align: middle;
-            perspective: 1000px; /* Perspective for 3D effect */
+            perspective: 1200px;
+            transition: all 0.3s ease-in-out; /* Add a transition */
+        }
+        
+        .schedule-table tbody td:last-child {
+            border-right: 1px solid #e0e6ed;
         }
 
-        .schedule-table tbody tr:nth-child(even) {
-            background-color: #f9f9f9;
+        .schedule-table tbody tr:last-child td {
+            border-bottom: none;
         }
 
         .schedule-table .time-cell {
-            padding: 15px 10px;
+            padding: 18px 15px;
             font-weight: 600;
-            background-color: #f0f0f0;
+            background-color: var(--light-bg-color);
             color: var(--dark-color);
+            border-left: none;
         }
-
-        /* Custom cell colors from the image */
+        
+        /* Custom cell colors - Modernized */
         .class-cell-green {
-            background-color: #a9e0a9;
-            font-weight: 500;
+            background-color: #e6f7e6; /* Softer green */
             position: relative;
-            height: 100px; /* Fixed height for consistent flip effect */
+            height: 120px; /* Taller cells for better content space */
+            border-radius: 0;
         }
         .class-cell-orange {
-            background-color: #ffb799;
+            background-color: #fff0e0; /* Softer orange */
             font-weight: 500;
         }
         .class-cell-yellow {
-            background-color: #ffffa3;
+            background-color: #fff9e0; /* Softer yellow */
             color: var(--dark-color);
             font-weight: 500;
             font-style: italic;
-            padding: 15px 10px;
+            padding: 18px 15px;
         }
 
         /* Flip card container */
         .flip-container {
             width: 100%;
             height: 100%;
-            transition: transform 0.8s;
+            transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Bouncier, modern transition */
             transform-style: preserve-3d;
             cursor: pointer;
         }
@@ -669,56 +690,59 @@
         .class-cell-green:hover .flip-container {
             transform: rotateY(180deg);
         }
-
+        
         .flipper-front,
         .flipper-back {
             position: absolute;
             width: 100%;
             height: 100%;
             backface-visibility: hidden;
-            border-radius: 8px;
+            border-radius: var(--border-radius-sm);
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
         .flipper-front {
-            background-color: #a9e0a9; /* Match cell background color */
+            background-color: #e6f7e6;
             z-index: 2;
         }
 
         .flipper-back {
-            background-color: var(--primary-color); /* New color for the back side */
+            background: linear-gradient(45deg, var(--primary-color), #7a9cb3); /* Gradient for a modern feel */
             transform: rotateY(180deg);
             color: white;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 10px;
+            padding: 15px;
         }
 
         .flipper-back .cell-link {
             color: white;
             text-align: center;
+            padding: 10px;
+            border-radius: 6px;
         }
         
         .flipper-back .cell-link:hover {
-            background-color: rgba(255, 255, 255, 0.2);
+            background-color: rgba(255, 255, 255, 0.15);
         }
-
+        
         .cell-link {
             display: block;
             width: 100%;
             height: 100%;
-            padding: 15px 10px;
+            padding: 18px 15px;
             text-decoration: none;
             color: var(--dark-color);
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, transform 0.2s ease;
         }
-
+        
         .cell-link:hover {
-            background-color: rgba(0, 0, 0, 0.1);
+            background-color: rgba(0, 0, 0, 0.05); /* Lighter hover effect */
+            transform: translateY(-2px); /* Subtle lift on hover */
         }
     </style>
 </head>
@@ -1261,7 +1285,7 @@
                                 <td class="time-cell">10.05-10.55</td>
                                 <td class="class-cell-green" rowspan="4"> Statistika PB I<br>01<br>RLN/ZMH/NWN<br>FF 306
                                 </td>
-                                <td class="class-cell-green" rowspan="4">Regresi Nonpar<br>03<br>FF 306<br>RLN/MKA/HRD/RHT
+                                <td class="class-cell-green" rowspan="4">Regresi Nonpar<br>03<br>RLN/MKA/HRD/RHT<br>FF 306
                                 </td>
                                 <td class="class-cell-yellow" rowspan="4">Rabuan</td>
                                 <td class="class-cell-green" rowspan="4">Analisis Survival<br>01<br>ASW/ANS<br> FF 305
