@@ -3,44 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Course - LMSVVIP</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Dashboard Akademik - LMSVVIP</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
     <style>
-        /* Reuse existing variables from your main CSS */
+        /* Professional Color Palette */
         :root {
-            --primary-dark: #3a0ca3;
-            --secondary-color: #4cc9f0;
-            --dark-color: #333d4d;
-            --light-color: #f8f9fa;
-            --background-light: #f5f7ff;
-            --sidebar-bg: linear-gradient(135deg, #14213d 0%, #1b263b 100%);
-            --text-light: #e2e8f0;
-            --highlight-text: #4cc9f0;
-            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
-            --section-padding: 60px 0;
-            --section-margin: 60px 0;
-            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); /* Softer, modern shadow */
-            --primary-color: #14213d; /* Dark blue, almost black */
-            --accent-color: #5a7d9a;  /* A sophisticated blue-gray */
-            --light-bg-color: #f5f7fa; /* A soft, off-white background */
-            --border-color: #e9ecef;   /* Light gray border */
-            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); /* Soft, modern shadow */
-            --border-radius-lg: 16px;
-            --border-radius-sm: 8px;
+            --primary-color: #1a365d;
+            --primary-dark: #0f2642;
+            --secondary-color: #2d72d9;
+            --accent-color: #1e4d8c;
+            --success-color: #2e8b57;
+            --warning-color: #d97706;
+            --info-color: #3b82f6;
+            --dark-color: #1e293b;
+            --light-color: #f8fafc;
+            --gray-light: #f1f5f9;
+            --gray-medium: #cbd5e1;
+            --gray-dark: #64748b;
+            --sidebar-bg: #1e293b;
+            --card-bg: #ffffff;
+            --text-light: #f1f5f9;
+            --text-dark: #334155;
+            --border-color: #e2e8f0;
+            --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.05);
+            --shadow-medium: 0 8px 24px rgba(0, 0, 0, 0.08);
+            --shadow-dark: 0 12px 32px rgba(0, 0, 0, 0.12);
+            --transition: all 0.3s ease;
+            --border-radius: 10px;
+            --section-padding: 40px 0;
         }
 
-        /* Base Styles */
+        /* Reset & Base Styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
         }
 
         body {
-            background-color: var(--background-light);
-            color: var(--dark-color);
+            font-family: 'Inter', sans-serif;
+            background-color: #f5f7fa;
+            color: var(--text-dark);
             line-height: 1.6;
             overflow-x: hidden;
         }
@@ -48,161 +52,118 @@
         .container {
             display: flex;
             min-height: 100vh;
-            position: relative;
         }
 
-        /* Reuse sidebar styles */
-        /* Sidebar Styles - Modern Gradient */
+        /* Sidebar Styles */
         .sidebar {
             width: 260px;
-            background: var(--sidebar-bg);
-            color: white;
-            padding: 20px 0;
+            background-color: var(--sidebar-bg);
+            color: var(--text-light);
             position: fixed;
             height: 100vh;
             z-index: 1000;
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
-            box-shadow: 10px 0 30px rgba(0, 0, 0, 0.2);
-            border-right: 1px solid rgba(255, 255, 255, 0.05);
+            transition: var(--transition);
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
         }
 
         .sidebar-header {
+            padding: 24px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             display: flex;
             align-items: center;
-            padding: 0 20px 20px;
-            border-bottom: 1px solid var(--border-color);
-            margin-bottom: 15px;
+            gap: 12px;
         }
 
         .sidebar-header img {
-            width: 40px;
-            height: 40px;
-            margin-right: 12px;
-            border-radius: 8px;
+            width: 36px;
+            height: 36px;
+            border-radius: 6px;
             object-fit: cover;
         }
 
         .sidebar-header h2 {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             font-weight: 700;
             color: white;
-            background: linear-gradient(to right, #f72585, #4361ee);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            letter-spacing: 0.5px;
         }
 
         .sidebar-menu {
-            padding: 15px;
-            height: calc(100vh - 100px);
+            padding: 20px 0;
+            flex-grow: 1;
             overflow-y: auto;
-            scrollbar-width: thin;
-            scrollbar-color: var(--primary-color) transparent;
-        }
-
-        .sidebar-menu::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        .sidebar-menu::-webkit-scrollbar-thumb {
-            background-color: var(--primary-color);
-            border-radius: 3px;
         }
 
         .menu-category {
-            margin-bottom: 25px;
+            margin-bottom: 28px;
         }
 
         .menu-category h3 {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             text-transform: uppercase;
-            color: var(--highlight-text);
-            margin-bottom: 15px;
-            letter-spacing: 0.8px;
+            color: var(--gray-medium);
+            margin: 0 20px 12px;
+            letter-spacing: 1px;
             font-weight: 600;
-            display: flex;
-            align-items: center;
-        }
-
-        .menu-category h3::after {
-            content: "";
-            flex: 1;
-            height: 1px;
-            background: var(--border-color);
-            margin-left: 10px;
         }
 
         .menu-item {
             display: flex;
             align-items: center;
-            padding: 12px 15px;
-            margin-bottom: 6px;
-            border-radius: 7px;
-            cursor: pointer;
-            transition: var(--transition);
+            padding: 14px 20px;
             color: var(--text-light);
             text-decoration: none;
             font-weight: 500;
-            position: relative;
-            overflow: hidden;
             font-size: 0.95rem;
+            transition: var(--transition);
+            border-left: 3px solid transparent;
         }
 
         .menu-item i {
-            margin-right: 10px;
+            margin-right: 12px;
             font-size: 1.1rem;
-            min-width: 20px;
+            width: 24px;
             text-align: center;
         }
 
-        .menu-item::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transition: 0.5s;
-        }
-
-        .menu-item:hover::before {
-            left: 100%;
-        }
-
         .menu-item:hover {
-            background-color: rgba(255, 255, 255, 0.15);
-            color: white;
-            transform: translateX(3px);
+            background-color: rgba(255, 255, 255, 0.05);
+            border-left-color: var(--secondary-color);
         }
 
         .menu-item.active {
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            background-color: rgba(45, 114, 217, 0.15);
             color: white;
-            box-shadow: 0 6px 15px rgba(67, 97, 238, 0.3);
-            font-weight: 600;
+            border-left-color: var(--secondary-color);
         }
 
-        /* Main Content Styles */
+        /* Main Content */
         .main-content {
             flex: 1;
             margin-left: 260px;
-            transition: margin-left 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+            transition: var(--transition);
         }
 
-        /* Navbar Styles */
+        /* Navbar */
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 18px 35px;
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
+            padding: 18px 30px;
+            background-color: white;
+            box-shadow: var(--shadow-light);
             position: sticky;
             top: 0;
             z-index: 100;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .navbar-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
         }
 
         .menu-button {
@@ -210,14 +171,31 @@
             border: none;
             font-size: 1.5rem;
             cursor: pointer;
-            color: var(--dark-color);
-            display: none; /* Hide on desktop */
+            color: var(--text-dark);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .menu-button:hover {
+            background-color: var(--gray-light);
+            color: var(--secondary-color);
+        }
+
+        .page-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--text-dark);
         }
 
         .user-profile {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
 
         .user-profile img {
@@ -225,30 +203,112 @@
             height: 40px;
             border-radius: 50%;
             object-fit: cover;
-            border: 2px solid var(--primary-color);
+            border: 2px solid var(--secondary-color);
         }
 
-        /* Course Content Styles */
-        .course-content {
-            padding: 40px;
-            display: grid;
-            grid-template-columns: 2fr 1fr; /* Two columns for main content and sidebar */
-            gap: 40px;
-            align-items: start; /* Align items to the start of the grid */
+        /* Dashboard Content */
+        .dashboard-content {
+            padding: 30px;
         }
 
-        /* Main Course Sections (Semesters) */
-        .main-course-sections {
+        /* Dashboard Header */
+        .dashboard-header {
             display: flex;
-            flex-direction: column;
-            gap: 30px;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 20px;
         }
 
-        .semester-section {
-            background: white;
-            border-radius: 16px;
+        .academic-year {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .year-badge {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            padding: 8px 16px;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            font-size: 0.9rem;
+            box-shadow: var(--shadow-light);
+        }
+
+        .semester-filter {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .semester-filter select {
+            padding: 8px 16px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            background-color: white;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            cursor: pointer;
+            transition: var(--transition);
+            min-width: 150px;
+        }
+
+        .semester-filter select:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 3px rgba(45, 114, 217, 0.1);
+        }
+
+        /* Content Layout */
+        .content-layout {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        /* Courses Section */
+        .courses-section {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
             padding: 25px;
-            box-shadow: var(--card-shadow);
+            box-shadow: var(--shadow-light);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .section-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background-color: var(--secondary-color);
+            border-radius: 2px;
+        }
+
+        .semester-courses {
+            display: none;
+        }
+
+        .semester-courses.active {
+            display: block;
         }
 
         .semester-header {
@@ -256,118 +316,171 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
         }
 
         .semester-title {
-            font-size: 1.6rem;
-            font-weight: 600;
-            color: var(--dark-color);
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary-color);
         }
 
         .semester-status {
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             padding: 6px 12px;
             border-radius: 20px;
-            font-weight: 500;
-        }
-
-        .status-active {
-            background-color: #d4edda;
-            color: #155724;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .status-completed {
-            background-color: #d1ecf1;
-            color: #0c5460;
+            background-color: #d1fae5;
+            color: #065f46;
         }
 
-        .course-list {
-            list-style: none;
+        .status-active {
+            background-color: #dbeafe;
+            color: #1e40af;
         }
 
-        .course-item {
+        .status-upcoming {
+            background-color: #fef3c7;
+            color: #92400e;
+        }
+
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .course-card {
+            background-color: var(--light-color);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            transition: var(--transition);
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-medium);
+            border-color: var(--secondary-color);
+        }
+
+        .course-header {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .course-icon {
+            width: 48px;
+            height: 48px;
+            background-color: rgba(45, 114, 217, 0.1);
+            border-radius: 10px;
             display: flex;
             align-items: center;
-            background-color: var(--background-light);
-            border-radius: 10px;
-            padding: 15px 20px;
-            margin-bottom: 12px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-            transition: var(--transition);
-        }
-
-        .course-item:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .course-item-icon {
-            font-size: 1.8rem;
-            color: var(--primary-color);
+            justify-content: center;
             margin-right: 15px;
+            font-size: 1.4rem;
+            color: var(--secondary-color);
         }
 
-        .course-details {
+        .course-info {
             flex: 1;
         }
 
-        .course-details h4 {
+        .course-info h3 {
             font-size: 1.1rem;
             font-weight: 600;
-            color: var(--dark-color);
+            color: var(--text-dark);
             margin-bottom: 5px;
+            line-height: 1.4;
         }
 
-        .course-details p {
+        .lecturer {
             font-size: 0.85rem;
-            color: #666;
+            color: var(--gray-dark);
+            margin-bottom: 10px;
         }
 
-        .course-details .lecturer {
-            font-weight: 500;
-            color: var(--primary-dark);
+        .course-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
         }
 
         .course-progress {
-            width: 100px; /* Adjust as needed */
-            text-align: right;
-            font-size: 0.9rem;
-            color: var(--dark-color);
-            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
-        
-        /* Side Section (Deadlines) */
-        .side-sections {
+
+        .progress-bar {
+            width: 80px;
+            height: 6px;
+            background-color: var(--gray-light);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background-color: var(--success-color);
+            border-radius: 3px;
+            transition: width 0.5s ease;
+        }
+
+        .progress-text {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--success-color);
+        }
+
+        .course-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn-view {
+            padding: 6px 12px;
+            background-color: var(--secondary-color);
+            color: white;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 500;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .btn-view:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        /* Sidebar Sections */
+        .sidebar-sections {
             display: flex;
             flex-direction: column;
-            gap: 30px;
+            gap: 25px;
         }
 
-        .deadline-section {
-            background: white;
-            border-radius: 16px;
+        .sidebar-card {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
             padding: 25px;
-            box-shadow: var(--card-shadow);
-        }
-
-        .deadline-section h3 {
-            font-size: 1.4rem;
-            font-weight: 600;
-            color: var(--dark-color);
-            margin-bottom: 20px;
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        .deadline-section h3::after {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 50px;
-            height: 3px;
-            background: var(--accent-color);
-            border-radius: 3px;
+            box-shadow: var(--shadow-light);
         }
 
         .deadline-list {
@@ -375,102 +488,167 @@
         }
 
         .deadline-item {
-            display: flex;
-            align-items: center;
             padding: 15px 0;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
         }
 
         .deadline-item:last-child {
             border-bottom: none;
+            padding-bottom: 0;
         }
 
         .deadline-icon {
-            font-size: 1.5rem;
-            color: var(--accent-color);
-            margin-right: 15px;
+            width: 36px;
+            height: 36px;
+            background-color: rgba(220, 38, 38, 0.1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            color: #dc2626;
+            flex-shrink: 0;
         }
 
         .deadline-info {
             flex: 1;
         }
 
-        .deadline-info h4 {
-            font-size: 1rem;
-            font-weight: 500;
-            color: var(--dark-color);
-            margin-bottom: 5px;
-        }
-
-        .deadline-info p {
-            font-size: 0.8rem;
-            color: #888;
-        }
-
-        .deadline-info .date {
+        .deadline-title {
+            font-size: 0.95rem;
             font-weight: 600;
-            color: var(--primary-color);
+            color: var(--text-dark);
+            margin-bottom: 4px;
         }
 
-        /* Semester filter styles */
-        .semester-filter {
-            margin-bottom: 20px;
-            padding: 0 40px; /* Match course-content padding */
+        .deadline-description {
+            font-size: 0.85rem;
+            color: var(--gray-dark);
+            margin-bottom: 6px;
+        }
+
+        .deadline-date {
+            font-size: 0.8rem;
+            color: #dc2626;
+            font-weight: 600;
+        }
+
+        /* Schedule Section */
+        .schedule-section {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--shadow-light);
+            margin-top: 30px;
+        }
+
+        .schedule-header {
             display: flex;
+            justify-content: space-between;
             align-items: center;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
             gap: 15px;
         }
 
-        .semester-filter label {
-            font-size: 1rem;
+        .schedule-table-container {
+            overflow-x: auto;
+            border-radius: var(--border-radius);
+            border: 1px solid var(--border-color);
+        }
+
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 1000px;
+        }
+
+        .schedule-table th {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 15px;
             font-weight: 600;
-            color: var(--dark-color);
+            font-size: 0.9rem;
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .semester-filter select {
-            padding: 8px 12px;
-            border-radius: 8px;
-            border: 1px solid #ccc;
-            background-color: white;
-            font-size: 0.95rem;
-            color: var(--dark-color);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            -webkit-appearance: none; /* Remove default arrow on WebKit browsers */
-            -moz-appearance: none; /* Remove default arrow on Firefox */
-            appearance: none; /* Remove default arrow */
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234361ee' width='18px' height='18px'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 10px center;
-            background-size: 18px;
-            padding-right: 30px; /* Make space for the custom arrow */
+        .schedule-table th:first-child {
+            border-top-left-radius: 8px;
         }
 
-        .semester-filter select:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+        .schedule-table th:last-child {
+            border-top-right-radius: 8px;
+            border-right: none;
         }
 
-        /* Hide other semesters by default, show only active one via JS */
-        .semester-section:not(.active-semester) {
-            display: none;
+        .schedule-table td {
+            padding: 15px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            font-size: 0.9rem;
         }
 
-        /* Responsive Styles */
+        .time-cell {
+            background-color: var(--light-color);
+            font-weight: 600;
+            color: var(--text-dark);
+            width: 80px;
+        }
+
+        .class-cell {
+            background-color: #e6f7ff;
+            position: relative;
+            min-height: 80px;
+            vertical-align: top;
+        }
+
+        .class-cell.green {
+            background-color: #f0f9ff;
+        }
+
+        .class-cell.yellow {
+            background-color: #fefce8;
+        }
+
+        .class-info {
+            text-align: left;
+        }
+
+        .class-name {
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+
+        .class-details {
+            font-size: 0.8rem;
+            color: var(--gray-dark);
+            line-height: 1.4;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 50px;
+            padding: 20px 0;
+            text-align: center;
+            color: var(--gray-dark);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        /* Responsive Design */
         @media (max-width: 1200px) {
-            .sidebar {
-                width: 250px;
+            .content-layout {
+                grid-template-columns: 1fr;
             }
-            .main-content {
-                margin-left: 250px;
-            }
-            .course-content {
-                grid-template-columns: 1fr; /* Stack columns on smaller screens */
-                padding: 30px;
-            }
-            .semester-filter {
-                padding: 0 30px;
+            
+            .course-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             }
         }
 
@@ -479,270 +657,81 @@
                 transform: translateX(-100%);
                 width: 280px;
             }
+            
             .sidebar.active {
                 transform: translateX(0);
             }
+            
             .main-content {
                 margin-left: 0;
             }
-            .course-content {
-                padding: 30px;
-            }
+            
             .menu-button {
-                display: block; /* Show menu button on smaller screens */
+                display: flex;
+            }
+            
+            .dashboard-content {
+                padding: 20px;
+            }
+            
+            .content-layout {
+                gap: 20px;
             }
         }
 
         @media (max-width: 768px) {
-            .course-content {
-                padding: 25px;
-            }
-            .semester-title {
-                font-size: 1.4rem;
-            }
-            .course-item {
+            .dashboard-header {
                 flex-direction: column;
                 align-items: flex-start;
-                text-align: left;
             }
-            .course-item-icon {
-                margin-bottom: 10px;
-            }
-            .course-progress {
-                width: auto;
-                margin-top: 10px;
-                text-align: left;
-            }
-            .semester-filter {
-                flex-direction: column;
-                align-items: flex-start;
-                padding: 0 25px;
-            }
-            .semester-filter select {
+            
+            .academic-year {
                 width: 100%;
+                justify-content: space-between;
+            }
+            
+            .course-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .schedule-table {
+                min-width: 800px;
+            }
+            
+            .schedule-section {
+                padding: 20px;
             }
         }
 
         @media (max-width: 576px) {
-            .course-content {
+            .dashboard-content {
                 padding: 15px;
             }
-            .semester-section, .deadline-section {
+            
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            
+            .courses-section, .sidebar-card, .schedule-section {
                 padding: 20px;
             }
-            .semester-title {
-                font-size: 1.2rem;
+            
+            .course-header {
+                flex-direction: column;
+                align-items: flex-start;
             }
-            .deadline-section h3 {
-                font-size: 1.2rem;
+            
+            .course-icon {
+                margin-bottom: 10px;
             }
-            .semester-filter {
-                padding: 0 15px;
+            
+            .course-meta {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
             }
-        }
-           .course-item a.button-link {
-        display: inline-block;
-        padding: 6px 12px;
-        margin-right: 8px;
-        font-size: 14px;
-        color: white;
-        background-color: #4CAF50;
-        border-radius: 6px;
-        text-decoration: none;
-        transition: background-color 0.3s ease;
-    }
-
-    .course-item a.button-link:hover {
-        background-color: #45a049;
-    }
-
-    .course-item a.button-link i {
-        margin-right: 4px;
-    }
-
-    .course-progress {
-        font-weight: bold;
-        margin-bottom: 8px;
-        display: inline-block;
-    }
-
-    .course-details {
-        margin-bottom: 8px;
-    }
-        .schedule-header {
-            text-align: center;
-            padding: 60px 20px 40px; /* More vertical space */
-            background: linear-gradient(135deg, var(--primary-color), #4a6881); /* Subtle gradient */
-            color: white;
-            border-bottom-left-radius: var(--border-radius-lg);
-            border-bottom-right-radius: var(--border-radius-lg);
-            box-shadow: var(--card-shadow);
-            margin-bottom: 50px;
-        }
-
-        .schedule-header h1 {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            letter-spacing: -1px; /* Tighter letter spacing for a modern look */
-        }
-
-        .schedule-header h2 {
-            font-size: 1.6rem;
-            font-weight: 400;
-            opacity: 0.9;
-        }
-        
-        .schedule-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 30px 60px; /* More horizontal padding */
-        }
-
-        .schedule-table-container {
-            overflow-x: auto;
-            background: white;
-            border-radius: var(--border-radius-lg);
-            box-shadow: var(--card-shadow);
-            padding: 25px;
-        }
-
-        .schedule-table {
-            width: 100%;
-            border-collapse: separate;
-            border-spacing: 0;
-            min-width: 1000px; /* Increased minimum width */
-        }
-
-        .schedule-table thead th {
-            background-color: var(--dark-color);
-            color: white;
-            text-align: center;
-            padding: 18px 15px;
-            font-weight: 600;
-            border: none; /* Removed borders for a cleaner look */
-        }
-        
-        .schedule-table thead th:first-child {
-            border-top-left-radius: var(--border-radius-sm);
-        }
-        
-        .schedule-table thead th:last-child {
-            border-top-right-radius: var(--border-radius-sm);
-        }
-
-        .schedule-table tbody td {
-            padding: 0;
-            text-align: center;
-            border-bottom: 1px solid #e0e6ed;
-            border-left: 1px solid #e0e6ed;
-            font-size: 1rem;
-            vertical-align: middle;
-            perspective: 1200px;
-            transition: all 0.3s ease-in-out; /* Add a transition */
-        }
-        
-        .schedule-table tbody td:last-child {
-            border-right: 1px solid #e0e6ed;
-        }
-
-        .schedule-table tbody tr:last-child td {
-            border-bottom: none;
-        }
-
-        .schedule-table .time-cell {
-            padding: 18px 15px;
-            font-weight: 600;
-            background-color: var(--light-bg-color);
-            color: var(--dark-color);
-            border-left: none;
-        }
-        
-        /* Custom cell colors - Modernized */
-        .class-cell-green {
-            background-color: #e6f7e6; /* Softer green */
-            position: relative;
-            height: 120px; /* Taller cells for better content space */
-            border-radius: 0;
-        }
-        .class-cell-orange {
-            background-color: #fff0e0; /* Softer orange */
-            font-weight: 500;
-        }
-        .class-cell-yellow {
-            background-color: #fff9e0; /* Softer yellow */
-            color: var(--dark-color);
-            font-weight: 500;
-            font-style: italic;
-            padding: 18px 15px;
-        }
-
-        /* Flip card container */
-        .flip-container {
-            width: 100%;
-            height: 100%;
-            transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Bouncier, modern transition */
-            transform-style: preserve-3d;
-            cursor: pointer;
-        }
-
-        /* Trigger flip on hover */
-        .class-cell-green:hover .flip-container {
-            transform: rotateY(180deg);
-        }
-        
-        .flipper-front,
-        .flipper-back {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            backface-visibility: hidden;
-            border-radius: var(--border-radius-sm);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .flipper-front {
-            background-color: #e6f7e6;
-            z-index: 2;
-        }
-
-        .flipper-back {
-            background: linear-gradient(45deg, var(--primary-color), #7a9cb3); /* Gradient for a modern feel */
-            transform: rotateY(180deg);
-            color: white;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 15px;
-        }
-
-        .flipper-back .cell-link {
-            color: white;
-            text-align: center;
-            padding: 10px;
-            border-radius: 6px;
-        }
-        
-        .flipper-back .cell-link:hover {
-            background-color: rgba(255, 255, 255, 0.15);
-        }
-        
-        .cell-link {
-            display: block;
-            width: 100%;
-            height: 100%;
-            padding: 18px 15px;
-            text-decoration: none;
-            color: var(--dark-color);
-            transition: background-color 0.3s ease, transform 0.2s ease;
-        }
-        
-        .cell-link:hover {
-            background-color: rgba(0, 0, 0, 0.05); /* Lighter hover effect */
-            transform: translateY(-2px); /* Subtle lift on hover */
         }
     </style>
 </head>
@@ -750,608 +739,403 @@
     <div class="container">
         <aside class="sidebar">
             <div class="sidebar-header">
-                <img src="logo.png" alt="Library Logo">
+                <img src="logo.png" alt="LMSVVIP Logo">
                 <h2>LMSVVIP</h2>
             </div>
             <div class="sidebar-menu">
                 <div class="menu-category">
                     <h3>Menu Utama</h3>
-                    <a href="index.html" class="menu-item active">
+                    <a href="index.html" class="menu-item">
                         <i class="uil uil-estate"></i>
-                        <span>Beranda</span>
+                        <span>Dashboard</span>
                     </a>
                 </div>
                 <div class="menu-category">
-                    <h3>Fitur</h3>
+                    <h3>Fitur Akademik</h3>
                     <a href="e-library.html" class="menu-item">
                         <i class="uil uil-book-open"></i>
-                        <span>e-Library</span>
+                        <span>Digital Library</span>
                     </a>
                     <a href="F-Pubs.html" class="menu-item">
-                        <i class="uil uil-download-alt"></i>
-                        <span>Unggahan Artikel</span>
+                        <i class="uil uil-file-upload-alt"></i>
+                        <span>Publikasi</span>
                     </a>
-                    <a href="course.html" class="menu-item">
-                        <i class="uil uil-flask"></i>
-                        <span>Course</span>
+                    <a href="course.html" class="menu-item active">
+                        <i class="uil uil-graduation-cap"></i>
+                        <span>Kursus & Jadwal</span>
                     </a>
                     <a href="yth.html" class="menu-item">
-                        <i class="uil uil-tv-retro"></i>
-                        <span>Meowtube</span>
+                        <i class="uil uil-video"></i>
+                        <span>Video Pembelajaran</span>
+                    </a>
+                </div>
+                <div class="menu-category">
+                    <h3>Analisis Data</h3>
+                    <a href="DataSet-1.html" class="menu-item">
+                        <i class="uil uil-database"></i>
+                        <span>Dataset</span>
                     </a>
                     <a href="StatTools.html" class="menu-item">
-                        <i class="uil uil-calculator"></i>
-                        <span>Statistic Tools</span>
+                        <i class="uil uil-chart-bar"></i>
+                        <span>Analisis Statistik</span>
                     </a>
                 </div>
             </div>
         </aside>
 
         <div class="main-content">
-            <nav class="navbar glass-card">
-                <button class="menu-button" aria-label="Toggle sidebar">
-                    <i class="uil uil-bars"></i>
-                </button>
+            <nav class="navbar">
+                <div class="navbar-left">
+                    <button class="menu-button" aria-label="Toggle sidebar">
+                        <i class="uil uil-bars"></i>
+                    </button>
+                    <h1 class="page-title">Dashboard Akademik</h1>
+                </div>
                 <div class="user-profile">
                     <img src="logo.png" alt="User Profile">
                 </div>
             </nav>
 
-            <div class="semester-filter">
-                <label for="semesterSelect">Tampilkan Semester:</label>
-                <select id="semesterSelect">
-                    <option value="all">Semua Semester</option>
-                    <option value="1">Semester 1</option>
-                    <option value="2">Semester 2</option>
-                    <option value="3">Semester 3</option>
-                    <option value="4">Semester 4</option>
-                    <option value="5" selected>Semester 5</option>
-                </select>
-            </div>
-
-            <div class="course-content">
-                <div class="main-course-sections">
-                    <div class="semester-section glass-card" data-semester="1">
-                        <div class="semester-header">
-                            <h2 class="semester-title">Semester 1</h2>
-                            <span class="semester-status status-completed">Selesai</span>
-                        </div>
-                        <ul class="course-list">
-                            <li class="course-item">
-                                <i class="uil uil-book-open course-item-icon"></i>
-                                <div class="course-details">
-                                    <h4>Statistika Dasar</h4>
-                                    <p class="lecturer">Dosen: Drs. Muhammad Nusrang, M.Si, Andi Arisy Zulwaqar, S.Stat., M.Sc, & Isma Muthahharah, S.Si., M.Si</p>
-                                </div>
-                                <span class="course-progress">100%</span>
-                            </li>
-                            <li class="course-item">
-                                <i class="uil uil-book-open course-item-icon"></i>
-                                <div class="course-details">
-                                    <h4>Himpunan dan Logika</h4>
-                                    <p class="lecturer">Dosen: Muhammad Fahmuddin, S.Pd dan Sitti Masyitah Meliyana R., S.Pd., M.Si</p>
-                                </div>
-                                <span class="course-progress">100%</span>
-                            </li>
-                            <li class="course-item">
-                                <i class="uil uil-book-open course-item-icon"></i>
-                                <div class="course-details">
-                                    <h4>Kalkulus</h4>
-                                    <p class="lecturer">Dosen: Sudarmin, S.Si., M.Si.</p>
-                                </div>
-                                <span class="course-progress">100%</span>
-                            </li>
-                            <li class="course-item">
-                                <i class="uil uil-book-open course-item-icon"></i>
-                                <div class="course-details">
-                                    <h4>English For Statistic</h4>
-                                    <p class="lecturer">Dosen: Aswi, S.Pd., M.Si., Ph.D</p>
-                                </div>
-                                <span class="course-progress">100%</span>
-                            </li>
-                            <li class="course-item">
-                                <i class="uil uil-book-open course-item-icon"></i>
-                                <div class="course-details">
-                                    <h4>Dasar-Dasar IPA</h4>
-                                    <p class="lecturer">Dosen: Dr. Sitti Saenab, S.Pd., M.Pd., St. Mutia Alfiyanti Muhiddin, S.Pd., M.Pd., & Nur Indah Sari, S.Pd., M.Pd.</p>
-                                </div>
-                                <span class="course-progress">100%</span>
-                            </li>
-                            <li class="course-item">
-                                <i class="uil uil-book-open course-item-icon"></i>
-                                <div class="course-details">
-                                    <h4>Pendidikan Lingkungan Hidup</h4>
-                                    <p class="lecturer">Dosen: Dinil Qaiyimah, S.Pd., M.Sc.</p>
-                                </div>
-                                <span class="course-progress">100%</span>
-                            </li>
-                            <li class="course-item">
-                                <i class="uil uil-book-open course-item-icon"></i>
-                                <div class="course-details">
-                                    <h4>Pendidikan Kewarganegaraan</h4>
-                                    <p class="lecturer">Dosen: Muhtar, S.H., M.H.</p>
-                                </div>
-                                <span class="course-progress">100%</span>
-                            </li>
-                            <li class="course-item">
-                                <i class="uil uil-book-open course-item-icon"></i>
-                                <div class="course-details">
-                                    <h4>Pendidikan Pancasila</h4>
-                                    <p class="lecturer">Dosen: Adi Rudini</p>
-                                </div>
-                                <span class="course-progress">100%</span>
-                            </li>
-                            <li class="course-item">
-                                <i class="uil uil-book-open course-item-icon"></i>
-                                <div class="course-details">
-                                    <h4>Pendidikan Agama Islam</h4>
-                                    <p class="lecturer">Dosen: Nurhilaliyah, S.Ag., M.Ag.</p>
-                                </div>
-                                <span class="course-progress">100%</span>
-                            </li>
-                            <li class="course-item">
-                                <i class="uil uil-book-open course-item-icon"></i>
-                                <div class="course-details">
-                                    <h4>Bahasa Indonesia</h4>
-                                    <p class="lecturer">Dosen: Dr. Filawati, S.S., M.Pd</p>
-                                </div>
-                                <span class="course-progress">100%</span>
-                            </li>
-                        </ul>
+            <div class="dashboard-content">
+                <div class="dashboard-header">
+                    <div class="academic-year">
+                        <span class="year-badge">Tahun Akademik 2024/2025</span>
+                        <span>Program Studi: Statistika</span>
                     </div>
-
-                    <div class="semester-section glass-card" data-semester="2">
-                        <div class="semester-header">
-                            <h2 class="semester-title">Semester 2</h2>
-                            <span class="semester-status status-completed">Selesai</span>
-                        </div>
-                        <ul class="course-list">
-                            <li class="course-item">
-                                <i class="uil uil-book-reader course-item-icon"></i>
-                                <div class="course-details">
-                                    <h4>Teori Peluang</h4>
-                                    <p class="lecturer">Dosen: Drs. Muhammad Nusrang, Dr. Rahmat Hidayat, M.Si.</p>
-                                </div>
-                                <span class="course-progress">100%</span>
-                            </li>
-                            <li class="course-item">
-                                <i class="uil uil-book-reader course-item-icon"></i>
-                                <div class="course-details">
-                                    <h4>Analisis Regresi</h4>
-                                    <p class="lecturer">Dosen: Drs. Muhammad Nusrang, M.Si, Andi Arisy Zulwaqar, S.Stat., M.Sc, & Dr. Ruliana, S.Pd., M.Si.</p>
-                                </div>
-                                <span class="course-progress">100%</span>
-                            </li>
-                            <li class="course-item">
-                                <i class="uil uil-book-reader course-item-icon"></i>
-                                <div class="course-details">
-                                    <h4>Teknik Penyampelan</h4>
-                                    <p class="lecturer">Dosen: Drs. Muhammad Nusrang, M.Si</p>
-                                </div>
-                                <span class="course-progress">100%</span>
-                            </li>
-                            <li class="course-item">
-                                <i class="uil uil-book-reader course-item-icon"></i>
-                                <div class="course-details">
-                                    <h4>Kalkulus II</h4>
-                                    <p class="lecturer">Dosen: Sudarmin, S.Si., M.Si.</p>
-                                </div>
-                                <span class="course-progress">100%</span>
-                            </li>
-                            <li class="course-item">
-                                <a href = "AljabarMAtrix.html" class="uil uil-book-reader course-item-icon"></a>
-                                <div class="course-details">
-                                    <h4>Aljabar Matriks</h4>
-                                    <p class="lecturer">Dosen: Hardianti Hafid, S.Si., M.Si</p>
-                                </div>
-                                <span class="course-progress">100%</span>
-                            </li>
-                            <li class="course-item">
-                                <i class="uil uil-book-reader course-item-icon"></i>
-                                <div class="course-details">
-                                    <h4>Algoritma dan Pemograman</h4>
-                                    <p class="lecturer">Dosen: Muhammad Kasim Aidid, S.Si., M.Si & Ansari Saleh Ahmar, S.Si., M.Sc</p>
-                                </div>
-                                <span class="course-progress">100%</span>
-                            </li>
-                            <li class="course-item">
-                                <i class="uil uil-book-reader course-item-icon"></i>
-                                <div class="course-details">
-                                    <h4>Filsafat Statistika</h4>
-                                    <p class="lecturer">Dosen: Bobby Poerwanto, S.Pd., M.Si</p>
-                                </div>
-                                <span class="course-progress">100%</span>
-                            </li>
-                            <li class="course-item">
-                                <i class="uil uil-book-reader course-item-icon"></i>
-                                <div class="course-details">
-                                    <h4>Orientasi Statistika</h4>
-                                    <p class="lecturer">Dosen: Bobby Poerwanto, S.Pd., M.Si, Aswi, S.Pd., M.Si., Ph.D</p>
-                                </div>
-                                <span class="course-progress">100%</span>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="semester-section glass-card" data-semester="3">
-                        <div class="semester-header">
-                            <h2 class="semester-title">Semester 3</h2>
-                            <span class="semester-status status-active">Aktif</span>
-                        </div>
-<ul class="course-list">
-    <li class="course-item">
-        <i class="uil uil-atom course-item-icon"></i>
-        <div class="course-details">
-            <h4>Proses Stokastik</h4>
-            <p class="lecturer">Dosen: Rahmat H.S., S.Pd., M.Si & Muhammad Kasim Aidid, S.Si., M.Si</p>
-        </div>
-        <a href="M-Proses-Stokastik.html" class="button-link" target="_blank">
-            <i class="uil uil-eye"></i> Lihat
-        </a>
-    </li>
-</ul>
-
-                            <li class="course-item">
-                                <i class="uil uil-atom course-item-icon"></i>
-                                <div class="course-details">
-                                    <h4>Teori Statistika</h4>
-                                    <p class="lecturer">Dosen: Drs. Muhammad Nusrang, M.Si & Andi Arisy Zulwaqar, S.Stat., M.Sc</p>
-                                </div>
-                                <a href="M-Teori-Statistika.html" class="button-link" target="_blank">
-                                <i class="uil uil-eye"></i> Lihat
-                                </a>
-                            </li>
-                            <li class="course-item">
-                                <i class="uil uil-atom course-item-icon"></i>
-                                <div class="course-details">
-                                    <h4>Statistika Non Parametrik</h4>
-                                    <p class="lecturer">Dosen: Hardianti Hafid, S.Si., M.Si</p>
-                                </div>
-                                <a href="M-Nonparametrik.html" class="button-link" target="_blank">
-                                <i class="uil uil-eye"></i> Lihat
-                                </a>
-                            </li>
-                            <li class="course-item">
-                                <i class="uil uil-atom course-item-icon"></i>
-                                <div class="course-details">
-                                    <h4>Komputasi Statistika</h4>
-                                    <p class="lecturer">Dosen: Muhammad Kasim Aidid, S.Si., M.Si & Ansari Saleh Ahmar, S.Si., M.Sc</p>
-                                </div>
-                                <a href="M-Komput.html" class="button-link" target="_blank">
-                                <i class="uil uil-eye"></i> Lihat
-                                </a>
-                            </li>
-                            <li class="course-item">
-                                <i class="uil uil-atom course-item-icon"></i>
-                                <div class="course-details">
-                                    <h4>Analisis Eksplorasi Data</h4>
-                                    <p class="lecturer">Dosen: Aswi, S.Pd., M.Si., Ph.D</p>
-                                </div>
-                                <a href="M-AED.html" class="button-link" target="_blank">
-                                <i class="uil uil-eye"></i> Lihat
-                                </a>
-                            </li>
-                            <li class="course-item">
-                                <i class="uil uil-atom course-item-icon"></i>
-                                <div class="course-details">
-                                    <h4>Kewirausahaan</h4>
-                                    <p class="lecturer">Dosen: Zulkifli Rais, S.Pd., M.Si</p>
-                                </div>
-                                <a href="M-KW.html" class="button-link" target="_blank">
-                                <i class="uil uil-eye"></i> Lihat
-                                </a>
-                            </li>
-                            <li class="course-item">
-                                <i class="uil uil-atom course-item-icon"></i>
-                                <div class="course-details">
-                                    <h4>Manajemen Data</h4>
-                                    <p class="lecturer">Dosen: Zakiyah Mar’ah, S.Si., M.Si, Hardianti Hafied, S.Si.,M.Si. dan Rahmat H.S, S.Pd., M.Si</p>
-                                </div>
-                                <a href="M-Mandat.html" class="button-link" target="_blank">
-                                <i class="uil uil-eye"></i> Lihat
-                                </a>
-                            </li>
-                            <li class="course-item">
-                                <i class="uil uil-atom course-item-icon"></i>
-                                <div class="course-details">
-                                    <h4>Ilmu Kesehatan Masyarakat</h4>
-                                    <p class="lecturer">Dosen: Sitti Masyita Meliyana R., S.Pd., M.Si & Bobby Poerwanto, S.Pd., M.Si</p>
-                                </div>
-                                <a href="M-Kesmas.html" class="button-link" target="_blank">
-                                <i class="uil uil-eye"></i> Lihat
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="semester-section glass-card" data-semester="4">
-                        <div class="semester-header">
-                            <h2 class="semester-title">Semester 4</h2>
-                            <span class="semester-status status-active">Aktif</span>
-                        </div>
-                        <ul class="course-list">
-                            <li class="course-item">
-                                <a href = "ADW-4.html" class="uil uil-chart-line course-item-icon"></a>
-                                <div class="course-details">
-                                    <h4>Analisis Deret Waktu</h4>
-                                    <p class="lecturer">Dosen: Aswi, S.Pd., M.Si., Ph.D & Ansari Saleh Ahmar, S.Si., M.Sc., Ph.D</p>
-                                </div>
-                                <a href="S4/ADW.html" class="button-link" target="_blank">
-                                <i class="uil uil-eye"></i> Lihat
-                                </a>
-                            </li>
-                            <li class="course-item">
-                                <i class="uil uil-chart-line course-item-icon"></i>
-                                <div class="course-details">
-                                    <h4>Analisis Data Kategorik</h4>
-                                    <p class="lecturer">Dosen: Bobby Poerwanto, S.Pd., M.Si & Isma Muthahharah, S.Si., M.Si.</p>
-                                </div>
-                                <span class="course-progress">0%</span>
-                            </li>
-                            <li class="course-item">
-                                <i class="uil uil-chart-line course-item-icon"></i>
-                                <div class="course-details">
-                                    <h4>Statistika Spasial</h4>
-                                    <p class="lecturer">Dosen: Zakiyah Mar’ah, S.Si., M.Si & Aswi, S.Pd., M.Si., Ph.D</p>
-                                </div>
-                                <span class="course-progress">0%</span>
-                            </li>
-                            <li class="course-item">
-                                <i class="uil uil-chart-line course-item-icon"></i>
-                                <div class="course-details">
-                                    <h4>Statistika Kependudukan</h4>
-                                    <p class="lecturer">Dosen: Rahmat H.S, S.Pd., M.Si & Muhammad Fahmuddin S., S.Pd., M.Stat</p>
-                                </div>
-                                <span class="course-progress">0%</span>
-                            </li>
-                            <li class="course-item">
-                                <i class="uil uil-chart-line course-item-icon"></i>
-                                <div class="course-details">
-                                    <h4>Manajemen Sains</h4>
-                                    <p class="lecturer">Dosen: Sitti Masyitah Meliyana R., S.Pd., M.Si. & Zakiyah Mar’ah, S.Si., M.Si</p>
-                                </div>
-                                <span class="course-progress">0%</span>
-                            </li>
-                            <li class="course-item">
-                                <i class="uil uil-chart-line course-item-icon"></i>
-                                <div class="course-details">
-                                    <h4>Simulasi Komputer</h4>
-                                    <p class="lecturer">Dosen: Ansari Saleh Ahmar, S.Si., M.Sc., Ph.D</p>
-                                </div>
-                                <span class="course-progress">0%</span>
-                            </li>
-                            <li class="course-item">
-                                <i class="uil uil-chart-line course-item-icon"></i>
-                                <div class="course-details">
-                                    <h4>Pengontrolan Mutu</h4>
-                                    <p class="lecturer">Dosen: Zakiyah Mar’ah, S.Si., M.Si & Zulkifli Rais, S.Pd., M.Si</p>
-                                </div>
-                                <span class="course-progress">0%</span>
-                            </li>
-                            <li class="course-item">
-                                <i class="uil uil-chart-line course-item-icon"></i>
-                                <div class="course-details">
-                                    <h4>Ekonometerika</h4>
-                                    <p class="lecturer">Dosen: Rahmat H.S, S.Pd., M.Si & Sitti Masyitah Meliyana R., S.Pd., M.Si.</p>
-                                </div>
-                                <span class="course-progress">0%</span>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="semester-section glass-card" data-semester="5">
-                        <div class="semester-header">
-                            <h2 class="semester-title">Semester 5</h2>
-                            <span class="semester-status status-active">Aktif</span>
-                        </div>
-                        <ul class="course-list">
-                            <li class="course-item">
-                                <i class="uil uil-database course-item-icon"></i>
-                                <div class="course-details">
-                                    <h4>Data Mining</h4>
-                                    <p class="lecturer">Dosen: -</p>
-                                </div>
-                                <span class="course-progress">0%</span>
-                            </li>
-                            <li class="course-item">
-                                <i class="uil uil-database course-item-icon"></i>
-                                <div class="course-details">
-                                    <h4>Model Linear</h4>
-                                    <p class="lecturer">Dosen: -</p>
-                                </div>
-                                <span class="course-progress">0%</span>
-                            </li>
-                            <li class="course-item">
-                                <i class="uil uil-database course-item-icon"></i>
-                                <div class="course-details">
-                                    <h4>Sosiometri</h4>
-                                    <p class="lecturer">Dosen: -</p>
-                                </div>
-                                <span class="course-progress">0%</span>
-                            </li>
-                            <li class="course-item">
-                                <i class="uil uil-database course-item-icon"></i>
-                                <div class="course-details">
-                                    <h4>Statistika Peubah Banyak I</h4>
-                                    <p class="lecturer">Dosen: -</p>
-                                </div>
-                                <span class="course-progress">0%</span>
-                            </li>
-                            <li class="course-item">
-                                <i class="uil uil-database course-item-icon"></i>
-                                <div class="course-details">
-                                    <h4>Statistika Peubah Banyak II</h4>
-                                    <p class="lecturer">Dosen: -</p>
-                                </div>
-                                <span class="course-progress">0%</span>
-                            </li>
-                            <li class="course-item">
-                                <i class="uil uil-database course-item-icon"></i>
-                                <div class="course-details">
-                                    <h4>Regresi Nonparametrik</h4>
-                                    <p class="lecturer">Dosen: -</p>
-                                </div>
-                                <span class="course-progress">0%</span>
-                            </li>
-                            <li class="course-item">
-                                <i class="uil uil-database course-item-icon"></i>
-                                <div class="course-details">
-                                    <h4>Analisis Survival</h4>
-                                    <p class="lecturer">Dosen: -</p>
-                                </div>
-                                <span class="course-progress">0%</span>
-                            </li>
-                            <li class="course-item">
-                                <i class="uil uil-database course-item-icon"></i>
-                                <div class="course-details">
-                                    <h4>Rancangan Percobaan</h4>
-                                    <p class="lecturer">Dosen: -</p>
-                                </div>
-                                <span class="course-progress">0%</span>
-                            </li>
-                            <li class="course-item">
-                                <i class="uil uil-database course-item-icon"></i>
-                                <div class="course-details">
-                                    <h4>Sistem Informasi Manajemen</h4>
-                                    <p class="lecturer">Dosen: -</p>
-                                </div>
-                                <span class="course-progress">0%</span>
-                            </li>
-                        </ul>
+                    <div class="semester-filter">
+                        <label for="semesterSelect">Filter Semester:</label>
+                        <select id="semesterSelect">
+                            <option value="all">Semua Semester</option>
+                            <option value="1">Semester 1</option>
+                            <option value="2">Semester 2</option>
+                            <option value="3" selected>Semester 3</option>
+                            <option value="4">Semester 4</option>
+                            <option value="5">Semester 5</option>
+                        </select>
                     </div>
                 </div>
 
-                <div class="side-sections">
-                    <div class="deadline-section glass-card">
-                        <h3>Deadline Tugas Terkini ⏰</h3>
-                        <ul class="deadline-list">
-                            <li class="deadline-item">
-                                <i class="uil uil-clipboard-notes deadline-icon"></i>
-                                <div class="deadline-info">
-                                    <h4>Rancangan Percobaan</h4>
-                                    <p>Mengerjakan Contoh Soal Bab 1,2,3 dengan R</p>
-                                    <p class="date">26 Agustus 2025</p>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+                <div class="content-layout">
+                    <!-- Main Courses Section -->
+                    <div class="courses-section">
+                        <div class="section-header">
+                            <h2 class="section-title">Mata Kuliah</h2>
+                        </div>
 
-            <div class="schedule-content">
-                <div class="schedule-table-container">
-                    <table class="schedule-table">
-                        <thead>
-                            <tr>
-                                <th>JAM</th>
-                                <th>WAKTU</th>
-                                <th>SENIN</th>
-                                <th>SELASA</th>
-                                <th>RABU</th>
-                                <th>KAMIS</th>
-                                <th>JUMAT</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="time-cell">I</td>
-                                <td class="time-cell">07.30-08.20</td>
-                                <td class="class-cell-green" rowspan="4">
-                                    <div class="flip-container" tabindex="0">
-                                        <div class="flipper-front">Sosiometri<br>02<br>ISM/MFS<br>FF 205
-
+                        <!-- Semester 1 -->
+                        <div class="semester-courses" id="semester-1">
+                            <div class="semester-header">
+                                <h3 class="semester-title">Semester 1</h3>
+                                <span class="semester-status status-completed">Selesai</span>
+                            </div>
+                            <div class="course-grid">
+                                <div class="course-card">
+                                    <div class="course-header">
+                                        <div class="course-icon">
+                                            <i class="uil uil-chart-bar"></i>
                                         </div>
-                                        <div class="flipper-back">Manajemen Data<br>03<br>RHS/HRD/ZMH<br>FF 305
+                                        <div class="course-info">
+                                            <h3>Statistika Dasar</h3>
+                                            <p class="lecturer">Drs. Muhammad Nusrang, M.Si dkk</p>
                                         </div>
                                     </div>
-                                </td>
-                                <td class="class-cell-gren" rowspan="4">
+                                    <div class="course-meta">
+                                        <div class="course-progress">
+                                            <div class="progress-bar">
+                                                <div class="progress-fill" style="width: 100%"></div>
+                                            </div>
+                                            <span class="progress-text">100%</span>
+                                        </div>
+                                        <div class="course-actions">
+                                            <a href="#" class="btn-view">
+                                                <i class="uil uil-eye"></i> Lihat
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Add more course cards for semester 1 -->
+                            </div>
+                        </div>
 
-                                </td>
-                                <td class="class-cell-gren" rowspan="4">
-                                    </a>
-                                </td>
-                                <td class="class-cell-green" rowspan="4">Model Linear 01<br>ISM<br> FF 305
-                                </td>
-                                <td class="class-cell-gree" rowspan="4">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="time-cell">II</td>
-                                <td class="time-cell">08.20-09.10</td>
-                            </tr>
-                            <tr>
-                            <tr>
-                                <td class="time-cell">III</td>
-                                <td class="time-cell">09.10-10.00</td>
-                            </tr>
-                            <tr>
-                                <td class="time-cell">IV</td>
-                                <td class="time-cell">10.05-10.55</td>
-                                <td class="class-cell-green" rowspan="4"> Statistika PB I<br>01<br>RLN/ZMH/NWN<br>FF 306
-                                </td>
-                                <td class="class-cell-green" rowspan="4">Regresi Nonpar<br>03<br>RLN/MKA/HRD/RHT<br>FF 306
-                                </td>
-                                <td class="class-cell-yellow" rowspan="4">Rabuan</td>
-                                <td class="class-cell-green" rowspan="4">Analisis Survival<br>01<br>ASW/ANS<br> FF 305
-                                </td>
-                                <td class="class-cell-gren" rowspan="2">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="time-cell">V</td>
-                                <td class="time-cell">10.55-11.45</td>
-                            </tr>
-                            <tr>
-                                <td class="time-cell">VI</td>
-                                <td class="time-cell">11.45-12.35</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                            </tr>
-                            <tr>
-                                <td class="time-cell">VII</td>
-                                <td class="time-cell">13.10 - 14.00</td>
-                                <td class="class-cell-gren" rowspan="3">
-                                </td>
-                                <td class="class-cell-green" rowspan="3">Rancangan Percobaan<br>01<br>MNG/ZMH<br>FF 206
-                                </td>
-                                <td class="class-cell-green" rowspan="3">Sistem Informasi Manajemen<br>03<br>MKA/ASA<br>FF 305  
-                                </td>
-                                <td class="class-cell-green" rowspan="3">Data Mining<br>01<br>SWA/ZLR/RHS/AMO<br> FF 205
-                                </td>
-                                <td class="class-cell-oange" rowspan="3">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="time-cell">VIII</td>
-                                <td class="time-cell">14.00 - 14.50</td>
-                            </tr>
-                            <tr>
-                                <td class="time-cell">IX</td>
-                                <td class="time-cell">14.50 - 15.40</td>
-                            </tr>
-                            <tr>
-                                <td class="time-cell">X</td>
-                                <td class="time-cell">16.10 - 17.00</td>
-                                <td></td>
-                                <td class="class-cell-gren" rowspan="2">
-                                </td>
-                                <td class="class-cell-gn" rowspan="2">
-                                </td>
-                                <td class="class-cell-grn" rowspan="2">
-                                <td class="class-cell-gn" rowspan="2">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="time-cell">XI</td>
-                                <td class="time-cell">17.00 - 17.50</td>
-                                <td></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                        <!-- Semester 2 -->
+                        <div class="semester-courses" id="semester-2">
+                            <div class="semester-header">
+                                <h3 class="semester-title">Semester 2</h3>
+                                <span class="semester-status status-completed">Selesai</span>
+                            </div>
+                            <div class="course-grid">
+                                <div class="course-card">
+                                    <div class="course-header">
+                                        <div class="course-icon">
+                                            <i class="uil uil-chart-line"></i>
+                                        </div>
+                                        <div class="course-info">
+                                            <h3>Teori Peluang</h3>
+                                            <p class="lecturer">Drs. Muhammad Nusrang, Dr. Rahmat Hidayat, M.Si.</p>
+                                        </div>
+                                    </div>
+                                    <div class="course-meta">
+                                        <div class="course-progress">
+                                            <div class="progress-bar">
+                                                <div class="progress-fill" style="width: 100%"></div>
+                                            </div>
+                                            <span class="progress-text">100%</span>
+                                        </div>
+                                        <div class="course-actions">
+                                            <a href="#" class="btn-view">
+                                                <i class="uil uil-eye"></i> Lihat
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Add more course cards for semester 2 -->
+                            </div>
+                        </div>
+
+                        <!-- Semester 3 (Active) -->
+                        <div class="semester-courses active" id="semester-3">
+                            <div class="semester-header">
+                                <h3 class="semester-title">Semester 3</h3>
+                                <span class="semester-status status-active">Aktif</span>
+                            </div>
+                            <div class="course-grid">
+                                <div class="course-card">
+                                    <div class="course-header">
+                                        <div class="course-icon">
+                                            <i class="uil uil-atom"></i>
+                                        </div>
+                                        <div class="course-info">
+                                            <h3>Proses Stokastik</h3>
+                                            <p class="lecturer">Rahmat H.S., S.Pd., M.Si & Muhammad Kasim Aidid, S.Si., M.Si</p>
+                                        </div>
+                                    </div>
+                                    <div class="course-meta">
+                                        <div class="course-progress">
+                                            <div class="progress-bar">
+                                                <div class="progress-fill" style="width: 75%"></div>
+                                            </div>
+                                            <span class="progress-text">75%</span>
+                                        </div>
+                                        <div class="course-actions">
+                                            <a href="M-Proses-Stokastik.html" class="btn-view" target="_blank">
+                                                <i class="uil uil-external-link-alt"></i> Akses
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="course-card">
+                                    <div class="course-header">
+                                        <div class="course-icon">
+                                            <i class="uil uil-chart-pie"></i>
+                                        </div>
+                                        <div class="course-info">
+                                            <h3>Teori Statistika</h3>
+                                            <p class="lecturer">Drs. Muhammad Nusrang, M.Si & Andi Arisy Zulwaqar, S.Stat., M.Sc</p>
+                                        </div>
+                                    </div>
+                                    <div class="course-meta">
+                                        <div class="course-progress">
+                                            <div class="progress-bar">
+                                                <div class="progress-fill" style="width: 80%"></div>
+                                            </div>
+                                            <span class="progress-text">80%</span>
+                                        </div>
+                                        <div class="course-actions">
+                                            <a href="M-Teori-Statistika.html" class="btn-view" target="_blank">
+                                                <i class="uil uil-external-link-alt"></i> Akses
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="course-card">
+                                    <div class="course-header">
+                                        <div class="course-icon">
+                                            <i class="uil uil-graph-bar"></i>
+                                        </div>
+                                        <div class="course-info">
+                                            <h3>Statistika Non Parametrik</h3>
+                                            <p class="lecturer">Hardianti Hafid, S.Si., M.Si</p>
+                                        </div>
+                                    </div>
+                                    <div class="course-meta">
+                                        <div class="course-progress">
+                                            <div class="progress-bar">
+                                                <div class="progress-fill" style="width: 60%"></div>
+                                            </div>
+                                            <span class="progress-text">60%</span>
+                                        </div>
+                                        <div class="course-actions">
+                                            <a href="M-Nonparametrik.html" class="btn-view" target="_blank">
+                                                <i class="uil uil-external-link-alt"></i> Akses
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Add more semester 3 courses -->
+                            </div>
+                        </div>
+
+                        <!-- Add more semesters as needed -->
+                    </div>
+
+                    <!-- Sidebar Sections -->
+                    <div class="sidebar-sections">
+                        <!-- Deadlines Card -->
+                        <div class="sidebar-card">
+                            <h3 class="section-title">Deadline Tugas</h3>
+                            <ul class="deadline-list">
+                                <li class="deadline-item">
+                                    <div class="deadline-icon">
+                                        <i class="uil uil-clipboard-notes"></i>
+                                    </div>
+                                    <div class="deadline-info">
+                                        <h4 class="deadline-title">Rancangan Percobaan</h4>
+                                        <p class="deadline-description">Mengerjakan Contoh Soal Bab 1,2,3 dengan R</p>
+                                        <p class="deadline-date">26 Agustus 2025</p>
+                                    </div>
+                                </li>
+                                <li class="deadline-item">
+                                    <div class="deadline-icon">
+                                        <i class="uil uil-file-alt"></i>
+                                    </div>
+                                    <div class="deadline-info">
+                                        <h4 class="deadline-title">Teori Statistika</h4>
+                                        <p class="deadline-description">Tugas Akhir Bab 4</p>
+                                        <p class="deadline-date">30 Agustus 2025</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Academic Stats Card -->
+                        <div class="sidebar-card">
+                            <h3 class="section-title">Statistik Akademik</h3>
+                            <div style="margin-top: 20px;">
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
+                                    <span>Total SKS</span>
+                                    <strong>120</strong>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
+                                    <span>IPK Saat Ini</span>
+                                    <strong>3.75</strong>
+                                </div>
+                                <div style="display: flex; justify-content: space-between;">
+                                    <span>Mata Kuliah Aktif</span>
+                                    <strong>8</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Schedule Section -->
+                <div class="schedule-section">
+                    <div class="schedule-header">
+                        <h2 class="section-title">Jadwal Kuliah Semester 3</h2>
+                    </div>
+                    <div class="schedule-table-container">
+                        <table class="schedule-table">
+                            <thead>
+                                <tr>
+                                    <th>JAM</th>
+                                    <th>SENIN</th>
+                                    <th>SELASA</th>
+                                    <th>RABU</th>
+                                    <th>KAMIS</th>
+                                    <th>JUMAT</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="time-cell">07.30-09.10</td>
+                                    <td class="class-cell green" rowspan="2">
+                                        <div class="class-info">
+                                            <div class="class-name">Sosiometri</div>
+                                            <div class="class-details">Kelas: 02<br>Dosen: ISM/MFS<br>Ruang: FF 205</div>
+                                        </div>
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td class="class-cell green" rowspan="2">
+                                        <div class="class-info">
+                                            <div class="class-name">Model Linear 01</div>
+                                            <div class="class-details">Dosen: ISM<br>Ruang: FF 305</div>
+                                        </div>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td class="time-cell">09.20-10.55</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td class="time-cell">11.00-12.35</td>
+                                    <td class="class-cell green" rowspan="2">
+                                        <div class="class-info">
+                                            <div class="class-name">Statistika PB I</div>
+                                            <div class="class-details">Kelas: 01<br>Dosen: RLN/ZMH/NWN<br>Ruang: FF 306</div>
+                                        </div>
+                                    </td>
+                                    <td class="class-cell green" rowspan="2">
+                                        <div class="class-info">
+                                            <div class="class-name">Regresi Nonpar</div>
+                                            <div class="class-details">Kelas: 03<br>Dosen: RLN/MKA/HRD/RHT<br>Ruang: FF 306</div>
+                                        </div>
+                                    </td>
+                                    <td class="class-cell yellow" rowspan="2">
+                                        <div class="class-info">
+                                            <div class="class-name">Rabuan</div>
+                                            <div class="class-details">Kegiatan Rutin</div>
+                                        </div>
+                                    </td>
+                                    <td class="class-cell green" rowspan="2">
+                                        <div class="class-info">
+                                            <div class="class-name">Analisis Survival</div>
+                                            <div class="class-details">Kelas: 01<br>Dosen: ASW/ANS<br>Ruang: FF 305</div>
+                                        </div>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td class="time-cell">13.10-14.45</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td class="time-cell">14.50-16.25</td>
+                                    <td></td>
+                                    <td class="class-cell green" rowspan="2">
+                                        <div class="class-info">
+                                            <div class="class-name">Rancangan Percobaan</div>
+                                            <div class="class-details">Kelas: 01<br>Dosen: MNG/ZMH<br>Ruang: FF 206</div>
+                                        </div>
+                                    </td>
+                                    <td class="class-cell green" rowspan="2">
+                                        <div class="class-info">
+                                            <div class="class-name">Sistem Informasi Manajemen</div>
+                                            <div class="class-details">Kelas: 03<br>Dosen: MKA/ASA<br>Ruang: FF 305</div>
+                                        </div>
+                                    </td>
+                                    <td class="class-cell green" rowspan="2">
+                                        <div class="class-info">
+                                            <div class="class-name">Data Mining</div>
+                                            <div class="class-details">Kelas: 01<br>Dosen: SWA/ZLR/RHS/AMO<br>Ruang: FF 205</div>
+                                        </div>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="footer">
+                    <p>&copy; 2023 LMSVVIP - Learning Management System. All rights reserved.</p>
                 </div>
             </div>
-
-
-
         </div>
     </div>
 
@@ -1361,50 +1145,54 @@
             document.querySelector('.sidebar').classList.toggle('active');
         });
 
-        document.addEventListener('DOMContentLoaded', function() {
-            const semesterSelect = document.getElementById('semesterSelect');
-            const semesterSections = document.querySelectorAll('.semester-section');
-
-        // Close sidebar when clicking outside (for mobile)
+        // Close sidebar when clicking outside on mobile
         document.addEventListener('click', function(event) {
             const sidebar = document.querySelector('.sidebar');
             const menuButton = document.querySelector('.menu-button');
-            // Check if sidebar is active AND click is outside sidebar AND click is not on menu button
-            if (sidebar.classList.contains('active') && !sidebar.contains(event.target) && !menuButton.contains(event.target)) {
+            
+            if (window.innerWidth <= 992 && sidebar.classList.contains('active') && 
+                !sidebar.contains(event.target) && !menuButton.contains(event.target)) {
                 sidebar.classList.remove('active');
-                document.body.classList.remove('sidebar-open'); // Remove class from body
             }
         });
 
-            // Function to filter semesters
-            function filterSemesters() {
-                const selectedSemester = semesterSelect.value;
+        // Semester filter functionality
+        const semesterSelect = document.getElementById('semesterSelect');
+        const semesterCourses = document.querySelectorAll('.semester-courses');
 
-                semesterSections.forEach(section => {
-                    if (selectedSemester === 'all') {
-                        section.style.display = 'block'; // Show all
-                    } else {
-                        // Hide all and then show only the selected one
-                        if (section.dataset.semester === selectedSemester) {
-                            section.style.display = 'block';
-                        } else {
-                            section.style.display = 'none';
-                        }
+        function filterSemesters() {
+            const selectedSemester = semesterSelect.value;
+            
+            semesterCourses.forEach(semester => {
+                semester.classList.remove('active');
+                
+                if (selectedSemester === 'all') {
+                    // Show all semesters
+                    semester.style.display = 'block';
+                    if (semester.id === 'semester-3') {
+                        semester.classList.add('active');
                     }
-                });
-            }
+                } else {
+                    // Show only selected semester
+                    if (semester.id === `semester-${selectedSemester}`) {
+                        semester.style.display = 'block';
+                        semester.classList.add('active');
+                    } else {
+                        semester.style.display = 'none';
+                    }
+                }
+            });
+        }
 
-            // Set default to Semester 5 on page load
-            semesterSelect.value = '3';
-            filterSemesters(); // Apply the initial filter
+        // Initialize semester filter
+        filterSemesters();
+        
+        // Add event listener for filter changes
+        semesterSelect.addEventListener('change', filterSemesters);
 
-            // Add event listener for changes in the select dropdown
-            semesterSelect.addEventListener('change', filterSemesters);
-
-            console.log('LMSVVIP Course page loaded successfully with semester filter!');
-        });
-            document.addEventListener('DOMContentLoaded', function() {
-            console.log('Updated schedule page for FF 205 with flip card effect loaded successfully!');
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Academic Dashboard loaded successfully');
         });
     </script>
 </body>
