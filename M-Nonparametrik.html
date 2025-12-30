@@ -3,40 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nonparametrik - LMSVVIP</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Statistika Nonparametrik - LMSVVIP</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
     <style>
-        /* Reuse existing variables from your main CSS */
+        /* Professional Color Palette */
         :root {
-            --primary-color: #4361ee;
-            --primary-dark: #3a0ca3;
-            --secondary-color: #4cc9f0;
-            --accent-color: #f72585;
-            --dark-color: #14213d;
-            --light-color: #f8f9fa;
-            --background-light: #f5f7ff;
-            --sidebar-bg: linear-gradient(135deg, #14213d 0%, #1b263b 100%);
-            --text-light: #e2e8f0;
-            --highlight-text: #4cc9f0;
-            --border-color: rgba(255, 255, 255, 0.1);
-            --card-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
-            --section-padding: 60px 0;
-            --section-margin: 60px 0;
+            --primary-color: #1a365d;
+            --primary-dark: #0f2642;
+            --secondary-color: #2d72d9;
+            --accent-color: #1e4d8c;
+            --success-color: #2e8b57;
+            --warning-color: #d97706;
+            --info-color: #3b82f6;
+            --dark-color: #1e293b;
+            --light-color: #f8fafc;
+            --gray-light: #f1f5f9;
+            --gray-medium: #cbd5e1;
+            --gray-dark: #64748b;
+            --sidebar-bg: #1e293b;
+            --card-bg: #ffffff;
+            --text-light: #f1f5f9;
+            --text-dark: #334155;
+            --border-color: #e2e8f0;
+            --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.05);
+            --shadow-medium: 0 8px 24px rgba(0, 0, 0, 0.08);
+            --shadow-dark: 0 12px 32px rgba(0, 0, 0, 0.12);
+            --transition: all 0.3s ease;
+            --border-radius: 10px;
+            --section-padding: 40px 0;
         }
 
-        /* Base Styles */
+        /* Reset & Base Styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
         }
 
         body {
-            background-color: var(--background-light);
-            color: var(--dark-color);
+            font-family: 'Inter', sans-serif;
+            background-color: #f5f7fa;
+            color: var(--text-dark);
             line-height: 1.6;
             overflow-x: hidden;
         }
@@ -44,160 +52,118 @@
         .container {
             display: flex;
             min-height: 100vh;
-            position: relative;
         }
 
-         /* Sidebar Styles - Modern Gradient */
+        /* Sidebar Styles */
         .sidebar {
             width: 260px;
-            background: var(--sidebar-bg);
-            color: white;
-            padding: 20px 0;
+            background-color: var(--sidebar-bg);
+            color: var(--text-light);
             position: fixed;
             height: 100vh;
             z-index: 1000;
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
-            box-shadow: 10px 0 30px rgba(0, 0, 0, 0.2);
-            border-right: 1px solid rgba(255, 255, 255, 0.05);
+            transition: var(--transition);
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
         }
 
         .sidebar-header {
+            padding: 24px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             display: flex;
             align-items: center;
-            padding: 0 20px 20px;
-            border-bottom: 1px solid var(--border-color);
-            margin-bottom: 15px;
+            gap: 12px;
         }
 
         .sidebar-header img {
-            width: 40px;
-            height: 40px;
-            margin-right: 12px;
-            border-radius: 8px;
+            width: 36px;
+            height: 36px;
+            border-radius: 6px;
             object-fit: cover;
         }
 
         .sidebar-header h2 {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             font-weight: 700;
             color: white;
-            background: linear-gradient(to right, #f72585, #4361ee);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            letter-spacing: 0.5px;
         }
 
         .sidebar-menu {
-            padding: 15px;
-            height: calc(100vh - 100px);
+            padding: 20px 0;
+            flex-grow: 1;
             overflow-y: auto;
-            scrollbar-width: thin;
-            scrollbar-color: var(--primary-color) transparent;
-        }
-
-        .sidebar-menu::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        .sidebar-menu::-webkit-scrollbar-thumb {
-            background-color: var(--primary-color);
-            border-radius: 3px;
         }
 
         .menu-category {
-            margin-bottom: 25px;
+            margin-bottom: 28px;
         }
 
         .menu-category h3 {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             text-transform: uppercase;
-            color: var(--highlight-text);
-            margin-bottom: 15px;
-            letter-spacing: 0.8px;
+            color: var(--gray-medium);
+            margin: 0 20px 12px;
+            letter-spacing: 1px;
             font-weight: 600;
-            display: flex;
-            align-items: center;
-        }
-
-        .menu-category h3::after {
-            content: "";
-            flex: 1;
-            height: 1px;
-            background: var(--border-color);
-            margin-left: 10px;
         }
 
         .menu-item {
             display: flex;
             align-items: center;
-            padding: 12px 15px;
-            margin-bottom: 6px;
-            border-radius: 7px;
-            cursor: pointer;
-            transition: var(--transition);
+            padding: 14px 20px;
             color: var(--text-light);
             text-decoration: none;
             font-weight: 500;
-            position: relative;
-            overflow: hidden;
             font-size: 0.95rem;
+            transition: var(--transition);
+            border-left: 3px solid transparent;
         }
 
         .menu-item i {
-            margin-right: 10px;
+            margin-right: 12px;
             font-size: 1.1rem;
-            min-width: 20px;
+            width: 24px;
             text-align: center;
         }
 
-        .menu-item::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transition: 0.5s;
-        }
-
-        .menu-item:hover::before {
-            left: 100%;
-        }
-
         .menu-item:hover {
-            background-color: rgba(255, 255, 255, 0.15);
-            color: white;
-            transform: translateX(3px);
+            background-color: rgba(255, 255, 255, 0.05);
+            border-left-color: var(--secondary-color);
         }
 
         .menu-item.active {
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            background-color: rgba(45, 114, 217, 0.15);
             color: white;
-            box-shadow: 0 6px 15px rgba(67, 97, 238, 0.3);
-            font-weight: 600;
+            border-left-color: var(--secondary-color);
         }
 
-        /* Main Content Styles */
+        /* Main Content */
         .main-content {
             flex: 1;
             margin-left: 260px;
-            transition: margin-left 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+            transition: var(--transition);
         }
 
-        /* Navbar Styles */
+        /* Navbar */
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 18px 35px;
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
+            padding: 18px 30px;
+            background-color: white;
+            box-shadow: var(--shadow-light);
             position: sticky;
             top: 0;
             z-index: 100;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .navbar-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
         }
 
         .menu-button {
@@ -205,14 +171,31 @@
             border: none;
             font-size: 1.5rem;
             cursor: pointer;
-            color: var(--dark-color);
-            display: none; /* Hide on desktop */
+            color: var(--text-dark);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .menu-button:hover {
+            background-color: var(--gray-light);
+            color: var(--secondary-color);
+        }
+
+        .page-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-dark);
         }
 
         .user-profile {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
 
         .user-profile img {
@@ -220,257 +203,368 @@
             height: 40px;
             border-radius: 50%;
             object-fit: cover;
-            border: 2px solid var(--primary-color);
+            border: 2px solid var(--secondary-color);
         }
 
-        /* Course Detail Specific Styles */
-        .course-detail-header {
-            background: var(--primary-color);
+        /* Course Header */
+        .course-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
             color: white;
             padding: 50px 40px;
-            text-align: center;
-            border-bottom-left-radius: 25px;
-            border-bottom-right-radius: 25px;
-            box-shadow: var(--card-shadow);
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+            box-shadow: var(--shadow-medium);
             margin-bottom: 40px;
         }
 
-        .course-detail-header h1 {
-            font-size: 2.8rem;
-            margin-bottom: 10px;
-            font-weight: 700;
+        .course-title-section {
+            max-width: 800px;
+            margin: 0 auto;
         }
 
-        .course-detail-header p {
+        .course-header h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+
+        .course-header p {
             font-size: 1.1rem;
             opacity: 0.9;
-            max-width: 800px;
-            margin: 0 auto 20px;
-        }
-
-        .course-info-meta {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            font-size: 0.95rem;
-            color: rgba(255, 255, 255, 0.8);
-        }
-
-        .course-info-meta span {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .course-info-meta i {
-            font-size: 1.2rem;
-        }
-
-        .course-main-content {
-            padding: 0 40px 40px;
-            display: grid;
-            grid-template-columns: 3fr 1fr; /* Main content and sidebar */
-            gap: 40px;
-            align-items: start;
-        }
-
-        .course-modules {
-            background: white;
-            border-radius: 16px;
-            padding: 30px;
-            box-shadow: var(--card-shadow);
-        }
-
-        .course-modules h2 {
-            font-size: 1.8rem;
-            color: var(--dark-color);
             margin-bottom: 25px;
-            border-bottom: 2px solid var(--secondary-color);
-            padding-bottom: 10px;
+            max-width: 700px;
         }
 
-        .module-list {
-            list-style: none;
-        }
-
-        .module-item {
-            background-color: var(--background-light);
-            border-radius: 12px;
-            margin-bottom: 15px;
-            padding: 20px 25px;
+        .course-meta {
             display: flex;
-            flex-direction: column;
-            gap: 15px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-            transition: var(--transition);
+            flex-wrap: wrap;
+            gap: 25px;
+            margin-bottom: 20px;
         }
 
-        .module-item:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .module-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            cursor: pointer;
-        }
-
-        .module-header h3 {
-            font-size: 1.25rem;
-            color: var(--primary-color);
+        .meta-item {
             display: flex;
             align-items: center;
             gap: 10px;
+            font-size: 0.95rem;
         }
 
-        .module-header i {
+        .meta-item i {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .back-to-courses {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 16px;
+            background-color: rgba(255, 255, 255, 0.15);
+            border-radius: 6px;
+            transition: var(--transition);
+        }
+
+        .back-to-courses:hover {
+            background-color: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+        }
+
+        /* Main Content Layout */
+        .course-content {
+            padding: 0 40px 40px;
+            display: grid;
+            grid-template-columns: 2.5fr 1fr;
+            gap: 30px;
+            align-items: start;
+        }
+
+        /* Modules Section */
+        .modules-section {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--shadow-light);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--secondary-color);
+            border-radius: 2px;
+        }
+
+        .modules-counter {
+            font-size: 0.9rem;
+            color: var(--gray-dark);
+            background-color: var(--gray-light);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        .modules-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .module-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .module-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-medium);
+            border-color: var(--secondary-color);
+        }
+
+        .module-header {
+            padding: 20px 25px;
+            background-color: var(--light-color);
+            border-bottom: 1px solid var(--border-color);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .module-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .module-icon {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(45, 114, 217, 0.1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+        }
+
+        .module-text h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 3px;
+        }
+
+        .module-text p {
+            font-size: 0.85rem;
+            color: var(--gray-dark);
+        }
+
+        .module-toggle {
             font-size: 1.5rem;
+            color: var(--gray-dark);
             transition: transform 0.3s ease;
         }
 
-        .module-item.open .module-header i {
-            transform: rotate(90deg); /* Rotate icon when module is open */
+        .module-card.open .module-toggle {
+            transform: rotate(180deg);
+            color: var(--secondary-color);
         }
 
         .module-content {
-            display: none; /* Hidden by default */
-            padding-top: 15px;
-            border-top: 1px dashed #ddd;
-            margin-top: 10px;
+            padding: 25px;
+            display: none;
+            background-color: var(--light-color);
         }
 
-        .module-item.open .module-content {
-            display: block; /* Show when module is open */
+        .module-card.open .module-content {
+            display: block;
         }
 
+        /* Lesson List */
         .lesson-list {
             list-style: none;
-            padding-left: 0;
+            margin-bottom: 20px;
         }
 
         .lesson-item {
             display: flex;
             align-items: center;
-            margin-bottom: 10px;
-            padding: 10px 0;
-            border-bottom: 1px dotted #eee;
+            padding: 15px;
+            background-color: white;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
         }
 
-        .lesson-item:last-child {
-            border-bottom: none;
+        .lesson-item:hover {
+            border-color: var(--secondary-color);
+            box-shadow: var(--shadow-light);
         }
 
-        .lesson-item i {
-            font-size: 1.1rem;
+        .lesson-icon {
+            font-size: 1.3rem;
             color: var(--secondary-color);
-            margin-right: 10px;
+            margin-right: 15px;
+            min-width: 24px;
         }
 
-        .lesson-item a {
-            color: var(--dark-color);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
+        .lesson-info {
+            flex: 1;
         }
 
-        .lesson-item a:hover {
-            color: var(--primary-color);
+        .lesson-info h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 3px;
         }
 
         .lesson-actions {
-            margin-left: auto;
             display: flex;
-            gap: 15px;
+            gap: 10px;
         }
 
-        .lesson-actions a {
-            display: flex;
+        .btn-action {
+            padding: 6px 12px;
+            background-color: var(--secondary-color);
+            color: white;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: var(--transition);
+            display: inline-flex;
             align-items: center;
             gap: 5px;
-            font-size: 0.9rem;
-            color: var(--primary-dark);
-            text-decoration: none;
-            transition: color 0.3s ease;
+            border: none;
+            cursor: pointer;
         }
 
-        .lesson-actions a:hover {
-            color: var(--accent-color);
+        .btn-action:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-2px);
         }
 
-        .lesson-actions i {
-            font-size: 1.1rem;
+        .btn-action.watch {
+            background-color: var(--info-color);
         }
 
-        .task-list {
-            list-style: none;
-            padding-left: 0;
-            margin-top: 15px;
+        .btn-action.presentation {
+            background-color: #8b5cf6;
+        }
+
+        .btn-action.disabled {
+            background-color: var(--gray-medium);
+            cursor: not-allowed;
+        }
+
+        /* Tasks Section */
+        .tasks-section {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px dashed var(--border-color);
+        }
+
+        .tasks-section h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tasks-section h4 i {
+            color: var(--warning-color);
         }
 
         .task-item {
             display: flex;
             align-items: center;
-            background-color: white;
-            border: 1px solid #eee;
-            border-radius: 8px;
+            justify-content: space-between;
             padding: 12px 15px;
+            background-color: white;
+            border-radius: 8px;
             margin-bottom: 10px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+            border: 1px solid var(--border-color);
         }
 
-        .task-item i {
-            font-size: 1.3rem;
-            color: var(--accent-color);
-            margin-right: 10px;
+        .task-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
 
-        .task-item h5 {
-            font-size: 1rem;
+        .task-icon {
+            font-size: 1.2rem;
+            color: var(--warning-color);
+        }
+
+        .task-details h5 {
+            font-size: 0.9rem;
             font-weight: 600;
-            color: var(--dark-color);
-            flex-grow: 1;
+            color: var(--text-dark);
+            margin-bottom: 2px;
         }
 
-        .task-item .task-deadline {
-            font-size: 0.85rem;
-            color: #777;
-            margin-left: 15px;
+        .task-details p {
+            font-size: 0.8rem;
+            color: var(--gray-dark);
         }
 
-        .task-item .task-link {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 6px 12px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-size: 0.85rem;
-            transition: background-color 0.3s ease;
+        .task-links {
+            display: flex;
+            gap: 10px;
         }
 
-        .task-item .task-link:hover {
-            background-color: var(--primary-dark);
-        }
-
-        /* Right Sidebar (Related Info) */
-        .side-info {
+        /* Sidebar Information */
+        .sidebar-info {
             display: flex;
             flex-direction: column;
-            gap: 30px;
+            gap: 25px;
+            position: sticky;
+            top: 100px;
         }
 
         .info-card {
-            background: white;
-            border-radius: 16px;
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
             padding: 25px;
-            box-shadow: var(--card-shadow);
+            box-shadow: var(--shadow-light);
         }
 
         .info-card h3 {
-            font-size: 1.4rem;
-            font-weight: 600;
-            color: var(--dark-color);
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-dark);
             margin-bottom: 20px;
             position: relative;
             padding-bottom: 10px;
@@ -481,16 +575,32 @@
             position: absolute;
             bottom: 0;
             left: 0;
-            width: 50px;
+            width: 40px;
             height: 3px;
-            background: var(--secondary-color);
-            border-radius: 3px;
+            background-color: var(--secondary-color);
+            border-radius: 2px;
+        }
+
+        /* Lecturer Profiles */
+        .lecturer-profiles {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
 
         .lecturer-profile {
             display: flex;
             align-items: center;
-            margin-bottom: 15px;
+            gap: 15px;
+            padding: 15px;
+            background-color: var(--light-color);
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+
+        .lecturer-profile:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-light);
         }
 
         .lecturer-profile img {
@@ -498,76 +608,63 @@
             height: 60px;
             border-radius: 50%;
             object-fit: cover;
-            margin-right: 15px;
-            border: 2px solid var(--primary-color);
+            border: 2px solid var(--secondary-color);
         }
 
         .lecturer-details h4 {
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 600;
-            color: var(--primary-dark);
+            color: var(--primary-color);
+            margin-bottom: 3px;
         }
 
         .lecturer-details p {
-            font-size: 0.9rem;
-            color: #666;
+            font-size: 0.85rem;
+            color: var(--gray-dark);
         }
 
         .contact-info {
             list-style: none;
-            margin-top: 20px;
+            margin-top: 10px;
         }
 
         .contact-info li {
             display: flex;
             align-items: center;
-            margin-bottom: 10px;
-            font-size: 0.95rem;
-            color: #555;
+            gap: 10px;
+            margin-bottom: 8px;
+            font-size: 0.85rem;
+            color: var(--gray-dark);
         }
 
         .contact-info i {
-            font-size: 1.2rem;
-            color: var(--accent-color);
-            margin-right: 10px;
+            color: var(--secondary-color);
+            min-width: 16px;
         }
 
-        .course-outline-list {
-            list-style: none;
+        /* Footer */
+        .footer {
+            margin-top: 50px;
+            padding: 20px 40px;
+            text-align: center;
+            color: var(--gray-dark);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border-color);
         }
 
-        .course-outline-list li {
-            margin-bottom: 10px;
-            font-size: 0.95rem;
-            color: #555;
-            display: flex;
-            align-items: flex-start;
-        }
-
-        .course-outline-list li::before {
-            content: "\2022"; /* Bullet point */
-            color: var(--primary-color);
-            font-weight: bold;
-            display: inline-block;
-            width: 1em;
-            margin-left: -1em;
-            font-size: 1.2em;
-        }
-
-        /* Responsive Styles */
+        /* Responsive Design */
         @media (max-width: 1200px) {
-            .sidebar {
-                width: 250px;
+            .course-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
             }
-            .main-content {
-                margin-left: 250px;
+            
+            .sidebar-info {
+                position: static;
             }
-            .course-main-content {
-                grid-template-columns: 1fr; /* Stack columns on smaller screens */
-                padding: 30px;
-            }
-            .course-detail-header {
-                padding: 40px 30px;
+            
+            .sidebar-info .info-card {
+                margin-bottom: 20px;
             }
         }
 
@@ -576,114 +673,124 @@
                 transform: translateX(-100%);
                 width: 280px;
             }
+            
             .sidebar.active {
                 transform: translateX(0);
             }
+            
             .main-content {
                 margin-left: 0;
             }
-            .course-detail-header h1 {
-                font-size: 2.2rem;
-            }
-            .course-detail-header p {
-                font-size: 1rem;
-            }
+            
             .menu-button {
-                display: block; /* Show menu button on smaller screens */
+                display: flex;
+            }
+            
+            .course-header {
+                padding: 40px 30px;
+            }
+            
+            .course-content {
+                padding: 0 30px 30px;
+            }
+            
+            .modules-section {
+                padding: 25px;
             }
         }
 
         @media (max-width: 768px) {
-            .course-main-content {
-                padding: 25px;
+            .course-header h1 {
+                font-size: 2rem;
             }
-            .course-modules h2 {
-                font-size: 1.6rem;
+            
+            .course-header p {
+                font-size: 1rem;
             }
-            .module-header h3 {
-                font-size: 1.1rem;
-            }
-            .lesson-actions {
+            
+            .course-meta {
                 flex-direction: column;
-                gap: 5px;
-                align-items: flex-end;
+                gap: 15px;
             }
-            .task-item {
-                flex-wrap: wrap;
-                justify-content: center;
-                text-align: center;
-                gap: 10px;
-            }
-            .task-item h5, .task-item .task-deadline, .task-item .task-link {
-                width: 100%;
-                text-align: center;
-                margin-left: 0;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .course-detail-header {
-                padding: 30px 15px;
-                text-align: left;
-            }
-            .course-detail-header h1 {
-                font-size: 1.8rem;
-            }
-            .course-info-meta {
+            
+            .lesson-item {
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 10px;
             }
-            .course-main-content {
-                padding: 15px;
+            
+            .lesson-actions {
+                width: 100%;
+                justify-content: flex-start;
             }
-            .course-modules, .info-card {
-                padding: 20px;
+            
+            .task-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
             }
-            .module-header h3 {
-                font-size: 1rem;
-            }
-            .lecturer-profile img {
-                width: 50px;
-                height: 50px;
+            
+            .task-links {
+                width: 100%;
+                justify-content: flex-start;
             }
         }
-           .course-outline-list a.button-link {
-        display: inline-block;
-        padding: 6px 12px;
-        margin-right: 8px;
-        font-size: 14px;
-        color: white;
-        background-color: #4CAF50;
-        border-radius: 6px;
-        text-decoration: none;
-        transition: background-color 0.3s ease;
-    }
 
-    .course-outline-list a.button-link:hover {
-        background-color: #45a049;
-    }
-
-    .course-outline-list a.button-link i {
-        margin-right: 4px;
-    }
-
-    .course-progress {
-        font-weight: bold;
-        margin-bottom: 8px;
-        display: inline-block;
-    }
-
-    .course-details {
-        margin-bottom: 8px;
-    }
+        @media (max-width: 576px) {
+            .course-header {
+                padding: 30px 20px;
+                border-radius: 0;
+            }
+            
+            .course-content {
+                padding: 0 20px 20px;
+            }
+            
+            .modules-section, .info-card {
+                padding: 20px;
+            }
+            
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            
+            .module-header {
+                padding: 15px 20px;
+            }
+            
+            .module-title {
+                gap: 10px;
+            }
+            
+            .module-icon {
+                width: 36px;
+                height: 36px;
+                font-size: 1.1rem;
+            }
+            
+            .lecturer-profile {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .lecturer-profile img {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .footer {
+                padding: 20px;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <aside class="sidebar">
             <div class="sidebar-header">
-                <img src="logo.png" alt="Library Logo">
+                <img src="logo.png" alt="LMSVVIP Logo">
                 <h2>LMSVVIP</h2>
             </div>
             <div class="sidebar-menu">
@@ -691,26 +798,26 @@
                     <h3>Menu Utama</h3>
                     <a href="index.html" class="menu-item">
                         <i class="uil uil-estate"></i>
-                        <span>Beranda</span>
+                        <span>Dashboard</span>
                     </a>
                 </div>
                 <div class="menu-category">
-                    <h3>Fitur</h3>
+                    <h3>Fitur Akademik</h3>
                     <a href="e-library.html" class="menu-item">
                         <i class="uil uil-book-open"></i>
-                        <span>e-Library</span>
+                        <span>Digital Library</span>
                     </a>
                     <a href="datasumber.html" class="menu-item">
-                        <i class="uil uil-download-alt"></i>
+                        <i class="uil uil-database"></i>
                         <span>Datasets</span>
                     </a>
                     <a href="course.html" class="menu-item active">
-                        <i class="uil uil-flask"></i>
-                        <span>Course</span>
+                        <i class="uil uil-graduation-cap"></i>
+                        <span>Kursus</span>
                     </a>
                     <a href="yth.html" class="menu-item">
-                        <i class="uil uil-tv-retro"></i>
-                        <span>Meowtube</span>
+                        <i class="uil uil-video"></i>
+                        <span>Video Pembelajaran</span>
                     </a>
                     <a href="#" class="menu-item">
                         <i class="uil uil-calculator-alt"></i>
@@ -721,331 +828,659 @@
         </aside>
 
         <div class="main-content">
-            <nav class="navbar glass-card">
-                <button class="menu-button" aria-label="Toggle sidebar">
-                    <i class="uil uil-bars"></i>
-                </button>
+            <nav class="navbar">
+                <div class="navbar-left">
+                    <button class="menu-button" aria-label="Toggle sidebar">
+                        <i class="uil uil-bars"></i>
+                    </button>
+                    <h2 class="page-title">Mata Kuliah: Statistika Nonparametrik</h2>
+                </div>
                 <div class="user-profile">
                     <img src="logo.png" alt="User Profile">
                 </div>
             </nav>
 
-            <header class="course-detail-header">
-                <h1>Statistika Nonparametrik</h1>
-                <p>Mempelajari metode analisis statistika yang tidak memerlukan asumsi distribusi data tertentu, cocok untuk data berskala nominal atau ordinal, serta ukuran sampel kecil.</p>
-                <div class="course-info-meta">
-                    <span><i class="uil uil-calendar-alt"></i> Semester: 3</span>
-                    <span><i class="uil uil-graduation-cap"></i> SKS: 3</span>
+            <header class="course-header">
+                <div class="course-title-section">
+                    <a href="course.html" class="back-to-courses">
+                        <i class="uil uil-arrow-left"></i> Kembali ke Daftar Kursus
+                    </a>
+                    <h1>Statistika Nonparametrik</h1>
+                    <p>Mempelajari metode analisis statistika yang tidak memerlukan asumsi distribusi data tertentu, cocok untuk data berskala nominal atau ordinal, serta ukuran sampel kecil.</p>
+                    <div class="course-meta">
+                        <div class="meta-item">
+                            <i class="uil uil-calendar-alt"></i>
+                            <span>Semester: 3</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="uil uil-book-open"></i>
+                            <span>SKS: 3</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="uil uil-users-alt"></i>
+                            <span>Dosen: Hardianti Hafid, S.Si., M.Si.</span>
+                        </div>
+                    </div>
                 </div>
             </header>
 
-            <div class="course-main-content">
-                <section class="course-modules">
-                    <h2>Materi Perkuliahan</h2>
-                    <ul class="module-list">
-                        <li class="module-item">
+            <div class="course-content">
+                <main class="modules-section">
+                    <div class="section-header">
+                        <h2 class="section-title">Materi Perkuliahan</h2>
+                        <span class="modules-counter">14 Pertemuan</span>
+                    </div>
+                    
+                    <div class="modules-list">
+                        <!-- Pertemuan 1 -->
+                        <div class="module-card">
                             <div class="module-header">
-                                <h3><i class="uil uil-one"></i> Pertemuan 1 : Kontrak Kuliah dan Pengantar</h3>
-                                <i class="uil uil-angle-right"></i>
+                                <div class="module-title">
+                                    <div class="module-icon">
+                                        <i class="uil uil-book-open"></i>
+                                    </div>
+                                    <div class="module-text">
+                                        <h3>Pertemuan 1: Kontrak Kuliah dan Pengantar</h3>
+                                        <p>Pengenalan mata kuliah dan kontrak belajar</p>
+                                    </div>
+                                </div>
+                                <i class="uil uil-angle-down module-toggle"></i>
                             </div>
                             <div class="module-content">
                                 <ul class="lesson-list">
                                     <li class="lesson-item">
-                                        <i class="uil uil-file-alt"></i>
-                                        <span>Kontrak Kuliah dan Pengantar</span>
+                                        <i class="uil uil-file-alt lesson-icon"></i>
+                                        <div class="lesson-info">
+                                            <h4>Kontrak Kuliah dan Pengantar</h4>
+                                            <p>Materi pengantar statistika nonparametrik</p>
+                                        </div>
                                         <div class="lesson-actions">
-                                            <a href="https://drive.google.com/file/d/1Rs-d7iurpQXkbiUSEQLgqSo-lAkI6neJ/view?usp=drive_link" download><i class="uil uil-download-alt"></i> Materi</a>
+                                            <a href="https://drive.google.com/file/d/1Rs-d7iurpQXkbiUSEQLgqSo-lAkI6neJ/view?usp=drive_link" 
+                                               class="btn-action" 
+                                               target="_blank" 
+                                               download>
+                                                <i class="uil uil-download-alt"></i> Unduh
+                                            </a>
                                         </div>
                                     </li>
                                 </ul>
-                            </div>
-                                
-                        </li>
-
-                        <li class="module-item">
-                            <div class="module-header">
-                                <h3><i class="uil uil"></i> Pertemuan 2 : Fisher Exact Test (Uji Fisher)</h3>
-                                <i class="uil uil-angle-right"></i>
-                            </div>
-                            <div class="module-content">
-                                <ul class="lesson-list">
-                                    <li class="lesson-item">
-                                        <i class="uil uil-file-alt"></i>
-                                        <span>Uji Fisher </span>
-                                        <div class="lesson-actions">
-                                            <a href="https://drive.google.com/file/d/1qhny-Pre35YrbCb_TtsKzR8qBz569toZ/view?usp=drive_link" download><i class="uil uil-download-alt"></i> Materi</a>
-                                        </div>
-                                    </li>
-                                    <li class="lesson-item">
-                                        <i class="uil uil-file-alt"></i>
-                                        <span>Video</Video> </span>
-                                        <div class="lesson-actions">
-                                            <a href="https://youtu.be/N3nwn5G5FT0" download><i class="uil uil-tv-retro"></i> Nonton</a>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-
-                        <li class="module-item">
-                            <div class="module-header">
-                                <h3><i class="uil uil"></i> Pertemuan 3: Uji Friedman</h3>
-                                <i class="uil uil-angle-right"></i>
-                            </div>
-                            <div class="module-content">
-                                <ul class="lesson-list">
-                                    <li class="lesson-item">
-                                        <i class="uil uil-file-alt"></i>
-                                        <span>Uji Friedman</span>
-                                        <div class="lesson-actions">
-                                            <a href="https://drive.google.com/file/d/1TVNGyR3vxrSSYpI5eJwY2s-l7IPIs7BW/view?usp=drive_link" download><i class="uil uil-download-alt"></i> Materi</a>
-                                        </div>
-                                    </li>
-                                    <li class="lesson-item">
-                                        <i class="uil uil-file-alt"></i>
-                                        <span>Video</span>
-                                        <div class="lesson-actions">
-                                            <a href="https://youtu.be/uyhS4vjAUMw" download><i class="uil uil-tv-retro"></i> Nonton</a>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-
-                        <li class="module-item">
-                            <div class="module-header">
-                                <h3><i class="uil uil"></i> Pertemuan 4: Uji Mann Whitney</h3>
-                                <i class="uil uil-angle-right"></i>
-                            </div>
-                            <div class="module-content">
-                                <ul class="lesson-list">
-                                    <li class="lesson-item">
-                                        <i class="uil uil-file-alt"></i>
-                                        <span>Uji Mann Whitney</span>
-                                        <div class="lesson-actions">
-                                            <a href="https://drive.google.com/file/d/1i9s9zwv-QnQ6vEim4RnnX9YSj3bEIfGu/view?usp=drive_link" download><i class="uil uil-download-alt"></i> Materi</a>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-
-                        <li class="module-item">
-                            <div class="module-header">
-                                <h3><i class="uil uil-vector-"></i> Pertemuan 5: Uji Kolmogorov Smirnov</h3>
-                                <i class="uil uil-angle-right"></i>
-                            </div>
-                            <div class="module-content">
-                                <ul class="lesson-list">
-                                    <li class="lesson-item">
-                                        <i class="uil uil-file-alt"></i>
-                                        <span>Uji Kolmogorov Smirnov</span>
-                                        <div class="lesson-actions">
-                                            <a href="https://drive.google.com/file/d/1acaTFRiGmoVlxFs3NBGTQwNMSM6T6cBb/view?usp=drive_link" download><i class="uil uil-download-alt"></i> Materi</a>
-                                        </div>
-                                    </li>
-                                    <ul class="task-list">
-                                    <li class="task-item">
-                                        <i class="uil uil-clipboard-notes"></i>
-                                        <h5> Mengerjakan Pertanyaan</h5>
-                                        <a href="https://drive.google.com/file/d/1MKUBkOgNqbpDJ-x8oKaDNmSR5qFDakA7/view?usp=drive_link" class="task-link" download>Jawaban</a>
-                                    </li>
-                                </ul>
-
-                            </ul>
-                            </div>
-                        </li>
-
-                        <li class="module-item">
-                            <div class="module-header">
-                                <h3><i class="uil uil"></i> Pertemuan 6:  Uji Q-Cochran</h3>
-                                <i class="uil uil-angle-right"></i>
-                            </div>
-                            <div class="module-content">
-                                <ul class="lesson-list">
-                                    <li class="lesson-item">
-                                        <i class="uil uil-file-alt"></i>
-                                        <span>Uji Q-Cochran </span>
-                                        <div class="lesson-actions">
-                                            <a href="https://drive.google.com/file/d/1Or9quODAdXwi0yDw_OZ_zADMAklpNGhV/view?usp=drive_link" download><i class="uil uil-download-alt"></i> Materi</a>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="module-item">
-                            <div class="module-header">
-                                <h3><i class="uil uil"></i> Pertemuan 7:  Uji Mc-Nemar</h3>
-                                <i class="uil uil-angle-right"></i>
-                            </div>
-                            <div class="module-content">
-                                <ul class="lesson-list">
-                                    <li class="lesson-item">
-                                        <i class="uil uil-file-alt"></i>
-                                        <span>Uji Mc-Nemar </span>
-                                        <div class="lesson-actions">
-                                            <a href="https://drive.google.com/file/d/1dP7PdtsukD3aaq1OaeH3kV4xRj1Y23YC/view?usp=drive_link" download><i class="uil uil-download-alt"></i> Materi</a>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="module-item">
-                            <div class="module-header">
-                                <h3><i class="uil uil"></i> Pertemuan 8: UTS</h3>
-                                <i class="uil uil-angle-right"></i>
-                            </div>
-
-                        </li>
-                        <li class="module-item">
-                            <div class="module-header">
-                                <h3><i class="uil uil"></i> Pertemuan 9: Uji Wilcoxon</h3>
-                                <i class="uil uil-angle-right"></i>
-                            </div>
-                            <div class="module-content">
-                                <ul class="lesson-list">
-                                    <li class="lesson-item">
-                                        <i class="uil uil-file-alt"></i>
-                                        <span>Presentase-PPT</span>
-                                        <div class="lesson-actions">
-                                            <a href="https://drive.google.com/file/d/17LVn89z5AcfyqtidAOJO2P6gIsXq6FNL/view?usp=drive_link" download><i class="uil uil-download-alt"></i>Lihat</a>
-                                        </div>
-                                    </li>
-                                    <li class="lesson-item">
-                                        <i class="uil uil-file-alt"></i>
-                                        <span>Presentase-Makalah</span>
-                                        <div class="lesson-actions">
-                                            <a href="https://drive.google.com/file/d/13Bcxf2ptySYu1AjkQ4JmvMQLHATMISsV/view?usp=drive_link" download><i class="uil uil-download-alt"></i>Lihat</a>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-
-                        <li class="module-item">
-                            <div class="module-header">
-                                <h3><i class="uil uil"></i> Pertemuan 10: Uji Korelasi Spearman</h3>
-                                <i class="uil uil-angle-right"></i>
-                            </div>
-                            <div class="module-content">
-                                <ul class="lesson-list">
-                                    <li class="lesson-item">
-                                        <i class="uil uil-file-alt"></i>
-                                        <span>Presentase-PPT</span>
-                                        <div class="lesson-actions">
-                                            <a href="" download><i class="uil uil-download-alt"></i>Lihat</a>
-                                        </div>
-                                    </li>
-                                    <li class="lesson-item">
-                                        <i class="uil uil-file-alt"></i>
-                                        <span>Presentase-Makalah</span>
-                                        <div class="lesson-actions">
-                                            <a href="" download><i class="uil uil-download-alt"></i>Lihat</a>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="module-item">
-                            <div class="module-header">
-                                <h3><i class="uil uil"></i> Pertemuan 11: Kendal W</h3>
-                                <i class="uil uil-angle-right"></i>
-                            </div>
-                            <div class="module-content">
-                                <ul class="lesson-list">
-                                    <li class="lesson-item">
-                                        <i class="uil uil-file-alt"></i>
-                                        <span>Presentase</span>
-                                        <div class="lesson-actions">
-                                            <a href="https://drive.google.com/file/d/1XzOeEkuDO2U7MNsibURu5BA19tsyPhYa/view?usp=drive_link" download><i class="uil uil-download-alt"></i>Lihat</a>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="module-item">
-                            <div class="module-header">
-                                <h3><i class="uil uil"></i> Pertemuan 12: Uji Chi-Square</h3>
-                                <i class="uil uil-angle-right"></i>
-                            </div>
-                            <div class="module-content">
-                                <ul class="lesson-list">
-                                    <li class="lesson-item">
-                                        <i class="uil uil-file-alt"></i>
-                                        <span>Presentase-PPT</span>
-                                        <div class="lesson-actions">
-                                            <a href="https://drive.google.com/file/d/1VrRZsLKd3GhzLsRz8kVjikdghiUTK00C/view?usp=drive_link" download><i class="uil uil-download-alt"></i>Lihat</a>
-                                        </div>
-                                    </li>
-                                    <li class="lesson-item">
-                                        <i class="uil uil-file-alt"></i>
-                                        <span>Presentase-Makalah</span>
-                                        <div class="lesson-actions">
-                                            <a href="https://drive.google.com/file/d/11gN5pE4Ic1P_k7aAh-_GZKoGficA8icm/view?usp=drive_link" download><i class="uil uil-download-alt"></i>Lihat</a>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="module-item">
-                            <div class="module-header">
-                                <h3><i class="uil uil"></i> Pertemuan 13: Uji Run</h3>
-                                <i class="uil uil-angle-right"></i>
-                            </div>
-                            <div class="module-content">
-                                <ul class="lesson-list">
-                                    <li class="lesson-item">
-                                        <i class="uil uil-file-alt"></i>
-                                        <span>Presentase-PPT</span>
-                                        <div class="lesson-actions">
-                                            <a href="https://drive.google.com/file/d/1sZP_QEZjXtjfV1Fx0vDyEpLa1KgwFo9V/view?usp=drive_link" download><i class="uil uil-download-alt"></i>Lihat</a>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="module-item">
-                            <div class="module-header">
-                                <h3><i class="uil uil"></i> Pertemuan 14: Uji Kruskall-Wallis</h3>
-                                <i class="uil uil-angle-right"></i>
-                            </div>
-                            <div class="module-content">
-                                <ul class="lesson-list">
-                                    <li class="lesson-item">
-                                        <i class="uil uil-file-alt"></i>
-                                        <span>Presentase-PPT</span>
-                                        <div class="lesson-actions">
-                                            <a href="https://drive.google.com/file/d/1VrRZsLKd3GhzLsRz8kVjikdghiUTK00C/view?usp=drive_link" download><i class="uil uil-download-alt"></i>Lihat</a>
-                                        </div>
-                                    </li>
-                                    <li class="lesson-item">
-                                        <i class="uil uil-file-alt"></i>
-                                        <span>Presentase-Makalah</span>
-                                        <div class="lesson-actions">
-                                            <a href="https://drive.google.com/file/d/11gN5pE4Ic1P_k7aAh-_GZKoGficA8icm/view?usp=drive_link" download><i class="uil uil-download-alt"></i>Lihat</a>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                    </ul>
-                </section>
-
-                <aside class="side-info">
-                    <div class="info-card">
-                        <h3>Dosen Pengampu</h3>
-                        <div class="lecturer-profile">
-                            <img src="https://statistika.fmipa.unm.ac.id/wp-content/uploads/sites/16/2022/05/HRD.jpg" alt="Foto Dosen Muhammad Kasim Aidid">
-                            <div class="lecturer-details">
-                                <h4>Hardianti Hafid, S.Si., M.Si.</h4>
                             </div>
                         </div>
-                        <ul class="contact-info">
-                            <li><i class="uil uil-phone"></i> +62 852-5588-0704</li>
-                        </ul>
+
+                        <!-- Pertemuan 2 -->
+                        <div class="module-card">
+                            <div class="module-header">
+                                <div class="module-title">
+                                    <div class="module-icon">
+                                        <i class="uil uil-chart-bar"></i>
+                                    </div>
+                                    <div class="module-text">
+                                        <h3>Pertemuan 2: Fisher Exact Test (Uji Fisher)</h3>
+                                        <p>Uji eksak Fisher untuk tabel 2x2</p>
+                                    </div>
+                                </div>
+                                <i class="uil uil-angle-down module-toggle"></i>
+                            </div>
+                            <div class="module-content">
+                                <ul class="lesson-list">
+                                    <li class="lesson-item">
+                                        <i class="uil uil-file-alt lesson-icon"></i>
+                                        <div class="lesson-info">
+                                            <h4>Uji Fisher</h4>
+                                            <p>Materi uji eksak Fisher</p>
+                                        </div>
+                                        <div class="lesson-actions">
+                                            <a href="https://drive.google.com/file/d/1qhny-Pre35YrbCb_TtsKzR8qBz569toZ/view?usp=drive_link" 
+                                               class="btn-action" 
+                                               target="_blank" 
+                                               download>
+                                                <i class="uil uil-download-alt"></i> Unduh
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li class="lesson-item">
+                                        <i class="uil uil-video lesson-icon"></i>
+                                        <div class="lesson-info">
+                                            <h4>Video Pembelajaran</h4>
+                                            <p>Video penjelasan uji Fisher</p>
+                                        </div>
+                                        <div class="lesson-actions">
+                                            <a href="https://youtu.be/N3nwn5G5FT0" 
+                                               class="btn-action watch" 
+                                               target="_blank">
+                                                <i class="uil uil-play-circle"></i> Tonton
+                                            </a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Pertemuan 3 -->
+                        <div class="module-card">
+                            <div class="module-header">
+                                <div class="module-title">
+                                    <div class="module-icon">
+                                        <i class="uil uil-chart-line"></i>
+                                    </div>
+                                    <div class="module-text">
+                                        <h3>Pertemuan 3: Uji Friedman</h3>
+                                        <p>Uji untuk data berpasangan lebih dari dua kelompok</p>
+                                    </div>
+                                </div>
+                                <i class="uil uil-angle-down module-toggle"></i>
+                            </div>
+                            <div class="module-content">
+                                <ul class="lesson-list">
+                                    <li class="lesson-item">
+                                        <i class="uil uil-file-alt lesson-icon"></i>
+                                        <div class="lesson-info">
+                                            <h4>Uji Friedman</h4>
+                                            <p>Materi uji Friedman</p>
+                                        </div>
+                                        <div class="lesson-actions">
+                                            <a href="https://drive.google.com/file/d/1TVNGyR3vxrSSYpI5eJwY2s-l7IPIs7BW/view?usp=drive_link" 
+                                               class="btn-action" 
+                                               target="_blank" 
+                                               download>
+                                                <i class="uil uil-download-alt"></i> Unduh
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li class="lesson-item">
+                                        <i class="uil uil-video lesson-icon"></i>
+                                        <div class="lesson-info">
+                                            <h4>Video Pembelajaran</h4>
+                                            <p>Video penjelasan uji Friedman</p>
+                                        </div>
+                                        <div class="lesson-actions">
+                                            <a href="https://youtu.be/uyhS4vjAUMw" 
+                                               class="btn-action watch" 
+                                               target="_blank">
+                                                <i class="uil uil-play-circle"></i> Tonton
+                                            </a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Pertemuan 4 -->
+                        <div class="module-card">
+                            <div class="module-header">
+                                <div class="module-title">
+                                    <div class="module-icon">
+                                        <i class="uil uil-chart-pie"></i>
+                                    </div>
+                                    <div class="module-text">
+                                        <h3>Pertemuan 4: Uji Mann Whitney</h3>
+                                        <p>Uji perbedaan dua kelompok independen</p>
+                                    </div>
+                                </div>
+                                <i class="uil uil-angle-down module-toggle"></i>
+                            </div>
+                            <div class="module-content">
+                                <ul class="lesson-list">
+                                    <li class="lesson-item">
+                                        <i class="uil uil-file-alt lesson-icon"></i>
+                                        <div class="lesson-info">
+                                            <h4>Uji Mann Whitney</h4>
+                                            <p>Materi uji Mann Whitney</p>
+                                        </div>
+                                        <div class="lesson-actions">
+                                            <a href="https://drive.google.com/file/d/1i9s9zwv-QnQ6vEim4RnnX9YSj3bEIfGu/view?usp=drive_link" 
+                                               class="btn-action" 
+                                               target="_blank" 
+                                               download>
+                                                <i class="uil uil-download-alt"></i> Unduh
+                                            </a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Pertemuan 5 -->
+                        <div class="module-card">
+                            <div class="module-header">
+                                <div class="module-title">
+                                    <div class="module-icon">
+                                        <i class="uil uil-graph-bar"></i>
+                                    </div>
+                                    <div class="module-text">
+                                        <h3>Pertemuan 5: Uji Kolmogorov Smirnov</h3>
+                                        <p>Uji kesesuaian distribusi</p>
+                                    </div>
+                                </div>
+                                <i class="uil uil-angle-down module-toggle"></i>
+                            </div>
+                            <div class="module-content">
+                                <ul class="lesson-list">
+                                    <li class="lesson-item">
+                                        <i class="uil uil-file-alt lesson-icon"></i>
+                                        <div class="lesson-info">
+                                            <h4>Uji Kolmogorov Smirnov</h4>
+                                            <p>Materi uji K-S untuk kesesuaian distribusi</p>
+                                        </div>
+                                        <div class="lesson-actions">
+                                            <a href="https://drive.google.com/file/d/1acaTFRiGmoVlxFs3NBGTQwNMSM6T6cBb/view?usp=drive_link" 
+                                               class="btn-action" 
+                                               target="_blank" 
+                                               download>
+                                                <i class="uil uil-download-alt"></i> Unduh
+                                            </a>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <div class="tasks-section">
+                                    <h4><i class="uil uil-clipboard-notes"></i> Tugas Pertemuan 5</h4>
+                                    <div class="task-item">
+                                        <div class="task-info">
+                                            <i class="uil uil-file-alt task-icon"></i>
+                                            <div class="task-details">
+                                                <h5>Mengerjakan Pertanyaan Uji K-S</h5>
+                                                <p>Tugas soal uji Kolmogorov Smirnov</p>
+                                            </div>
+                                        </div>
+                                        <div class="task-links">
+                                            <a href="https://drive.google.com/file/d/1MKUBkOgNqbpDJ-x8oKaDNmSR5qFDakA7/view?usp=drive_link" 
+                                               class="btn-action" 
+                                               target="_blank" 
+                                               download>
+                                                <i class="uil uil-eye"></i> Jawaban
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pertemuan 6 -->
+                        <div class="module-card">
+                            <div class="module-header">
+                                <div class="module-title">
+                                    <div class="module-icon">
+                                        <i class="uil uil-chart"></i>
+                                    </div>
+                                    <div class="module-text">
+                                        <h3>Pertemuan 6: Uji Q-Cochran</h3>
+                                        <p>Uji untuk data nominal berulang</p>
+                                    </div>
+                                </div>
+                                <i class="uil uil-angle-down module-toggle"></i>
+                            </div>
+                            <div class="module-content">
+                                <ul class="lesson-list">
+                                    <li class="lesson-item">
+                                        <i class="uil uil-file-alt lesson-icon"></i>
+                                        <div class="lesson-info">
+                                            <h4>Uji Q-Cochran</h4>
+                                            <p>Materi uji Q Cochran</p>
+                                        </div>
+                                        <div class="lesson-actions">
+                                            <a href="https://drive.google.com/file/d/1Or9quODAdXwi0yDw_OZ_zADMAklpNGhV/view?usp=drive_link" 
+                                               class="btn-action" 
+                                               target="_blank" 
+                                               download>
+                                                <i class="uil uil-download-alt"></i> Unduh
+                                            </a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Pertemuan 7 -->
+                        <div class="module-card">
+                            <div class="module-header">
+                                <div class="module-title">
+                                    <div class="module-icon">
+                                        <i class="uil uil-analysis"></i>
+                                    </div>
+                                    <div class="module-text">
+                                        <h3>Pertemuan 7: Uji McNemar</h3>
+                                        <p>Uji untuk data berpasangan nominal</p>
+                                    </div>
+                                </div>
+                                <i class="uil uil-angle-down module-toggle"></i>
+                            </div>
+                            <div class="module-content">
+                                <ul class="lesson-list">
+                                    <li class="lesson-item">
+                                        <i class="uil uil-file-alt lesson-icon"></i>
+                                        <div class="lesson-info">
+                                            <h4>Uji McNemar</h4>
+                                            <p>Materi uji McNemar</p>
+                                        </div>
+                                        <div class="lesson-actions">
+                                            <a href="https://drive.google.com/file/d/1dP7PdtsukD3aaq1OaeH3kV4xRj1Y23YC/view?usp=drive_link" 
+                                               class="btn-action" 
+                                               target="_blank" 
+                                               download>
+                                                <i class="uil uil-download-alt"></i> Unduh
+                                            </a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Pertemuan 8 -->
+                        <div class="module-card">
+                            <div class="module-header">
+                                <div class="module-title">
+                                    <div class="module-icon">
+                                        <i class="uil uil-clipboard-notes"></i>
+                                    </div>
+                                    <div class="module-text">
+                                        <h3>Pertemuan 8: Ujian Tengah Semester</h3>
+                                        <p>Ujian Tengah Semester</p>
+                                    </div>
+                                </div>
+                                <i class="uil uil-angle-down module-toggle"></i>
+                            </div>
+                            <div class="module-content">
+                                <div class="tasks-section">
+                                    <h4><i class="uil uil-file-question-alt"></i> Ujian Tengah Semester</h4>
+                                    <p style="color: var(--gray-dark); font-size: 0.9rem; margin-bottom: 15px;">
+                                        Ujian tengah semester untuk materi pertemuan 1-7.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pertemuan 9 -->
+                        <div class="module-card">
+                            <div class="module-header">
+                                <div class="module-title">
+                                    <div class="module-icon">
+                                        <i class="uil uil-presentation"></i>
+                                    </div>
+                                    <div class="module-text">
+                                        <h3>Pertemuan 9: Uji Wilcoxon</h3>
+                                        <p>Sesi presentasi materi uji Wilcoxon</p>
+                                    </div>
+                                </div>
+                                <i class="uil uil-angle-down module-toggle"></i>
+                            </div>
+                            <div class="module-content">
+                                <ul class="lesson-list">
+                                    <li class="lesson-item">
+                                        <i class="uil uil-presentation-play lesson-icon"></i>
+                                        <div class="lesson-info">
+                                            <h4>Presentasi PPT Uji Wilcoxon</h4>
+                                            <p>Slide presentasi uji Wilcoxon</p>
+                                        </div>
+                                        <div class="lesson-actions">
+                                            <a href="https://drive.google.com/file/d/17LVn89z5AcfyqtidAOJO2P6gIsXq6FNL/view?usp=drive_link" 
+                                               class="btn-action presentation" 
+                                               target="_blank" 
+                                               download>
+                                                <i class="uil uil-eye"></i> Lihat PPT
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li class="lesson-item">
+                                        <i class="uil uil-file-alt lesson-icon"></i>
+                                        <div class="lesson-info">
+                                            <h4>Presentasi Makalah Uji Wilcoxon</h4>
+                                            <p>Makalah lengkap uji Wilcoxon</p>
+                                        </div>
+                                        <div class="lesson-actions">
+                                            <a href="https://drive.google.com/file/d/13Bcxf2ptySYu1AjkQ4JmvMQLHATMISsV/view?usp=drive_link" 
+                                               class="btn-action" 
+                                               target="_blank" 
+                                               download>
+                                                <i class="uil uil-eye"></i> Lihat Makalah
+                                            </a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Pertemuan 10 -->
+                        <div class="module-card">
+                            <div class="module-header">
+                                <div class="module-title">
+                                    <div class="module-icon">
+                                        <i class="uil uil-presentation"></i>
+                                    </div>
+                                    <div class="module-text">
+                                        <h3>Pertemuan 10: Uji Korelasi Spearman</h3>
+                                        <p>Sesi presentasi materi uji korelasi Spearman</p>
+                                    </div>
+                                </div>
+                                <i class="uil uil-angle-down module-toggle"></i>
+                            </div>
+                            <div class="module-content">
+                                <ul class="lesson-list">
+                                    <li class="lesson-item">
+                                        <i class="uil uil-presentation-play lesson-icon"></i>
+                                        <div class="lesson-info">
+                                            <h4>Presentasi PPT Uji Spearman</h4>
+                                            <p>Slide presentasi uji korelasi Spearman</p>
+                                        </div>
+                                        <div class="lesson-actions">
+                                            <a href="#" 
+                                               class="btn-action disabled" 
+                                               style="background-color: var(--gray-medium); cursor: not-allowed;">
+                                                <i class="uil uil-ban"></i> Tidak Tersedia
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li class="lesson-item">
+                                        <i class="uil uil-file-alt lesson-icon"></i>
+                                        <div class="lesson-info">
+                                            <h4>Presentasi Makalah Uji Spearman</h4>
+                                            <p>Makalah lengkap uji korelasi Spearman</p>
+                                        </div>
+                                        <div class="lesson-actions">
+                                            <a href="#" 
+                                               class="btn-action disabled" 
+                                               style="background-color: var(--gray-medium); cursor: not-allowed;">
+                                                <i class="uil uil-ban"></i> Tidak Tersedia
+                                            </a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Pertemuan 11 -->
+                        <div class="module-card">
+                            <div class="module-header">
+                                <div class="module-title">
+                                    <div class="module-icon">
+                                        <i class="uil uil-presentation"></i>
+                                    </div>
+                                    <div class="module-text">
+                                        <h3>Pertemuan 11: Uji Kendall W</h3>
+                                        <p>Sesi presentasi materi uji kesepakatan Kendall W</p>
+                                    </div>
+                                </div>
+                                <i class="uil uil-angle-down module-toggle"></i>
+                            </div>
+                            <div class="module-content">
+                                <ul class="lesson-list">
+                                    <li class="lesson-item">
+                                        <i class="uil uil-presentation-play lesson-icon"></i>
+                                        <div class="lesson-info">
+                                            <h4>Presentasi Uji Kendall W</h4>
+                                            <p>Materi presentasi uji Kendall W</p>
+                                        </div>
+                                        <div class="lesson-actions">
+                                            <a href="https://drive.google.com/file/d/1XzOeEkuDO2U7MNsibURu5BA19tsyPhYa/view?usp=drive_link" 
+                                               class="btn-action presentation" 
+                                               target="_blank" 
+                                               download>
+                                                <i class="uil uil-eye"></i> Lihat Presentasi
+                                            </a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Pertemuan 12 -->
+                        <div class="module-card">
+                            <div class="module-header">
+                                <div class="module-title">
+                                    <div class="module-icon">
+                                        <i class="uil uil-presentation"></i>
+                                    </div>
+                                    <div class="module-text">
+                                        <h3>Pertemuan 12: Uji Chi-Square</h3>
+                                        <p>Sesi presentasi materi uji Chi-Square</p>
+                                    </div>
+                                </div>
+                                <i class="uil uil-angle-down module-toggle"></i>
+                            </div>
+                            <div class="module-content">
+                                <ul class="lesson-list">
+                                    <li class="lesson-item">
+                                        <i class="uil uil-presentation-play lesson-icon"></i>
+                                        <div class="lesson-info">
+                                            <h4>Presentasi PPT Uji Chi-Square</h4>
+                                            <p>Slide presentasi uji Chi-Square</p>
+                                        </div>
+                                        <div class="lesson-actions">
+                                            <a href="https://drive.google.com/file/d/1VrRZsLKd3GhzLsRz8kVjikdghiUTK00C/view?usp=drive_link" 
+                                               class="btn-action presentation" 
+                                               target="_blank" 
+                                               download>
+                                                <i class="uil uil-eye"></i> Lihat PPT
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li class="lesson-item">
+                                        <i class="uil uil-file-alt lesson-icon"></i>
+                                        <div class="lesson-info">
+                                            <h4>Presentasi Makalah Uji Chi-Square</h4>
+                                            <p>Makalah lengkap uji Chi-Square</p>
+                                        </div>
+                                        <div class="lesson-actions">
+                                            <a href="https://drive.google.com/file/d/11gN5pE4Ic1P_k7aAh-_GZKoGficA8icm/view?usp=drive_link" 
+                                               class="btn-action" 
+                                               target="_blank" 
+                                               download>
+                                                <i class="uil uil-eye"></i> Lihat Makalah
+                                            </a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Pertemuan 13 -->
+                        <div class="module-card">
+                            <div class="module-header">
+                                <div class="module-title">
+                                    <div class="module-icon">
+                                        <i class="uil uil-presentation"></i>
+                                    </div>
+                                    <div class="module-text">
+                                        <h3>Pertemuan 13: Uji Run</h3>
+                                        <p>Sesi presentasi materi uji run</p>
+                                    </div>
+                                </div>
+                                <i class="uil uil-angle-down module-toggle"></i>
+                            </div>
+                            <div class="module-content">
+                                <ul class="lesson-list">
+                                    <li class="lesson-item">
+                                        <i class="uil uil-presentation-play lesson-icon"></i>
+                                        <div class="lesson-info">
+                                            <h4>Presentasi PPT Uji Run</h4>
+                                            <p>Slide presentasi uji run</p>
+                                        </div>
+                                        <div class="lesson-actions">
+                                            <a href="https://drive.google.com/file/d/1sZP_QEZjXtjfV1Fx0vDyEpLa1KgwFo9V/view?usp=drive_link" 
+                                               class="btn-action presentation" 
+                                               target="_blank" 
+                                               download>
+                                                <i class="uil uil-eye"></i> Lihat PPT
+                                            </a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Pertemuan 14 -->
+                        <div class="module-card">
+                            <div class="module-header">
+                                <div class="module-title">
+                                    <div class="module-icon">
+                                        <i class="uil uil-presentation"></i>
+                                    </div>
+                                    <div class="module-text">
+                                        <h3>Pertemuan 14: Uji Kruskal-Wallis</h3>
+                                        <p>Sesi presentasi materi uji Kruskal-Wallis</p>
+                                    </div>
+                                </div>
+                                <i class="uil uil-angle-down module-toggle"></i>
+                            </div>
+                            <div class="module-content">
+                                <ul class="lesson-list">
+                                    <li class="lesson-item">
+                                        <i class="uil uil-presentation-play lesson-icon"></i>
+                                        <div class="lesson-info">
+                                            <h4>Presentasi PPT Uji Kruskal-Wallis</h4>
+                                            <p>Slide presentasi uji Kruskal-Wallis</p>
+                                        </div>
+                                        <div class="lesson-actions">
+                                            <a href="https://drive.google.com/file/d/1VrRZsLKd3GhzLsRz8kVjikdghiUTK00C/view?usp=drive_link" 
+                                               class="btn-action presentation" 
+                                               target="_blank" 
+                                               download>
+                                                <i class="uil uil-eye"></i> Lihat PPT
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li class="lesson-item">
+                                        <i class="uil uil-file-alt lesson-icon"></i>
+                                        <div class="lesson-info">
+                                            <h4>Presentasi Makalah Uji Kruskal-Wallis</h4>
+                                            <p>Makalah lengkap uji Kruskal-Wallis</p>
+                                        </div>
+                                        <div class="lesson-actions">
+                                            <a href="https://drive.google.com/file/d/11gN5pE4Ic1P_k7aAh-_GZKoGficA8icm/view?usp=drive_link" 
+                                               class="btn-action" 
+                                               target="_blank" 
+                                               download>
+                                                <i class="uil uil-eye"></i> Lihat Makalah
+                                            </a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
+                </main>
+
+                <aside class="sidebar-info">
+                    <div class="info-card">
+                        <h3>Dosen Pengampu</h3>
+                        <div class="lecturer-profiles">
+                            <div class="lecturer-profile">
+                                <img src="https://statistika.fmipa.unm.ac.id/wp-content/uploads/sites/16/2022/05/HRD.jpg" 
+                                     alt="Foto Dosen Hardianti Hafid">
+                                <div class="lecturer-details">
+                                    <h4>Hardianti Hafid, S.Si., M.Si.</h4>
+                                    <p>Dosen Statistika Nonparametrik</p>
+                                    <ul class="contact-info">
+                                        <li><i class="uil uil-phone"></i> +62 852-5588-0704</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </aside>
+            </div>
+
+            <div class="footer">
+                <p>&copy; 2023 LMSVVIP - Learning Management System. All rights reserved.</p>
             </div>
         </div>
     </div>
@@ -1055,26 +1490,42 @@
         document.querySelector('.menu-button').addEventListener('click', function() {
             document.querySelector('.sidebar').classList.toggle('active');
         });
-        // Close sidebar when clicking outside (for mobile)
+
+        // Close sidebar when clicking outside on mobile
         document.addEventListener('click', function(event) {
             const sidebar = document.querySelector('.sidebar');
             const menuButton = document.querySelector('.menu-button');
-            // Check if sidebar is active AND click is outside sidebar AND click is not on menu button
-            if (sidebar.classList.contains('active') && !sidebar.contains(event.target) && !menuButton.contains(event.target)) {
+            
+            if (window.innerWidth <= 992 && sidebar.classList.contains('active') && 
+                !sidebar.contains(event.target) && !menuButton.contains(event.target)) {
                 sidebar.classList.remove('active');
-                document.body.classList.remove('sidebar-open'); // Remove class from body
             }
         });
+
         // Toggle module content visibility
         document.querySelectorAll('.module-header').forEach(header => {
             header.addEventListener('click', function() {
-                const moduleItem = this.closest('.module-item');
-                moduleItem.classList.toggle('open');
+                const moduleCard = this.closest('.module-card');
+                moduleCard.classList.toggle('open');
+                
+                // Close other open modules (optional)
+                document.querySelectorAll('.module-card.open').forEach(card => {
+                    if (card !== moduleCard) {
+                        card.classList.remove('open');
+                    }
+                });
             });
         });
 
+        // Initialize page
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('Aljabar Matriks page loaded successfully!');
+            console.log('Statistika Nonparametrik page loaded successfully!');
+            
+            // Open first module by default
+            const firstModule = document.querySelector('.module-card');
+            if (firstModule) {
+                firstModule.classList.add('open');
+            }
         });
     </script>
 </body>
