@@ -3,40 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - LMSVVIP</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
     <style>
-        /* Modern Color Palette & Variables */
+        /* Modern Professional Color Palette */
         :root {
-            --primary-color: #4361ee; /* Vibrant blue */
-            --primary-dark: #3a0ca3; /* Deep purple-blue */
-            --secondary-color: #4cc9f0; /* Light blue */
-            --accent-color: #f72585; /* Vibrant pink */
-            --dark-color: #14213d; /* Navy blue */
+            --primary-color: #2c3e50;
+            --primary-dark: #1a252f;
+            --secondary-color: #3498db;
+            --accent-color: #2980b9;
+            --success-color: #27ae60;
+            --warning-color: #f39c12;
+            --info-color: #3498db;
+            --dark-color: #1a1a2e;
             --light-color: #f8f9fa;
-            --background-light: #f5f7ff;
-            --sidebar-bg: linear-gradient(135deg, #14213d 0%, #1b263b 100%);
-            --text-light: #e2e8f0;
-            --highlight-text: #4cc9f0;
-            --border-color: rgba(255, 255, 255, 0.1);
-            --card-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
-            --section-padding: 80px 0; /* Normalized vertical padding for sections */
-            --section-margin: 80px 0;
+            --gray-light: #ecf0f1;
+            --gray-medium: #bdc3c7;
+            --gray-dark: #7f8c8d;
+            --sidebar-bg: #1a252f;
+            --card-bg: #ffffff;
+            --text-light: #ecf0f1;
+            --text-dark: #2c3e50;
+            --border-color: #e0e0e0;
+            --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.05);
+            --shadow-medium: 0 6px 20px rgba(0, 0, 0, 0.08);
+            --shadow-dark: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --border-radius: 8px;
+            --section-padding: 60px 0;
         }
 
-        /* Base Styles */
+        /* Reset & Base Styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
         }
 
         body {
-            background-color: var(--background-light);
-            color: var(--dark-color);
+            font-family: 'Inter', sans-serif;
+            background-color: #f5f7fa;
+            color: var(--text-dark);
             line-height: 1.6;
             overflow-x: hidden;
         }
@@ -44,191 +52,143 @@
         .container {
             display: flex;
             min-height: 100vh;
-            position: relative;
         }
 
-        /* Glassmorphism Effect */
-        .glass-card {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            box-shadow: var(--card-shadow);
-        }
-
-        /* Sidebar Styles - Modern Gradient */
+        /* Sidebar Styles */
         .sidebar {
-            width: 260px;
-            background: var(--sidebar-bg);
-            color: white;
-            padding: 20px 0;
+            width: 240px;
+            background-color: var(--sidebar-bg);
+            color: var(--text-light);
             position: fixed;
             height: 100vh;
             z-index: 1000;
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
-            box-shadow: 10px 0 30px rgba(0, 0, 0, 0.2);
-            border-right: 1px solid rgba(255, 255, 255, 0.05);
+            transition: var(--transition);
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
         }
 
         .sidebar-header {
+            padding: 24px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             display: flex;
             align-items: center;
-            padding: 0 20px 20px;
-            border-bottom: 1px solid var(--border-color);
-            margin-bottom: 15px;
+            gap: 12px;
         }
 
         .sidebar-header img {
-            width: 40px;
-            height: 40px;
-            margin-right: 12px;
-            border-radius: 8px;
+            width: 36px;
+            height: 36px;
+            border-radius: 6px;
             object-fit: cover;
         }
 
         .sidebar-header h2 {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             font-weight: 700;
             color: white;
-            background: linear-gradient(to right, #f72585, #4361ee);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            letter-spacing: 0.5px;
         }
 
         .sidebar-menu {
-            padding: 15px;
-            height: calc(100vh - 100px);
+            padding: 20px 0;
+            flex-grow: 1;
             overflow-y: auto;
-            scrollbar-width: thin;
-            scrollbar-color: var(--primary-color) transparent;
-        }
-
-        .sidebar-menu::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        .sidebar-menu::-webkit-scrollbar-thumb {
-            background-color: var(--primary-color);
-            border-radius: 3px;
         }
 
         .menu-category {
-            margin-bottom: 25px;
+            margin-bottom: 28px;
         }
 
         .menu-category h3 {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             text-transform: uppercase;
-            color: var(--highlight-text);
-            margin-bottom: 15px;
-            letter-spacing: 0.8px;
+            color: var(--gray-medium);
+            margin: 0 20px 12px;
+            letter-spacing: 1px;
             font-weight: 600;
-            display: flex;
-            align-items: center;
-        }
-
-        .menu-category h3::after {
-            content: "";
-            flex: 1;
-            height: 1px;
-            background: var(--border-color);
-            margin-left: 10px;
         }
 
         .menu-item {
             display: flex;
             align-items: center;
-            padding: 12px 15px;
-            margin-bottom: 6px;
-            border-radius: 7px;
-            cursor: pointer;
-            transition: var(--transition);
+            padding: 14px 20px;
             color: var(--text-light);
             text-decoration: none;
             font-weight: 500;
-            position: relative;
-            overflow: hidden;
             font-size: 0.95rem;
+            transition: var(--transition);
+            border-left: 3px solid transparent;
         }
 
         .menu-item i {
-            margin-right: 10px;
+            margin-right: 12px;
             font-size: 1.1rem;
-            min-width: 20px;
+            width: 24px;
             text-align: center;
         }
 
-        .menu-item::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transition: 0.5s;
-        }
-
-        .menu-item:hover::before {
-            left: 100%;
-        }
-
         .menu-item:hover {
-            background-color: rgba(255, 255, 255, 0.15);
-            color: white;
-            transform: translateX(3px);
+            background-color: rgba(255, 255, 255, 0.05);
+            border-left-color: var(--secondary-color);
         }
 
         .menu-item.active {
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            background-color: rgba(52, 152, 219, 0.15);
             color: white;
-            box-shadow: 0 6px 15px rgba(67, 97, 238, 0.3);
-            font-weight: 600;
+            border-left-color: var(--secondary-color);
         }
 
         /* Main Content Styles */
         .main-content {
             flex: 1;
-            margin-left: 260px; /* Match sidebar width */
-            transition: margin-left 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+            margin-left: 240px;
+            transition: var(--transition);
         }
 
-        /* Navbar Styles - Glassmorphic */
+        /* Navbar Styles */
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 18px 35px;
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
+            padding: 18px 30px;
+            background-color: white;
+            box-shadow: var(--shadow-light);
             position: sticky;
             top: 0;
             z-index: 100;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .navbar-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
         }
 
         .menu-button {
             background: none;
             border: none;
-            font-size: 1.6rem;
+            font-size: 1.5rem;
             cursor: pointer;
-            color: var(--dark-color);
-            transition: var(--transition);
+            color: var(--text-dark);
             display: flex;
             align-items: center;
             justify-content: center;
             width: 40px;
             height: 40px;
             border-radius: 50%;
+            transition: var(--transition);
         }
 
         .menu-button:hover {
-            color: var(--primary-color);
-            background: rgba(67, 97, 238, 0.1);
-            transform: rotate(90deg);
+            background-color: var(--gray-light);
+            color: var(--secondary-color);
+        }
+
+        .page-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
         }
 
         .user-profile {
@@ -242,114 +202,66 @@
             height: 40px;
             border-radius: 50%;
             object-fit: cover;
-            border: 2px solid var(--primary-color);
-            transition: var(--transition);
-            box-shadow: 0 4px 12px rgba(67, 97, 238, 0.3);
+            border: 2px solid var(--secondary-color);
         }
 
-        .user-profile img:hover {
-            transform: scale(1.08);
-            box-shadow: 0 6px 15px rgba(67, 97, 238, 0.4);
+        /* Dashboard Content */
+        .dashboard-content {
+            padding: 30px;
         }
 
-        /* Home Content Styles */
-        .home-content {
-            padding: 40px;
-        }
-
+        /* Welcome Section */
         .welcome-section {
-            text-align: left;
-            margin-bottom: var(--section-margin);
-            background: linear-gradient(135deg, rgba(67, 97, 238, 0.1) 0%, rgba(76, 201, 240, 0.1) 100%);
-            padding: 50px;
-            border-radius: 20px;
-            box-shadow: var(--card-shadow);
-            position: relative;
-            overflow: hidden;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-color) 100%);
+            border-radius: var(--border-radius);
+            padding: 40px;
+            color: white;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow-medium);
             display: flex;
-            align-items: center;
             justify-content: space-between;
+            align-items: center;
             flex-wrap: wrap;
-        }
-
-        .welcome-section::before {
-            content: "";
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 100%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(67, 97, 238, 0.05) 0%, transparent 70%);
-            z-index: -1;
+            gap: 30px;
         }
 
         .welcome-text {
             flex: 1;
-            max-width: 60%;
-            padding-right: 30px;
+            min-width: 300px;
         }
 
-        .welcome-section h5 {
-            font-size: 1.1rem;
-            color: var(--primary-color);
-            margin-bottom: 12px;
-            font-weight: 600;
+        .welcome-text h5 {
+            font-size: 0.9rem;
             text-transform: uppercase;
             letter-spacing: 1px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 12px;
+            font-weight: 600;
         }
 
-        .welcome-section h1 {
-            font-size: 3rem;
-            color: var(--dark-color);
-            margin-bottom: 20px;
+        .welcome-text h1 {
+            font-size: 2.5rem;
             font-weight: 800;
+            margin-bottom: 16px;
             line-height: 1.2;
         }
 
-        .welcome-section h1 span {
-            background: linear-gradient(to right, var(--accent-color), var(--primary-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            position: relative;
-            display: inline-block;
+        .welcome-text h1 span {
+            color: var(--secondary-color);
         }
 
-        .welcome-section h1 span::after {
-            content: "";
-            position: absolute;
-            bottom: 3px;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(to right, var(--accent-color), var(--primary-color));
-            border-radius: 2px;
-            z-index: -1;
-            opacity: 0.5;
-        }
-
-        .welcome-section p {
+        .welcome-text p {
             font-size: 1.05rem;
-            color: var(--dark-color);
-            max-width: 650px;
-            margin-bottom: 30px;
-            line-height: 1.7;
-            opacity: 0.9;
+            color: rgba(255, 255, 255, 0.85);
+            max-width: 600px;
+            margin-bottom: 24px;
         }
 
         .welcome-image {
-            width: 100%;
-            max-width: 350px;
-            margin: 0;
-            border-radius: 15px;
+            width: 300px;
+            border-radius: var(--border-radius);
             overflow: hidden;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-            transition: var(--transition);
-            transform: perspective(1000px) rotateY(-3deg) rotateX(3deg);
-        }
-
-        .welcome-image:hover {
-            transform: perspective(1000px) rotateY(0) rotateX(0) scale(1.02);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+            box-shadow: var(--shadow-dark);
         }
 
         .welcome-image img {
@@ -365,440 +277,283 @@
 
         /* Features Section */
         .features-section {
-            margin: var(--section-margin);
-            padding: var(--section-padding);
+            margin-bottom: 40px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
         }
 
         .section-title {
-            font-size: 2.8rem;
-            color: var(--dark-color);
-            margin-bottom: 60px;
-            text-align: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-dark);
             position: relative;
-            font-weight: 800;
+            padding-bottom: 10px;
         }
 
         .section-title::after {
             content: "";
             position: absolute;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 120px;
-            height: 4px;
-            background: linear-gradient(to right, var(--accent-color), var(--primary-color));
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--secondary-color);
             border-radius: 2px;
         }
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
         }
 
         .feature-card {
-            background: white;
-            border-radius: 18px;
-            padding: 35px 25px;
-            box-shadow: var(--card-shadow);
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 28px;
+            box-shadow: var(--shadow-light);
             transition: var(--transition);
-            border: none;
-            text-align: center;
+            border: 1px solid var(--border-color);
             display: flex;
             flex-direction: column;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-        }
-
-        .feature-card::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(to right, var(--accent-color), var(--primary-color));
+            height: 100%;
         }
 
         .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-medium);
+            border-color: var(--secondary-color);
         }
 
         .feature-icon {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, rgba(67, 97, 238, 0.1) 0%, rgba(76, 201, 240, 0.1) 100%);
-            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            background-color: rgba(52, 152, 219, 0.1);
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 25px;
-            font-size: 2.2rem;
-            color: var(--primary-color);
-            transition: var(--transition);
-            border: 2px solid rgba(67, 97, 238, 0.2);
-        }
-
-        .feature-card:hover .feature-icon {
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
-            color: white;
-            transform: rotateY(180deg);
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            color: var(--secondary-color);
         }
 
         .feature-card h3 {
-            font-size: 1.5rem;
-            color: var(--dark-color);
-            margin-bottom: 18px;
+            font-size: 1.3rem;
             font-weight: 700;
-            position: relative;
-            display: inline-block;
-        }
-
-        .feature-card h3::after {
-            content: "";
-            position: absolute;
-            bottom: -8px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 40px;
-            height: 2px;
-            background: var(--accent-color);
-            border-radius: 2px;
+            margin-bottom: 12px;
+            color: var(--text-dark);
         }
 
         .feature-card p {
-            font-size: 1rem;
-            color: var(--dark-color);
-            margin-bottom: 25px;
-            line-height: 1.6;
-            opacity: 0.8;
+            color: var(--gray-dark);
+            margin-bottom: 24px;
             flex-grow: 1;
+            line-height: 1.6;
         }
 
         .feature-btn {
             display: inline-block;
-            padding: 12px 30px;
-            background: linear-gradient(to right, var(--primary-color), var(--primary-dark));
+            padding: 10px 22px;
+            background-color: var(--secondary-color);
             color: white;
-            border-radius: 40px;
+            border-radius: 6px;
             text-decoration: none;
             font-weight: 600;
+            font-size: 0.9rem;
             transition: var(--transition);
-            box-shadow: 0 8px 18px rgba(67, 97, 238, 0.3);
+            text-align: center;
             border: none;
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-        }
-
-        .feature-btn::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 0;
-            height: 100%;
-            background: linear-gradient(to right, var(--accent-color), var(--primary-color));
-            transition: var(--transition);
-            z-index: -1;
-        }
-
-        .feature-btn:hover::before {
-            width: 100%;
+            cursor: pointer;
+            width: fit-content;
         }
 
         .feature-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 25px rgba(67, 97, 238, 0.4);
+            background-color: var(--accent-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
         }
 
-        /* Stats Section - Animated */
+        /* Stats Section */
         .stats-section {
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
-            padding: 60px 40px;
-            border-radius: 20px;
-            box-shadow: var(--card-shadow);
-            margin: var(--section-margin);
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .stats-section::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="rgba(255,255,255,0.05)" d="M0,0 L100,0 L100,100 L0,100 Z"></path></svg>');
-            background-size: cover;
-            opacity: 0.1;
-        }
-
-        .stats-section .section-title {
-            color: white;
-            margin-bottom: 50px;
-        }
-
-        .stats-section .section-title::after {
-            background: white;
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--shadow-light);
+            margin-top: 40px;
         }
 
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .stat-card {
+            padding: 24px;
+            border-radius: var(--border-radius);
+            background-color: var(--light-color);
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-light);
+        }
+
+        .stat-card h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--secondary-color);
+            margin-bottom: 8px;
+        }
+
+        .stat-card p {
+            font-size: 1rem;
+            color: var(--gray-dark);
+            font-weight: 600;
+        }
+
+        /* Quick Actions */
+        .quick-actions {
+            margin-top: 40px;
+        }
+
+        .actions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 16px;
+        }
+
+        .action-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px 15px;
+            background-color: white;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            color: var(--text-dark);
+            transition: var(--transition);
+            box-shadow: var(--shadow-light);
+            border: 1px solid var(--border-color);
+        }
+
+        .action-btn i {
+            font-size: 1.8rem;
+            margin-bottom: 12px;
+            color: var(--secondary-color);
+        }
+
+        .action-btn span {
+            font-weight: 600;
+            font-size: 0.9rem;
             text-align: center;
         }
 
-        .stat-item {
-            padding: 25px;
-            border-radius: 12px;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(5px);
-            transition: var(--transition);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .stat-item::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 3px;
-            height: 0;
-            background: var(--accent-color);
-            transition: var(--transition);
-        }
-
-        .stat-item:hover::before {
-            height: 100%;
-        }
-
-        .stat-item:hover {
-            transform: translateY(-8px);
-            background: rgba(255, 255, 255, 0.2);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-        }
-
-        .stat-item h2 {
-            font-size: 3rem;
+        .action-btn:hover {
+            background-color: var(--secondary-color);
             color: white;
-            margin-bottom: 12px;
-            font-weight: 800;
+            border-color: var(--secondary-color);
+            transform: translateY(-3px);
         }
 
-        .stat-item p {
-            font-size: 1.1rem;
-            color: rgba(255, 255, 255, 0.9);
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        .action-btn:hover i {
+            color: white;
         }
 
-        /* Floating Animation */
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0) perspective(1000px) rotateY(-3deg) rotateX(3deg);
-            }
-            50% {
-                transform: translateY(-15px) perspective(1000px) rotateY(-3deg) rotateX(3deg);
-            }
+        /* Footer */
+        .footer {
+            margin-top: 50px;
+            padding: 20px 30px;
+            text-align: center;
+            color: var(--gray-dark);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border-color);
         }
 
-        .floating {
-            animation: float 6s ease-in-out infinite;
-        }
-
-        /* --- Responsive Styles --- */
-
-        /* Tablets & Larger Phones (e.g., iPad Mini, landscape phones) */
-        @media (max-width: 1200px) {
-            .sidebar {
-                width: 250px;
-            }
-            .main-content {
-                margin-left: 250px;
-            }
-            .welcome-text {
-                max-width: 100%; /* Allow text to take full width */
-                padding-right: 0;
-            }
-            .welcome-image {
-                margin-top: 30px; /* Add top margin for image */
-                max-width: 400px; /* Allow image to be larger on smaller screens */
-            }
-            .welcome-section {
-                flex-direction: column; /* Stack elements vertically */
-                align-items: center; /* Center items */
-                text-align: center; /* Center text */
-            }
-            .welcome-section p {
-                text-align: center; /* Center paragraph text */
-            }
-            .features-grid {
-                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Adjusted min-width for cards */
-            }
-        }
-
-        /* Smaller Tablets & Medium Phones (Portrait) */
+        /* Responsive Design */
         @media (max-width: 992px) {
             .sidebar {
-                transform: translateX(-100%); /* Hide sidebar by default */
-                width: 280px; /* Adjusted sidebar width for mobile, makes it a bit wider when open */
+                transform: translateX(-100%);
             }
+            
             .sidebar.active {
-                transform: translateX(0); /* Show sidebar when active */
-                box-shadow: 10px 0 30px rgba(0, 0, 0, 0.3);
+                transform: translateX(0);
             }
+            
             .main-content {
-                margin-left: 0; /* Content takes full width when sidebar is hidden */
+                margin-left: 0;
             }
+            
             .navbar {
-                padding: 15px 25px; /* Reduced padding for navbar */
+                padding: 15px 20px;
             }
-            .home-content {
-                padding: 30px; /* Reduced overall content padding */
+            
+            .dashboard-content {
+                padding: 20px;
             }
-            .welcome-section {
-                padding: 35px; /* Reduced padding for welcome section */
-            }
-            .welcome-section h1 {
-                font-size: 2.5rem; /* Smaller font for main heading */
-            }
-            .section-title {
-                font-size: 2.2rem; /* Smaller font for section titles */
-                margin-bottom: 40px;
-            }
-            .features-section, .stats-section {
-                padding: 50px 0; /* Reduced vertical padding */
-                margin: 60px 0; /* Reduced vertical margin */
-            }
-            /* Adjust main content when sidebar is active to reveal content below */
-            body.sidebar-open .main-content {
-                margin-left: 280px; /* Shift content when sidebar is open */
-                width: calc(100% - 280px); /* Adjust width */
-            }
-        }
-
-        /* Small Phones (e.g., iPhone SE, older Android) */
-        @media (max-width: 768px) {
-            .home-content {
-                padding: 25px; /* Further reduced content padding */
-            }
+            
             .welcome-section {
                 padding: 30px;
-                margin-bottom: 50px;
+                flex-direction: column;
+                text-align: center;
             }
-            .welcome-section h1 {
-                font-size: 2.2rem; /* Even smaller heading */
+            
+            .welcome-text {
+                min-width: 100%;
             }
-            .welcome-section p {
-                font-size: 1rem; /* Smaller paragraph text */
-            }
-            .section-title {
-                font-size: 2rem;
-                margin-bottom: 35px;
-            }
-            .features-grid {
-                grid-template-columns: 1fr; /* Stack feature cards vertically */
-                gap: 25px;
-            }
-            .feature-card {
-                padding: 30px 20px;
-            }
-            .stats-section {
-                padding: 40px 25px; /* Reduced padding for stats section */
-                margin: 50px 0;
-            }
-            .stats-grid {
-                grid-template-columns: 1fr; /* Stack stat items vertically */
-                gap: 20px;
-            }
-            .stat-item h2 {
-                font-size: 2.8rem; /* Smaller stat numbers */
-            }
-            .stat-item p {
-                font-size: 1rem; /* Smaller stat descriptions */
+            
+            .welcome-image {
+                width: 100%;
+                max-width: 400px;
             }
         }
 
-        /* Very Small Phones (e.g., narrow screens) */
-        @media (max-width: 576px) {
-            .home-content {
-                padding: 15px; /* Minimal content padding */
+        @media (max-width: 768px) {
+            .features-grid {
+                grid-template-columns: 1fr;
             }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .welcome-text h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .actions-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .dashboard-content {
+                padding: 15px;
+            }
+            
             .welcome-section {
                 padding: 25px;
             }
-            .welcome-section h1 {
-                font-size: 1.8rem; /* Smallest heading size */
-            }
-            .welcome-section p {
-                font-size: 0.95rem; /* Smallest paragraph text */
-            }
-            .section-title {
-                font-size: 1.6rem;
-                margin-bottom: 30px; /* Ensure space below title */
-            }
-            .section-title::after {
-                width: 80px; /* Shorter line under title */
-            }
+            
             .feature-card {
-                padding: 25px 15px;
-            }
-            .feature-icon {
-                width: 70px;
-                height: 70px;
-                font-size: 2rem;
-                margin-bottom: 20px; /* Adjusted margin */
-            }
-            .feature-card h3 {
-                font-size: 1.3rem; /* Smaller feature titles */
-            }
-            .feature-card p {
-                font-size: 0.9rem; /* Smaller feature descriptions */
-            }
-            .feature-btn {
-                padding: 10px 25px; /* Smaller button padding */
-                font-size: 0.9rem;
-            }
-            .stats-section {
-                padding: 30px 15px; /* Even tighter padding for stats */
-                margin: 40px 0;
-            }
-            .stat-item {
                 padding: 20px;
-            }
-            .stat-item h2 {
-                font-size: 2.5rem;
-            }
-            .stat-item p {
-                font-size: 0.95rem;
-            }
-            .sidebar-header img {
-                width: 35px;
-                height: 35px;
-            }
-            .sidebar-header h2 {
-                font-size: 1.4rem;
-            }
-            .sidebar-menu {
-                padding: 10px;
-            }
-            .menu-item {
-                padding: 10px 12px;
-                font-size: 0.9rem;
-            }
-            .menu-item i {
-                font-size: 1rem;
             }
         }
     </style>
@@ -807,7 +562,6 @@
     <div class="container">
         <aside class="sidebar">
             <div class="sidebar-header">
-                <img src="logo.png" alt="Library Logo">
                 <h2>LMSVVIP</h2>
             </div>
             <div class="sidebar-menu">
@@ -815,96 +569,149 @@
                     <h3>Menu Utama</h3>
                     <a href="Homepage.html" class="menu-item active">
                         <i class="uil uil-estate"></i>
-                        <span>Beranda</span>
+                        <span>Dashboard</span>
                     </a>
                 </div>
                 <div class="menu-category">
-                    <h3>Fitur</h3>
+                    <h3>Fitur Akademik</h3>
                     <a href="e-library.html" class="menu-item">
                         <i class="uil uil-book-open"></i>
-                        <span>e-Library</span>
+                        <span>Digital Library</span>
                     </a>
                     <a href="F-Pubs.html" class="menu-item">
-                        <i class="uil uil-download-alt"></i>
-                        <span>Unggahan Artikel</span>
+                        <i class="uil uil-file-upload-alt"></i>
+                        <span>Publikasi</span>
                     </a>
                     <a href="course.html" class="menu-item">
-                        <i class="uil uil-flask"></i>
-                        <span>Course</span>
+                        <i class="uil uil-graduation-cap"></i>
+                        <span>Kursus</span>
                     </a>
                     <a href="yth.html" class="menu-item">
-                        <i class="uil uil-tv-retro"></i>
-                        <span>Meowtube</span>
+                        <i class="uil uil-video"></i>
+                        <span>Video Pembelajaran</span>
+                    </a>
+                </div>
+                <div class="menu-category">
+                    <h3>Analisis Data</h3>
+                    <a href="DataSet-1.html" class="menu-item">
+                        <i class="uil uil-database"></i>
+                        <span>Dataset</span>
                     </a>
                     <a href="StatTools.html" class="menu-item">
-                        <i class="uil uil-calculator"></i>
-                        <span>Statistic Tools</span>
+                        <i class="uil uil-chart-bar"></i>
+                        <span>Analisis Statistik</span>
                     </a>
                 </div>
             </div>
         </aside>
 
         <div class="main-content">
-            <nav class="navbar glass-card">
-                <button class="menu-button" aria-label="Toggle sidebar">
-                    <i class="uil uil-bars"></i>
-                </button>
-                <div class="user-profile">
-                    <img src="logo.png" alt="User Profile">
+            <nav class="navbar">
+                <div class="navbar-left">
+                    <button class="menu-button" aria-label="Toggle sidebar">
+                        <i class="uil uil-bars"></i>
+                    </button>
+                    <h1 class="page-title">Dashboard</h1>
                 </div>
             </nav>
 
-            <div class="home-content">
-                <div class="welcome-section glass-card">
+            <div class="dashboard-content">
+                <div class="welcome-section">
                     <div class="welcome-text">
-                        <h5>Selamat Datang di LMSVVIP</h5>
-                        <h1>Hai, Aku <span>Meowtor</span> 🐾</h1>
+                        <h5>SISTEM MANAJEMEN PEMBELAJARAN</h5>
+                        <h1>Selamat Datang di <span>LMSVVIP</span></h1>
                         <p>
-                            Aku adalah maskot lucu dan pintar dari LMSVVIP, siap membimbingmu menjelajahi dunia pembelajaran digital!<br />
-                            Di sini kamu bisa mengakses materi kuliah, mengerjakan tugas, berdiskusi, hingga memantau nilaimu secara mudah dan menyenangkan.
+                            Platform pembelajaran terintegrasi yang dirancang untuk mendukung proses akademik dengan akses ke sumber daya digital, kursus interaktif, dan alat analisis data yang lengkap.
                         </p>
-                    </div>
-                    <div class="welcome-image floating">
-                        <img src="header.png" alt="Ilustrasi Perpustakaan Digital">
                     </div>
                 </div>
 
                 <div class="features-section">
-                    <h2 class="section-title">Fitur Kami</h2>
+                    <div class="section-header">
+                        <h2 class="section-title">Fitur Utama</h2>
+                    </div>
                     <div class="features-grid">
                         <div class="feature-card">
                             <div class="feature-icon">
                                 <i class="uil uil-database"></i>
                             </div>
-                            <h3>MeowLoad</h3>
-                            <p>Temukan berbagai macam dataset berkualitas tinggi dari bidang kesehatan hingga pemerintahan.</p>
-                            <a href="DataSet-1.html" class="feature-btn">Lihat</a>
+                            <h3>Dataset Penelitian</h3>
+                            <p>Akses kumpulan dataset berkualitas tinggi untuk penelitian di berbagai bidang akademik dan profesional.</p>
+                            <a href="DataSet-1.html" class="feature-btn">Jelajahi Dataset</a>
                         </div>
                         <div class="feature-card">
                             <div class="feature-icon">
                                 <i class="uil uil-book-open"></i>
                             </div>
-                            <h3>MeowLib</h3>
-                            <p>Akses ribuan buku digital, jurnal ilmiah, dan publikasi lainnya dengan mudah.</p>
-                            <a href="e-library.html" class="feature-btn">Lihat</a>
+                            <h3>Digital Library</h3>
+                            <p>Perpustakaan digital dengan koleksi lengkap buku, jurnal, dan publikasi ilmiah terkini.</p>
+                            <a href="e-library.html" class="feature-btn">Akses Perpustakaan</a>
                         </div>
                         <div class="feature-card">
                             <div class="feature-icon">
-                                <i class="uil uil-tv-retro"></i>
+                                <i class="uil uil-video"></i>
                             </div>
-                            <h3>MeowTube</h3>
-                            <p>Temukan video pembelajaran yang menarik dan kursus interaktif untuk meningkatkan pemahamanmu.</p>
-                            <a href="yth.html" class="feature-btn">Lihat</a>
+                            <h3>Video Pembelajaran</h3>
+                            <p>Koleksi video tutorial dan pembelajaran yang dapat meningkatkan pemahaman materi akademik.</p>
+                            <a href="yth.html" class="feature-btn">Tonton Video</a>
                         </div>
                         <div class="feature-card">
                             <div class="feature-icon">
-                                <i class="uil uil-graduation-cap"></i>
+                                <i class="uil uil-chart-bar"></i>
                             </div>
-                            <h3>Course</h3>
-                            <p>Kelola dan selesaikan berbagai tugas dari setiap semester, serta akses materi perkuliahan.</p>
-                            <a href="course.html" class="feature-btn">Lihat</a>
+                            <h3>Analisis Statistik</h3>
+                            <p>Alat statistik lengkap untuk analisis data penelitian dan tugas akademik.</p>
+                            <a href="StatTools.html" class="feature-btn">Gunakan Alat</a>
                         </div>
                     </div>
+                </div>
+
+                <div class="stats-section">
+                    <h2 class="section-title">Statistik Platform</h2>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <h2 id="stat1">0</h2>
+                            <p>Pengguna Aktif</p>
+                        </div>
+                        <div class="stat-card">
+                            <h2 id="stat2">0</h2>
+                            <p>Materi Pembelajaran</p>
+                        </div>
+                        <div class="stat-card">
+                            <h2 id="stat3">0</h2>
+                            <p>Dataset Tersedia</p>
+                        </div>
+                        <div class="stat-card">
+                            <h2 id="stat4">0</h2>
+                            <p>Kursus Online</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="quick-actions">
+                    <h2 class="section-title">Akses Cepat</h2>
+                    <div class="actions-grid">
+                        <a href="F-Pubs.html" class="action-btn">
+                            <i class="uil uil-upload-alt"></i>
+                            <span>Unggah Artikel</span>
+                        </a>
+                        <a href="course.html" class="action-btn">
+                            <i class="uil uil-notebooks"></i>
+                            <span>Tugas & Materi</span>
+                        </a>
+                        <a href="e-library.html" class="action-btn">
+                            <i class="uil uil-search"></i>
+                            <span>Cari Referensi</span>
+                        </a>
+                        <a href="StatTools.html" class="action-btn">
+                            <i class="uil uil-calculator-alt"></i>
+                            <span>Analisis Data</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer">
+                    <p>&copy; 2023 LMSVVIP - Learning Management System. All rights reserved.</p>
                 </div>
             </div>
         </div>
@@ -914,86 +721,60 @@
         // Toggle sidebar on mobile
         document.querySelector('.menu-button').addEventListener('click', function() {
             document.querySelector('.sidebar').classList.toggle('active');
-            document.body.classList.toggle('sidebar-open'); // Add a class to body
         });
 
-        // Close sidebar when clicking outside (for mobile)
+        // Close sidebar when clicking outside on mobile
         document.addEventListener('click', function(event) {
             const sidebar = document.querySelector('.sidebar');
             const menuButton = document.querySelector('.menu-button');
-            // Check if sidebar is active AND click is outside sidebar AND click is not on menu button
-            if (sidebar.classList.contains('active') && !sidebar.contains(event.target) && !menuButton.contains(event.target)) {
+            
+            if (window.innerWidth <= 992 && sidebar.classList.contains('active') && 
+                !sidebar.contains(event.target) && !menuButton.contains(event.target)) {
                 sidebar.classList.remove('active');
-                document.body.classList.remove('sidebar-open'); // Remove class from body
             }
         });
 
-        // Animate stats counter
-        function animateStats() {
-            const statItems = document.querySelectorAll('.stat-item h2');
-            const speed = 200; // Animation speed
-
-            statItems.forEach((stat) => {
-                const target = +stat.innerText.replace(/,/g, '').replace(/\+/g, ''); // Remove "+" for calculation
-                const increment = target / speed;
-                let current = 0;
-                
-                // Check if already animating or if target is already displayed
-                if (stat.dataset.animated === 'true' || stat.innerText.includes(target.toLocaleString())) {
-                    return;
+        // Animated counter for statistics
+        function animateCounter(element, target, duration = 2000) {
+            let start = 0;
+            const increment = target / (duration / 16); // 60fps
+            const timer = setInterval(() => {
+                start += increment;
+                if (start >= target) {
+                    element.textContent = target;
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(start);
                 }
-                stat.dataset.animated = 'true'; // Set flag
-
-                const updateStat = () => {
-                    current += increment;
-                    if (current < target) {
-                        stat.innerText = Math.floor(current).toLocaleString() + '+';
-                        requestAnimationFrame(updateStat); // Use requestAnimationFrame for smoother animation
-                    } else {
-                        stat.innerText = target.toLocaleString() + '+';
-                    }
-                };
-
-                updateStat();
-            });
+            }, 16);
         }
 
-        // Intersection Observer for animations
+        // Initialize counters when stats section is visible
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    if (entry.target.classList.contains('stats-section')) {
-                        animateStats();
-                    }
-                    entry.target.classList.add('animate');
-                } else {
-                    // Reset animation state if element is out of view (optional, but good for re-triggering on scroll back)
-                    if (entry.target.classList.contains('stats-section')) {
-                        document.querySelectorAll('.stat-item h2').forEach(stat => {
-                            stat.dataset.animated = 'false';
-                            // Reset text to initial value if needed, or just let it be
-                            // stat.innerText = '0+';
-                        });
-                    }
-                    entry.target.classList.remove('animate');
+                    // Animate all stat counters
+                    animateCounter(document.getElementById('stat1'), 1247);
+                    animateCounter(document.getElementById('stat2'), 856);
+                    animateCounter(document.getElementById('stat3'), 342);
+                    animateCounter(document.getElementById('stat4'), 128);
+                    
+                    // Unobserve after animation
+                    observer.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.1 }); // Trigger when 10% of the element is visible
+        }, { threshold: 0.5 });
 
-        // Observe sections
-        document.querySelectorAll('.feature-card, .stats-section, .welcome-image').forEach(section => {
-            observer.observe(section);
-        });
+        // Observe the stats section
+        const statsSection = document.querySelector('.stats-section');
+        if (statsSection) {
+            observer.observe(statsSection);
+        }
 
-        // Basic logging when page loaded
+        // Initialize page
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('LMSVVIP Homepage loaded successfully!');
+            console.log('LMSVVIP Dashboard loaded successfully');
         });
     </script>
 </body>
 </html>
-
-
-
-
-
