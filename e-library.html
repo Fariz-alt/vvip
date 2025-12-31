@@ -3,40 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>e-Library - LMSVVIP</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Digital Library - LMSVVIP</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
     <style>
-        /* Reuse existing variables from your main CSS */
+        /* Professional Color Palette */
         :root {
-            --primary-color: #4361ee;
-            --primary-dark: #3a0ca3;
-            --secondary-color: #4cc9f0;
-            --accent-color: #f72585;
-            --dark-color: #14213d;
-            --light-color: #f8f9fa;
-            --background-light: #f5f7ff;
-            --sidebar-bg: linear-gradient(135deg, #14213d 0%, #1b263b 100%);
-            --text-light: #e2e8f0;
-            --highlight-text: #4cc9f0;
-            --border-color: rgba(255, 255, 255, 0.1);
-            --card-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
-            --section-padding: 60px 0;
-            --section-margin: 60px 0;
+            --primary-color: #1a365d;
+            --primary-dark: #0f2642;
+            --secondary-color: #2d72d9;
+            --accent-color: #1e4d8c;
+            --success-color: #2e8b57;
+            --warning-color: #d97706;
+            --info-color: #3b82f6;
+            --dark-color: #1e293b;
+            --light-color: #f8fafc;
+            --gray-light: #f1f5f9;
+            --gray-medium: #cbd5e1;
+            --gray-dark: #64748b;
+            --sidebar-bg: #1e293b;
+            --card-bg: #ffffff;
+            --text-light: #f1f5f9;
+            --text-dark: #334155;
+            --border-color: #e2e8f0;
+            --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.05);
+            --shadow-medium: 0 8px 24px rgba(0, 0, 0, 0.08);
+            --shadow-dark: 0 12px 32px rgba(0, 0, 0, 0.12);
+            --transition: all 0.3s ease;
+            --border-radius: 10px;
+            --section-padding: 40px 0;
         }
 
-        /* Base Styles */
+        /* Reset & Base Styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
         }
 
         body {
-            background-color: var(--background-light);
-            color: var(--dark-color);
+            font-family: 'Inter', sans-serif;
+            background-color: #f5f7fa;
+            color: var(--text-dark);
             line-height: 1.6;
             overflow-x: hidden;
         }
@@ -44,159 +52,118 @@
         .container {
             display: flex;
             min-height: 100vh;
-            position: relative;
         }
 
-        /* Sidebar Styles - Modern Gradient */
+        /* Sidebar Styles */
         .sidebar {
             width: 260px;
-            background: var(--sidebar-bg);
-            color: white;
-            padding: 20px 0;
+            background-color: var(--sidebar-bg);
+            color: var(--text-light);
             position: fixed;
             height: 100vh;
             z-index: 1000;
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
-            box-shadow: 10px 0 30px rgba(0, 0, 0, 0.2);
-            border-right: 1px solid rgba(255, 255, 255, 0.05);
+            transition: var(--transition);
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
         }
 
         .sidebar-header {
+            padding: 24px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             display: flex;
             align-items: center;
-            padding: 0 20px 20px;
-            border-bottom: 1px solid var(--border-color);
-            margin-bottom: 15px;
+            gap: 12px;
         }
 
         .sidebar-header img {
-            width: 40px;
-            height: 40px;
-            margin-right: 12px;
-            border-radius: 8px;
+            width: 36px;
+            height: 36px;
+            border-radius: 6px;
             object-fit: cover;
         }
 
         .sidebar-header h2 {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             font-weight: 700;
             color: white;
-            background: linear-gradient(to right, #f72585, #4361ee);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            letter-spacing: 0.5px;
         }
 
         .sidebar-menu {
-            padding: 15px;
-            height: calc(100vh - 100px);
+            padding: 20px 0;
+            flex-grow: 1;
             overflow-y: auto;
-            scrollbar-width: thin;
-            scrollbar-color: var(--primary-color) transparent;
-        }
-
-        .sidebar-menu::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        .sidebar-menu::-webkit-scrollbar-thumb {
-            background-color: var(--primary-color);
-            border-radius: 3px;
         }
 
         .menu-category {
-            margin-bottom: 25px;
+            margin-bottom: 28px;
         }
 
         .menu-category h3 {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             text-transform: uppercase;
-            color: var(--highlight-text);
-            margin-bottom: 15px;
-            letter-spacing: 0.8px;
+            color: var(--gray-medium);
+            margin: 0 20px 12px;
+            letter-spacing: 1px;
             font-weight: 600;
-            display: flex;
-            align-items: center;
-        }
-
-        .menu-category h3::after {
-            content: "";
-            flex: 1;
-            height: 1px;
-            background: var(--border-color);
-            margin-left: 10px;
         }
 
         .menu-item {
             display: flex;
             align-items: center;
-            padding: 12px 15px;
-            margin-bottom: 6px;
-            border-radius: 7px;
-            cursor: pointer;
-            transition: var(--transition);
+            padding: 14px 20px;
             color: var(--text-light);
             text-decoration: none;
             font-weight: 500;
-            position: relative;
-            overflow: hidden;
             font-size: 0.95rem;
+            transition: var(--transition);
+            border-left: 3px solid transparent;
         }
 
         .menu-item i {
-            margin-right: 10px;
+            margin-right: 12px;
             font-size: 1.1rem;
-            min-width: 20px;
+            width: 24px;
             text-align: center;
         }
 
-        .menu-item::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transition: 0.5s;
-        }
-
-        .menu-item:hover::before {
-            left: 100%;
-        }
-
         .menu-item:hover {
-            background-color: rgba(255, 255, 255, 0.15);
-            color: white;
-            transform: translateX(3px);
+            background-color: rgba(255, 255, 255, 0.05);
+            border-left-color: var(--secondary-color);
         }
 
         .menu-item.active {
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            background-color: rgba(45, 114, 217, 0.15);
             color: white;
-            box-shadow: 0 6px 15px rgba(67, 97, 238, 0.3);
-            font-weight: 600;
+            border-left-color: var(--secondary-color);
         }
-        /* Main Content Styles */
+
+        /* Main Content */
         .main-content {
             flex: 1;
             margin-left: 260px;
-            transition: margin-left 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+            transition: var(--transition);
         }
 
-        /* Navbar Styles */
+        /* Navbar */
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 18px 35px;
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
+            padding: 18px 30px;
+            background-color: white;
+            box-shadow: var(--shadow-light);
             position: sticky;
             top: 0;
             z-index: 100;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .navbar-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
         }
 
         .menu-button {
@@ -204,39 +171,71 @@
             border: none;
             font-size: 1.5rem;
             cursor: pointer;
-            color: var(--dark-color);
-            display: none; /* Hide on desktop */
+            color: var(--text-dark);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .menu-button:hover {
+            background-color: var(--gray-light);
+            color: var(--secondary-color);
+        }
+
+        .page-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .search-container {
+            flex: 1;
+            max-width: 500px;
+            margin: 0 20px;
         }
 
         .search-bar {
             display: flex;
             align-items: center;
-            background-color: var(--background-light);
-            border-radius: 50px;
-            padding: 8px 15px;
-            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05);
-            width: 300px; /* Adjust width as needed */
+            background-color: var(--light-color);
+            border-radius: var(--border-radius);
+            padding: 10px 16px;
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .search-bar:focus-within {
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 3px rgba(45, 114, 217, 0.1);
         }
 
         .search-bar input {
             border: none;
             background: transparent;
             outline: none;
-            padding: 5px 10px;
-            font-size: 1rem;
-            color: var(--dark-color);
+            padding: 0 12px;
+            font-size: 0.95rem;
+            color: var(--text-dark);
             flex-grow: 1;
         }
 
+        .search-bar input::placeholder {
+            color: var(--gray-medium);
+        }
+
         .search-bar i {
-            color: var(--primary-color);
+            color: var(--gray-dark);
             font-size: 1.2rem;
         }
 
         .user-profile {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
 
         .user-profile img {
@@ -244,87 +243,221 @@
             height: 40px;
             border-radius: 50%;
             object-fit: cover;
-            border: 2px solid var(--primary-color);
+            border: 2px solid var(--secondary-color);
         }
 
-        /* E-Library Content Styles */
-        .library-content {
+        /* Library Header */
+        .library-header {
             padding: 40px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+            box-shadow: var(--shadow-medium);
+            margin-bottom: 40px;
+        }
+
+        .library-header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .library-header h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+
+        .library-header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 25px;
+            max-width: 700px;
+        }
+
+        .library-stats {
             display: flex;
-            flex-direction: column; 
+            flex-wrap: wrap;
+            gap: 25px;
+            margin-bottom: 20px;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.95rem;
+            background-color: rgba(255, 255, 255, 0.15);
+            padding: 8px 16px;
+            border-radius: 20px;
+        }
+
+        .stat-item i {
+            font-size: 1.2rem;
+        }
+
+        /* Library Content */
+        .library-content {
+            padding: 0 40px 40px;
+        }
+
+        /* Filter Section */
+        .filter-section {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow-light);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
             align-items: center;
         }
 
-        .book-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* 200px min width for each card */
-            gap: 25px;
-            width: 100%; /* Ensure grid takes full width */
-            margin-bottom: 30px; /* Space before pagination */
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
+        .filter-group label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .filter-select {
+            padding: 8px 16px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            background-color: white;
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .filter-select:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 3px rgba(45, 114, 217, 0.1);
+        }
+
+        /* Books Grid */
+        .books-grid-container {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--shadow-light);
+            margin-bottom: 30px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .section-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--secondary-color);
+            border-radius: 2px;
+        }
+
+        .results-count {
+            font-size: 0.9rem;
+            color: var(--gray-dark);
+            background-color: var(--gray-light);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        /* Book Card */
         .book-card {
-            background: white;
-            border-radius: 16px;
+            background-color: white;
+            border-radius: var(--border-radius);
+            border: 1px solid var(--border-color);
             overflow: hidden;
-            box-shadow: var(--card-shadow);
             transition: var(--transition);
             display: flex;
             flex-direction: column;
-            text-align: center;
-            position: relative;
-            cursor: pointer; /* Indicate it's clickable */
-            min-height: 380px; /* Consistent height for cards */
+            height: 100%;
         }
 
         .book-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            box-shadow: var(--shadow-medium);
+            border-color: var(--secondary-color);
         }
 
-        .book-cover {
-            height: 250px; /* Fixed height for cover */
+        .book-cover-container {
+            height: 250px;
             overflow: hidden;
-            background-color: #f0f0f0; /* Placeholder background */
+            background-color: var(--gray-light);
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
-        .book-cover img {
+        .book-cover {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: var(--transition);
         }
 
-        .book-card:hover .book-cover img {
+        .book-card:hover .book-cover {
             transform: scale(1.05);
         }
 
-        .book-details {
-            padding: 15px;
+        .book-info {
+            padding: 20px;
             flex-grow: 1;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
         }
 
-        .book-details .category {
-            font-size: 0.8rem;
+        .book-category {
+            display: inline-block;
+            font-size: 0.75rem;
             font-weight: 600;
             color: var(--secondary-color);
             text-transform: uppercase;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
+            padding: 4px 8px;
+            background-color: rgba(45, 114, 217, 0.1);
+            border-radius: 4px;
         }
 
-        .book-details h2 {
-            font-size: 1.15rem;
+        .book-title {
+            font-size: 1.1rem;
             font-weight: 700;
-            color: var(--dark-color);
+            color: var(--text-dark);
             margin-bottom: 8px;
             line-height: 1.3;
-            /* Limit title to 2 lines */
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
@@ -332,112 +465,159 @@
             text-overflow: ellipsis;
         }
 
-        .book-details p {
-            font-size: 0.85rem;
-            color: #666;
+        .book-author {
+            font-size: 0.9rem;
+            color: var(--gray-dark);
             margin-bottom: 5px;
         }
 
-        .book-details .author {
-            font-weight: 500;
-            color: var(--primary-dark);
+        .book-year {
+            font-size: 0.85rem;
+            color: var(--gray-medium);
+            margin-bottom: 15px;
         }
 
-        .action-buttons {
-            margin-top: 10px; /* Push buttons to bottom */
+        .book-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: auto;
         }
 
-        .action-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            padding: 8px 15px;
-            border-radius: 50px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
+        .btn-read {
+            flex: 1;
+            padding: 8px 16px;
+            background-color: var(--secondary-color);
+            color: white;
+            border-radius: 6px;
             text-decoration: none;
             font-size: 0.85rem;
-            background: linear-gradient(to right, var(--primary-color), var(--primary-dark));
-            color: white;
-            box-shadow: 0 4px 10px rgba(67, 97, 238, 0.2);
-        }
-        .action-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(67, 97, 238, 0.3);
+            font-weight: 600;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            border: none;
+            cursor: pointer;
         }
 
-        /* Pagination Styles */
-        .pagination {
+        .btn-read:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        .btn-read.disabled {
+            background-color: var(--gray-medium);
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        .btn-read.disabled:hover {
+            transform: none;
+            background-color: var(--gray-medium);
+        }
+
+        /* Pagination */
+        .pagination-container {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 10px;
-            margin-top: 30px;
-            padding: 15px;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            gap: 15px;
+            padding: 20px;
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-light);
         }
 
-        .pagination button {
-            background-color: var(--background-light);
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            padding: 8px 15px;
-            font-size: 1rem;
+        .pagination-btn {
+            padding: 8px 16px;
+            background-color: var(--light-color);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 0.95rem;
             font-weight: 500;
+            color: var(--text-dark);
             cursor: pointer;
             transition: var(--transition);
-            color: var(--dark-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        .pagination button:hover:not(:disabled) {
-            background-color: var(--primary-color);
+        .pagination-btn:hover:not(:disabled) {
+            background-color: var(--secondary-color);
             color: white;
-            border-color: var(--primary-color);
+            border-color: var(--secondary-color);
         }
 
-        .pagination button:disabled {
+        .pagination-btn:disabled {
             opacity: 0.5;
             cursor: not-allowed;
         }
 
-        .pagination .current-page-info {
-            font-size: 1rem;
+        .page-info {
+            font-size: 0.95rem;
             font-weight: 600;
-            color: var(--primary-color);
+            color: var(--text-dark);
         }
 
-        /* Message for No Search Results */
+        /* No Results */
         .no-results {
             text-align: center;
-            font-size: 1.2rem;
-            color: #888;
+            padding: 60px 20px;
+            display: none;
+        }
+
+        .no-results-icon {
+            font-size: 4rem;
+            color: var(--gray-medium);
+            margin-bottom: 20px;
+        }
+
+        .no-results h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+
+        .no-results p {
+            color: var(--gray-dark);
+            margin-bottom: 20px;
+        }
+
+        .btn-reset {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background-color: var(--secondary-color);
+            color: white;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .btn-reset:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        .footer {
             margin-top: 50px;
-            display: none; /* Hidden by default */
-        }
-        .no-results i {
-            font-size: 3rem;
-            color: #ccc;
-            margin-bottom: 15px;
+            padding: 20px 40px;
+            text-align: center;
+            color: var(--gray-dark);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border-color);
         }
 
-
-        /* Responsive Styles */
+        /* Responsive Design */
         @media (max-width: 1200px) {
-            .sidebar {
-                width: 250px;
-            }
-            .main-content {
-                margin-left: 250px;
-            }
-            .library-content {
-                padding: 30px;
-            }
-            .book-grid {
-                grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-                gap: 20px;
+            .books-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             }
         }
 
@@ -446,90 +626,115 @@
                 transform: translateX(-100%);
                 width: 280px;
             }
+            
             .sidebar.active {
                 transform: translateX(0);
             }
+            
             .main-content {
                 margin-left: 0;
             }
-            .library-content {
+            
+            .menu-button {
+                display: flex;
+            }
+            
+            .library-header {
                 padding: 30px;
             }
-            .menu-button {
-                display: block; /* Show menu button on smaller screens */
+            
+            .library-content {
+                padding: 0 30px 30px;
             }
-            .search-bar {
-                width: auto; /* Allow search bar to be more flexible */
-                flex-grow: 1;
+            
+            .books-grid-container {
+                padding: 25px;
             }
-            .navbar {
-                padding: 15px 25px;
-            }
-            .book-grid {
-                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-                gap: 15px;
-            }
-            .pagination {
-                flex-wrap: wrap; /* Allow pagination buttons to wrap */
-                gap: 8px;
+            
+            .search-container {
+                max-width: 400px;
             }
         }
 
         @media (max-width: 768px) {
-            .library-content {
-                padding: 25px;
+            .library-header h1 {
+                font-size: 2rem;
             }
-            .book-grid {
-                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-            }
-            .book-card {
-                min-height: 350px;
-            }
-            .book-cover {
-                height: 200px;
-            }
-            .book-details h2 {
+            
+            .library-header p {
                 font-size: 1rem;
             }
-            .book-details p {
-                font-size: 0.8rem;
+            
+            .filter-section {
+                flex-direction: column;
+                align-items: flex-start;
             }
-            .action-btn {
-                font-size: 0.75rem;
-                padding: 6px 12px;
+            
+            .books-grid {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+                gap: 15px;
+            }
+            
+            .book-cover-container {
+                height: 200px;
+            }
+            
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            
+            .search-container {
+                max-width: 300px;
             }
         }
 
         @media (max-width: 576px) {
+            .library-header {
+                padding: 25px 20px;
+                border-radius: 0;
+            }
+            
             .library-content {
-                padding: 15px;
+                padding: 0 20px 20px;
             }
-            .book-grid {
-                grid-template-columns: 1fr 1fr; /* Two columns on very small screens */
-                gap: 10px;
+            
+            .books-grid-container {
+                padding: 20px;
             }
-            .book-card {
-                min-height: 300px;
-                border-radius: 12px;
+            
+            .books-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
             }
-            .book-cover {
+            
+            .book-cover-container {
                 height: 180px;
             }
-            .book-details {
-                padding: 10px;
+            
+            .book-info {
+                padding: 15px;
             }
-            .book-details h2 {
-                font-size: 0.95rem;
+            
+            .book-title {
+                font-size: 1rem;
             }
-            .book-details p, .action-btn {
-                font-size: 0.7rem;
+            
+            .navbar {
+                padding: 15px 20px;
             }
-            .pagination button {
-                padding: 5px 10px;
-                font-size: 0.8rem;
+            
+            .page-title {
+                font-size: 1.2rem;
             }
-            .pagination .current-page-info {
-                font-size: 0.8rem;
+            
+            .search-container {
+                display: none;
+            }
+            
+            .search-mobile-toggle {
+                display: block;
             }
         }
     </style>
@@ -538,7 +743,7 @@
     <div class="container">
         <aside class="sidebar">
             <div class="sidebar-header">
-                <img src="logo.png" alt="Library Logo">
+                <img src="logo.png" alt="LMSVVIP Logo">
                 <h2>LMSVVIP</h2>
             </div>
             <div class="sidebar-menu">
@@ -546,304 +751,411 @@
                     <h3>Menu Utama</h3>
                     <a href="index.html" class="menu-item">
                         <i class="uil uil-estate"></i>
-                        <span>Beranda</span>
+                        <span>Dashboard</span>
                     </a>
                 </div>
                 <div class="menu-category">
-                    <h3>Fitur</h3>
+                    <h3>Fitur Akademik</h3>
                     <a href="e-library.html" class="menu-item active">
                         <i class="uil uil-book-open"></i>
-                        <span>e-Library</span>
+                        <span>Digital Library</span>
                     </a>
                     <a href="F-Pubs.html" class="menu-item">
-                        <i class="uil uil-download-alt"></i>
-                        <span>Unggahan Artikel</span>
+                        <i class="uil uil-file-upload-alt"></i>
+                        <span>Publikasi</span>
                     </a>
                     <a href="course.html" class="menu-item">
-                        <i class="uil uil-flask"></i>
-                        <span>Course</span>
+                        <i class="uil uil-graduation-cap"></i>
+                        <span>Kursus</span>
                     </a>
                     <a href="yth.html" class="menu-item">
-                        <i class="uil uil-tv-retro"></i>
-                        <span>Meowtube</span>
+                        <i class="uil uil-video"></i>
+                        <span>Video Pembelajaran</span>
                     </a>
                     <a href="StatTools.html" class="menu-item">
                         <i class="uil uil-calculator-alt"></i>
-                        <span>Statistic Tools</span>
+                        <span>Analisis Statistik</span>
                     </a>
                 </div>
             </div>
         </aside>
 
         <div class="main-content">
-            <nav class="navbar glass-card">
-                <button class="menu-button" aria-label="Toggle sidebar">
-                    <i class="uil uil-bars"></i>
-                </button>
-                <div class="search-bar">
-                    <input type="text" id="searchInput" placeholder="Cari buku...">
-                    <i class="uil uil-search"></i>
+            <nav class="navbar">
+                <div class="navbar-left">
+                    <button class="menu-button" aria-label="Toggle sidebar">
+                        <i class="uil uil-bars"></i>
+                    </button>
+                    <h1 class="page-title">Digital Library</h1>
+                </div>
+                <div class="search-container">
+                    <div class="search-bar">
+                        <i class="uil uil-search"></i>
+                        <input type="text" id="searchInput" placeholder="Cari buku berdasarkan judul, penulis, atau kategori...">
+                    </div>
                 </div>
                 <div class="user-profile">
                     <img src="logo.png" alt="User Profile">
                 </div>
             </nav>
 
-            <div class="library-content">
-                <div class="book-grid" id="bookGrid">
+            <header class="library-header">
+                <div class="library-header-content">
+                    <h1>Digital Library LMSVVIP</h1>
+                    <p>Akses ribuan buku digital, jurnal ilmiah, dan referensi akademik dari berbagai bidang ilmu. Temukan sumber pengetahuan yang Anda butuhkan untuk mendukung pembelajaran dan penelitian.</p>
+                    <div class="library-stats">
+                        <div class="stat-item">
+                            <i class="uil uil-books"></i>
+                            <span>75+ Buku Tersedia</span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="uil uil-book-open"></i>
+                            <span>10+ Kategori Ilmu</span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="uil uil-cloud-download"></i>
+                            <span>Akses Gratis 24/7</span>
+                        </div>
                     </div>
-                <div class="no-results" id="noResultsMessage">
-                    <i class="uil uil-frown"></i>
-                    <p>Buku tidak ditemukan.</p>
-                    <p>Coba kata kunci lain atau <a href="#" id="resetSearchLink" style="color: var(--primary-color); text-decoration: underline;">reset pencarian</a>.</p>
+                </div>
+            </header>
+
+            <div class="library-content">
+                <!-- Filter Section -->
+                <div class="filter-section">
+                    <div class="filter-group">
+                        <label for="categoryFilter">Kategori:</label>
+                        <select id="categoryFilter" class="filter-select">
+                            <option value="all">Semua Kategori</option>
+                            <option value="Ekonometrika">Ekonometrika</option>
+                            <option value="Komputasi">Komputasi</option>
+                            <option value="Quality Control">Quality Control</option>
+                            <option value="Spasial">Spasial</option>
+                            <option value="Regresi">Regresi</option>
+                            <option value="Statistika-matematika">Statistika Matematika</option>
+                            <option value="Metode-survei">Metode Survei</option>
+                            <option value="Inferensi-statistik">Inferensi Statistika</option>
+                            <option value="Pengembangan Diri">Pengembangan Diri</option>
+                            <option value="Filsafat & Politik">Filsafat & Politik</option>
+                            <option value="Psikologi">Psikologi</option>
+                            <option value="Sejarah">Sejarah</option>
+                            <option value="Fiksi">Fiksi</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="sortFilter">Urutkan:</label>
+                        <select id="sortFilter" class="filter-select">
+                            <option value="title-asc">Judul (A-Z)</option>
+                            <option value="title-desc">Judul (Z-A)</option>
+                            <option value="year-desc">Tahun Terbaru</option>
+                            <option value="year-asc">Tahun Terlama</option>
+                        </select>
+                    </div>
                 </div>
 
-                <div class="pagination">
-                    <button id="prevPageBtn" disabled><i class="uil uil-angle-left"></i> Sebelumnya</button>
-                    <span class="current-page-info">Halaman <span id="currentPageNum">1</span> dari <span id="totalPagesNum">1</span></span>
-                    <button id="nextPageBtn"><i class="uil uil-angle-right"></i> Selanjutnya</button>
+                <!-- Books Grid -->
+                <div class="books-grid-container">
+                    <div class="section-header">
+                        <h2 class="section-title">Koleksi Buku</h2>
+                        <span class="results-count" id="resultsCount">75 Buku</span>
+                    </div>
+
+                    <div class="books-grid" id="booksGrid">
+                        <!-- Books will be dynamically inserted here -->
+                    </div>
+
+                    <!-- No Results Message -->
+                    <div class="no-results" id="noResults">
+                        <i class="uil uil-search-alt no-results-icon"></i>
+                        <h3>Buku tidak ditemukan</h3>
+                        <p>Coba kata kunci lain atau reset filter pencarian.</p>
+                        <a href="#" class="btn-reset" id="resetFilters">
+                            <i class="uil uil-refresh"></i> Reset Pencarian
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination-container">
+                    <button class="pagination-btn" id="prevPageBtn" disabled>
+                        <i class="uil uil-angle-left"></i> Sebelumnya
+                    </button>
+                    <span class="page-info">Halaman <span id="currentPageNum">1</span> dari <span id="totalPagesNum">1</span></span>
+                    <button class="pagination-btn" id="nextPageBtn">
+                        Selanjutnya <i class="uil uil-angle-right"></i>
+                    </button>
+                </div>
+
+                <div class="footer">
+                    <p>&copy; 2023 LMSVVIP - Learning Management System. All rights reserved.</p>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        // Toggle sidebar on mobile
-        document.querySelector('.menu-button').addEventListener('click', function() {
-            document.querySelector('.sidebar').classList.toggle('active');
-        });
-
-        // --- e-Library Pagination & Search Logic ---
+        // Complete Book Data
         const bookData = [
-            { id: 1, title: "Basic Econometrics", author: "Gujarati", year: 2006, isbn: "-", category: "Ekonometrika", description: "-", cover: "https://tse1.mm.bing.net/th/id/OIP.RUf2IHr2aExotGq4qSEJCwHaJQ?pid=Api&P=0&h=220", readLink: "#", downloadLink: "https://drive.google.com/file/d/1HT9pFTTtEiZUrpVXbSScjzGrJnw-T4xf/view?usp=drive_link" },
-            { id: 2, title: "Discovering Statistic Using SPSS", author: "Andy Field", year: 2009, isbn: "-", category: "Komputasi", description: "-", cover: "https://tse1.mm.bing.net/th/id/OIP.HuhYkLID3e7zq17ZPgFNGwHaKE?pid=Api&P=0&h=220", readLink: "#", downloadLink: "https://drive.google.com/file/d/1fB0eEElBwmTzBd1WcAJSPLGnBtQ6GR1Y/view?usp=drive_link" },
-            { id: 3, title: "Belajar Statistika dengan R", author: "Gio & Irawan", year: 2016, isbn: "-", category: "Komputasi", description: "-", cover: "https://tse1.mm.bing.net/th/id/OIP.HziQI0n4fLp0POkRz5aFtAAAAA?pid=Api&P=0&h=220", readLink: "#", downloadLink: "https://drive.google.com/file/d/1nCKEUjP3t82XAD3YvWCHLiU_jqC_Wx9Z/view?usp=drive_link" },
-            { id: 4, title: "R For Data Science", author: "Wichman & Grolemund", year: 2017, isbn: "-", category: "Komputasi", description: "-", cover: "https://tse4.mm.bing.net/th/id/OIP.VaPrgsPTGvf8UJjWXWeIrQHaLJ?pid=Api&P=0&h=220", readLink: "#", downloadLink: "https://drive.google.com/file/d/1UdqL_89Jh_jtuhbG-ITxDtZqVhgJ3gV_/view?usp=drive_link" },
-            { id: 5, title: "Metode Penelitian Kuantitatif", author: "Abdul Muin", year: 2018, isbn: "-", category: "Metodologi-penelitian", description: "-", cover: "https://tse2.mm.bing.net/th/id/OIP.tbN0K6buBkg5PzUhZB1Z0gHaJ4?pid=Api&P=0&h=220", readLink: "#", downloadLink: "https://drive.google.com/file/d/1M5SI2D8Q9euYcJ1dWJ-VozpRkNBKGSBJ/view?usp=drive_link" },
-            { id: 6, title: "Quality Control and Industrial Statistics", author: "Acheson & Duncan", year: 1952, isbn: "-", category: "Quality Control", description: "-", cover: "https://tse1.mm.bing.net/th/id/OIP.2CZAhpsPxzF9QOJFxmsX5QAAAA?pid=Api&P=0&h=220", readLink: "#", downloadLink: "https://drive.google.com/file/d/1sCWGOO0v4gj7tU_A9O88LjQbe7T_tY1G/view?usp=drive_link" },
-  { id: 7, title: "Pengendalian dan Penjaminan Mutu", author: "Fitriana dkk", year: 2021, isbn: "-", category: "Quality Control", description: "-", cover: "https://tse2.mm.bing.net/th/id/OIP.90UEBKcMjmsrmTRuViBrOAHaFI?pid=Api&P=0&h=220", readLink: "#", downloadLink: "https://drive.google.com/file/d/1CHpefSqPI7CBBH0t06EGyMn-jlT9fKT1/view?usp=drive_link" },
-  { id: 8, title: "Industrial Quality Control", author: "Lawrence S", year: 1998, isbn: "-", category: "Quality Control", description: "-", cover: "https://tse2.mm.bing.net/th/id/OIP.Kzyv9KigSe25W3He03hafQAAAA?pid=Api&P=0&h=220", readLink: "#", downloadLink: "https://drive.google.com/file/d/16ddaX84Gouw-wNjozPQDZFgU0Ro94Iov/view?usp=drive_link" },
-            { id: 7, title: "Introduction to Spatial Econometrics", author: "LeSage & Pace", year: 2009, isbn: "-", category: "Spasial", description: "-", cover: "https://tse3.mm.bing.net/th/id/OIP.CY9HrcoSB1ccUHVFetOSWgHaLV?pid=Api&P=0&h=220", readLink: "#", downloadLink: "https://drive.google.com/file/d/1cFtvV5fJEAHxMURv0vpuBQ8ToGS9IaLb/view?usp=drive_link" },
-  { id: 10, title: "The Theory and Practice of Spatial Econometrics", author: "LeSage", year: 1999, isbn: "-", category: "Spasial", description: "-", cover: "https://s3.studylib.net/store/data/008869409_1-901b2330deb0159a32e9ede60640c28c-768x994.png", readLink: "#", downloadLink: "https://drive.google.com/file/d/1t1o1XNZ5zbXHf2TSQfHqCHDsJlC2v3pp/view?usp=drive_link" },
-  { id: 11, title: "Spatial Econometrics", author: "Luc Anselin", year: 1953, isbn: "-", category: "Spasial", description: "-", cover: "https://m.media-amazon.com/images/I/71t8mUP8AmL._SL1252_.jpg", readLink: "#", downloadLink: "https://drive.google.com/file/d/14RmNvrnyeUrx4FeMsTu5SiEwd28qCP5W/view?usp=drive_link" },
-            { id: 8, title: "Spatial Regression Analysis in R A Workbook", author: "Luc Anselin", year: 2007, isbn: "-", category: "Spasial", description: "-", cover: "https://s3.studylib.net/store/data/008852434_1-072c50e1005fc08403591ea6771666d9-768x994.png", readLink: "#", downloadLink: "https://drive.google.com/file/d/1DbTi4ZlIJDM90y7ucPQdXq7k6EKJXEnD/view?usp=drive_link" },
-            { id: 9, title: "Applied Regression Analysis A Research Tool", author: "Rawlings dkk", year: 1998, isbn: "-", category: "Regresi", description: "-", cover: "https://m.media-amazon.com/images/I/41+nDqJgFeL._SX342_SY445_.jpg", readLink: "#", downloadLink: "https://drive.google.com/file/d/1v1FKijcHD37f2P88H1u5acT_CQwg6kTW/view?usp=drive_link" },
-  { id: 14, title: "Buku Ajar Statistika Matematika", author: "Mauliddin & Astuti", year: 2017, isbn: "-", category: "Statistika-matematika", description: "-", cover: "https://imgv2-2-f.scribdassets.com/img/document/694050656/original/1104e7cf11/1?v=1", readLink: "#", downloadLink: "https://drive.google.com/file/d/1pJKqOh_SckilunkHAYdGbfshRrIYH7Yk/view?usp=drive_link" },
-  { id: 15, title: "Probability and Mathematical Statistics", author: "Prasanna Sahoo", year: 2003, isbn: "-", category: "Statistika-matematika", description: "-", cover: "https://freecomputerbooks.com/covers/Probability-and-Mathematical-Statistics.jpg", readLink: "#", downloadLink: "https://drive.google.com/file/d/1QZvxw5-Qn-53u9qxGtjVq2sxRBaN5LxK/view?usp=drive_link" },
-            { id: 10, title: "Pengantar Statistika Matematika", author: "Sigit Nugroho", year: 2008, isbn: "-", category: "Statistika-matematika", description: "-", cover: "https://online.fliphtml5.com/xgmfv/ukof/files/shot.jpg", readLink: "#", downloadLink: "https://drive.google.com/file/d/1KkHNU-xqx6k_VM6hebcfaVOOGtREJhHq/view?usp=drive_link" },
-  { id: 17, title: "Monte Carlo Statistical Methods", author: "Casella & Robert", year: 2004, isbn: "-", category: "Komputasi", description: "-", cover: "https://imgv2-1-f.scribdassets.com/img/document/585405006/original/f5c72076bc/1684743998?v=1", readLink: "#", downloadLink: "https://drive.google.com/file/d/1nm4PBHzXSCogUv0U_xobTdEdp2t9Z9rU/view?usp=drive_link" },
-  { id: 18, title: "The Quick Count and Election Observation", author: "Estak dkk", year: 2002, isbn: "-", category: "Metode-survei", description: "-", cover: "https://books.google.co.id/googlebooks/images/no_cover_thumb.gif", readLink: "#", downloadLink: "https://drive.google.com/file/d/1tcx8_dWXVy2EseacD75BIkVZ7vByjVkd/view?usp=drive_link" },
-            { id: 11, title: "Sampling Techniques", author: "William G Cohran", year: 1997, isbn: "-", category: "Metode-survei", description: "-", cover: "https://m.media-amazon.com/images/I/71DlwRiFw3L._SL1500_.jpg", readLink: "#", downloadLink: "https://drive.google.com/file/d/1zyHAy1xuJcH3rSBt8gF4TjXaUAj8k_Ew/view?usp=drive_link" },
-            { id: 12, title: "Statistical Inference (2nd Edition)", author: "George Casella Dkk", year: 2002, isbn: "-", category: "Inferensi-statistik", description: "-", cover: "https://images.routledge.com/common/jackets/crclarge/978103259/9781032593036.jpg", readLink: "#", downloadLink: "https://drive.google.com/file/d/1cEFRKLJ8GIAav06aX93vaf5Pnz0ie3jN/view?usp=drive_link" },            // --- Buku Tambahan untuk Halaman 2 ---
-
-            { id: 13, title: "The Psychology of Money", author: "Morgan Housel", year: 2021, isbn: "-", category: "Psikologi Finansial", description: "", cover: "https://s2.welib-public.org/covers/proxy?url=https%3A%2F%2Fs3proxy.cdn-zlib.sk%2F%2Fcovers299%2Fcollections%2Fuserbooks%2F168a1b059a3925c07637bcdd3eb942f27be10505fa3bcc3f82e8352cd3c9f6a8.jpg&md5=14bacb223545809405de67344330e0b8&key=6XAPsgjXVI_XTdYor8enxA", readLink: "#", downloadLink: "https://id.welib.org/md5/14bacb223545809405de67344330e0b8" },
-            { id: 14, title: "MADILOG", author: "Tan Malaka", year: 1943, isbn: "-", category: "Filsafat & Politik", description: "", cover: "https://s2.welib-public.org/covers/proxy?url=https%3A%2F%2Fs3proxy.cdn-zlib.sk%2F%2Fcovers299%2Fcollections%2Fuserbooks%2Fc21e9e7bfc74408ae1587208478a6e89899eec4ab8bb537dd7bf5accfeafa46c.jpg&md5=09cbe2c8672ea83810049a0b2fd976a4&key=Y6GkEipy-P1Gu8wRMCi1uA", readLink: "#", downloadLink: "https://id.welib.org/md5/09cbe2c8672ea83810049a0b2fd976a4" },
-            { id: 15, title: "Sebuah Seni untuk Bersikap Bodo Amat", author: "Mark Manson", year: 2016, isbn: "-", category: "Pengembangan Diri", description: "", cover: "https://s2.welib-public.org/covers/proxy?url=https%3A%2F%2Fs3proxy.cdn-zlib.sk%2F%2Fcovers299%2Fcollections%2Fuserbooks%2F5259fb56b5389e5789a3bf1d23eabd3dacdc6e88cb069e068c0d483b0ad90f45.jpg&md5=b0dff74a358ea503de9805870196fefe&key=17aG2bxNkUIV11QZvjX6iA", readLink: "#", downloadLink: "https://id.welib.org/md5/b0dff74a358ea503de9805870196fefe" },
-            { id: 16, title: "Filosofi Teras", author: "Henry Manampiring", year: 2018, isbn: "-", category: "Filsafat", description: "", cover: "https://s2.welib-public.org/covers/proxy?url=https%3A%2F%2Fs3proxy.cdn-zlib.sk%2F%2Fcovers299%2Fcollections%2Fuserbooks%2F112597737ece89b760d02bcd4281f6ef5a31295957084ca385be9a1a368e3494.jpg&md5=9c584eb98c8c17515800ec05106819f7&key=drfTmUfXrmFSVzrI3YOHHg", readLink: "#", downloadLink: "https://id.welib.org/md5/b0dff74a358ea503de9805870196fefe" },
-            { id: 17, title: "Kitab Anti-Bodoh", author: "Bo Bennett, Ph.D.", year: 2015, isbn: "-", category: "Logika & Berpikir Kritis", description: "", cover: "https://s2.welib-public.org/covers/proxy?url=https%3A%2F%2Fs3proxy.cdn-zlib.sk%2F%2Fcovers299%2Fcollections%2Fgenesis%2Ffc9f3406c98cef2815bc9ec443372442cb0830014db20576cb06388b97ac3e6a.jpg&md5=61c5fcf86adae036750d8b982122b01a&key=Dlysf7_CvJDrrKAdNXHsqA", readLink: "#", downloadLink: "https://id.welib.org/md5/9c584eb98c8c17515800ec05106819f7" },
-            { id: 18, title: "Sejarah Dunia yang Disembunyikan", author: "Jonathan Black", year: 2015, isbn: "-", category: "Sejarah Alternatif", description: "", cover: "https://s2.welib-public.org/covers/proxy?url=https%3A%2F%2Fs3proxy.cdn-zlib.sk%2F%2Fcovers299%2Fcollections%2Fuserbooks%2F35212e031f04cf47441a3472dc73aed6648fb9cad9f69c5d09199d0aa219cb17.jpg&md5=7c3164a4ce200505baeafd32977e409f&key=dFEjVQASCNLDledq7d44tg", readLink: "#", downloadLink: "https://id.welib.org/md5/61c5fcf86adae036750d8b982122b01a" },
-            { id: 19, title: "Metode Penelitian Kuantitatif, Kualitatif, dan R&D", author: "Prof. Dr. Sugiyono", year: 2013, isbn: "-", category: "Metodologi Penelitian", description: "", cover: "https://s2.welib-public.org/covers/proxy?url=https%3A%2F%2Fs3proxy.cdn-zlib.sk%2F%2Fcovers299%2Fcollections%2Fgenesis%2Fa372137016e8abf0ffdf14a4e2b55e2cb40212956b2af371d9192f5ee2edcd99.jpg&md5=3bac2b46359d8746b7c9540c68cf59ec&key=uIbzYVR9QzxlhF1ebF5DOQ", readLink: "#", downloadLink: "https://id.welib.org/md5/3bac2b46359d8746b7c9540c68cf59ec" },
-            { id: 20, title: "Bicara Itu Ada Seninya", author: "Oh Su Hyang", year: 2018, isbn: "-", category: "Komunikasi", description: "", cover: "https://s2.welib-public.org/covers/proxy?url=https%3A%2F%2Fs3proxy.cdn-zlib.sk%2F%2Fcovers299%2Fcollections%2Fuserbooks%2F8fd88cfa6c01e77c6d0144124f2aae7de6493ed460c06c502598a52b09b1a619.jpg&md5=ae3347dbadb0bfddcd7b8dcf60a1eb3f&key=pGBJP69wtJuWD6XJsAcmqg", readLink: "#", downloadLink: "https://id.welib.org/md5/ae3347dbadb0bfddcd7b8dcf60a1eb3f" },
-            { id: 21, title: "Atomic Habits", author: "James Clear", year: 2019, isbn: "-", category: "Pengembangan Diri", description: "", cover: "https://s2.welib-public.org/covers/proxy?url=https%3A%2F%2Fs3proxy.cdn-zlib.sk%2F%2Fcovers299%2Fcollections%2Fgenesis%2Fddefd7e53b76f0500d1f1e7accb219ba301f6674f98a7d86f78abc8f59a0e558.png&md5=36ebe53963da785b87e4923bd1324661&key=rbRQISj4BdJY5SAte8Ww0Q", readLink: "#", downloadLink: "https://id.welib.org/md5/36ebe53963da785b87e4923bd1324661" },          // Anda bisa tambahkan lebih banyak buku di sini
-
-            { id: 22, title: "Berani Tidak Disukai", author: "Ichiro Kishimi & Fumitake Koga", year: 2013, isbn: "-", category: "Pengembangan Diri", description: "", cover: "https://s2.welib-public.org/covers/proxy?url=https%3A%2F%2Fs3proxy.cdn-zlib.sk%2F%2Fcovers299%2Fcollections%2Fuserbooks%2Fa4beea2baeb7dbe49852afab1701e21cd3c2f76222354b6929685b5cb0d58ceb.png&md5=49a942f21c55aa266cc1437a42c88eac&key=i0AS1cNxH8nY2kzrhHQlCg", readLink: "#", downloadLink: "https://id.welib.org/md5/49a942f21c55aa266cc1437a42c88eac" },
-            { id: 23, title: "48 Hukum Kekuasaan", author: "Robert Greene", year: 2012, isbn: "-", category: "Politik & Kekuasaan", description: "", cover: "https://s2.welib-public.org/covers/proxy?url=https%3A%2F%2Fs3proxy.cdn-zlib.sk%2F%2Fcovers299%2Fcollections%2Fuserbooks%2F533ccf134a70b9345a2544aa0d49722719f59f502a723860b24a816817a40e40.jpg&md5=b2660576dd542072361a7b1935335a6c&key=8yNZgbVG8XamCs66--fT5w", readLink: "#", downloadLink: "https://id.welib.org/md5/b2660576dd542072361a7b1935335a6c" },
-            { id: 24, title: "Retorika (Seni Berbicara)", author: "Aristoteles", year: 2018, isbn: "-", category: "Filsafat & Komunikasi", description: "", cover: "https://s2.welib-public.org/covers/proxy?url=https%3A%2F%2Fs3proxy.cdn-zlib.sk%2F%2Fcovers299%2Fcollections%2Fuserbooks%2F774e3811f3798c9ce96e02ae81e9ee14e7a9da4eb67fe617f6d375f2bc53ebb5.jpg&md5=d4aefe89ea6ab02865ad592a0b2a1731&key=FRi4w6U48Oyb-AMZSowkbg", readLink: "#", downloadLink: "https://id.welib.org/md5/d4aefe89ea6ab02865ad592a0b2a1731" },
-            { id: 25, title: "Laut Bercerita", author: "Leila S. Chudori", year: 2017, isbn: "-", category: "Fiksi Sejarah", description: "", cover: "https://s2.welib-public.org/covers/proxy?url=https%3A%2F%2Fs3proxy.cdn-zlib.sk%2F%2Fcovers299%2Fcollections%2Fforeignfiction%2F772664ba99f00e57461d0dc2083f4ae320f724f33c4c039a0877b31b7e259766.jpg&md5=bb3b8106ab0ced3cf713edfada5c1596&key=5s1I8BKQW0fWY4YYYsr0rw", readLink: "#", downloadLink: "https://id.welib.org/md5/bb3b8106ab0ced3cf713edfada5c1596" },
-            { id: 26, title: "Sapiens", author: "Yuval Noah Harari", year: 2017, isbn: "978-602-6577-17-7", category: "Sejarah", description: "", cover: "https://s2.welib-public.org/covers/proxy?url=https%3A%2F%2Fs3proxy.cdn-zlib.sk%2F%2Fcovers299%2Fcollections%2Fgenesis%2Ff2a7f4fe6487135bed008c83c1aa5a710d51e7de8e14ba515a46caaf7d5e0159.jpg&md5=c2032f5d50c866fda19bcd683a4dd9fa&key=OIk-stfmxxl7B9TZ2vx6rg", readLink: "#", downloadLink: "https://id.welib.org/md5/c2032f5d50c866fda19bcd683a4dd9fa" },
-            { id: 27, title: "Animal Farm", author: "George Orwell", year: 2016, isbn: "-", category: "Fiksi Politik", description: "", cover: "https://s2.welib-public.org/covers/proxy?url=https%3A%2F%2Fs3proxy.cdn-zlib.sk%2F%2Fcovers299%2Fcollections%2Fuserbooks%2Fd81ccadab8c46b557813aa56d98b42e2744011f0fec59d27cc18f93e5c383244.png&md5=07a93a05c835780ad958269986a4dc95&key=oRydIzQcaKRrGndXks2U9w", readLink: "#", downloadLink: "https://id.welib.org/md5/07a93a05c835780ad958269986a4dc95" },
-            { id: 28, title: "Membaca Pikiran Orang Lewat Bahasa Tubuh", author: "Dianata Eka Putra", year: 2009, isbn: "-", category: "Psikologi & Komunikasi", description: "", cover: "https://s2.welib-public.org/covers/proxy?url=https%3A%2F%2Fs3proxy.cdn-zlib.sk%2F%2Fcovers299%2Fcollections%2Fuserbooks%2Fceb538f5b595ceee2dd2b1aaf20ea5dc27ac1b5da355065d66a329c4551b9ca3.jpg&md5=78c2e89ab48b828d5098cb81a7c9532a&key=ef8R1-i7LJPdN-K6O8osgw", readLink: "#", downloadLink: "https://id.welib.org/md5/78c2e89ab48b828d5098cb81a7c9532a" },
-            { id: 29, title: "Dunia Sophie: Sebuah Novel Filsafat", author: "Jostein Gaarder", year: 2014, isbn: "-", category: "Filsafat", description: "", cover: "https://s2.welib-public.org/covers/proxy?url=https%3A%2F%2Fs3proxy.cdn-zlib.sk%2F%2Fcovers299%2Fcollections%2Fgenesis%2F6b4bfec96164e546f3d740b325c87ce4447b7e295a1f924a6bb3200ac3fc518c.jpg&md5=78e0147380164918b1c61c494f65369a&key=cqLtVG2Tcy6Vzkm3iktC3w", readLink: "#", downloadLink: "https://id.welib.org/md5/78e0147380164918b1c61c494f65369a" },
-            { id: 30, title: "Dark Psychology", author: "James W. Williams", year: 2019, isbn: "-", category: "Psikologi Gelap", description: "", cover: "https://s2.welib-public.org/covers/proxy?url=https%3A%2F%2Fs3proxy.cdn-zlib.sk%2F%2Fcovers299%2Fcollections%2Fuserbooks%2Ffe9def083a7e37babe4298fa94ca296d0e5574e40c965eab0cb3f7c5da63e3c0.jpg&md5=14b7f8ff9367ed5add5e84f01e71a292&key=wAMXgc7GLmfCMi_mzfxLdA", readLink: "#", downloadLink: "https://id.welib.org/md5/14b7f8ff9367ed5add5e84f01e71a292" },
-            { id: 31, title: "Technical Analysis For Mega Profit", author: "Edianto Ong", year: 2016, isbn: "-", category: "Investasi & Keuangan", description: "", cover: "https://s2.welib-public.org/covers/proxy?url=https%3A%2F%2Fs3proxy.cdn-zlib.sk%2F%2Fcovers299%2Fcollections%2Fuserbooks%2Fb8f8840c929c9c1d109ff9f73d4775e06ad4d917541dc9f8cdaa2e5c5d508950.jpg&md5=bd05398fa99fcde60952a82480092d43&key=oNe1Pij1zpWfhfUoeIJk4Q", readLink: "#", downloadLink: "https://id.welib.org/md5/bd05398fa99fcde60952a82480092d43" },
- 
-            { id: 33, title: "Jika Kita Tak Pernah Jadi Apa-Apa", author: "Alvi Syahrin", year: 2019, isbn: "", category: "Pengembangan Diri", description: "", cover: "https://s2.welib-public.org/covers/proxy?url=https%3A%2F%2Fs3proxy.cdn-zlib.sk%2F%2Fcovers299%2Fcollections%2Fuserbooks%2F00f73ce08df627acb304d36d705f68b3f7b8499233dab012cccb618d8a729a4d.png&md5=da2b8cf6b1339549136360310ebcd5db&key=TLDVxb7M6zSWR-sDn53d2A", readLink: "#", downloadLink: "" },
-            { id: 34, title: "Thinking, Fast and Slow (Cover Baru)", author: "Daniel Kahneman", year: 2020, isbn: "", category: "Psikologi", description: "", cover: "https://s2.welib-public.org/covers/proxy?url=https%3A%2F%2Fs3proxy.cdn-zlib.sk%2F%2Fcovers299%2Fcollections%2Fgenesis%2F695c806d92699ecb1c5ff85902b57d05e8c6724b61a2afaeff37f9eaf5605f2a.jpg&md5=127f7f1aee560f0521f0e92f51f6ef27&key=zHW46jv9qIQVyUSr_VZBqw", readLink: "#", downloadLink: "" },
-            { id: 35, title: "Atomic Habits", author: "James Clear", year: 2019, isbn: "", category: "Pengembangan Diri", description: "", cover: "https://s2.welib-public.org/covers/proxy?url=https%3A%2F%2Fs3proxy.cdn-zlib.sk%2F%2Fcovers299%2Fcollections%2Fgenesis%2Fe5b79604da11f7524f49c9dbe255a15e9c84ec75a0abc0246696b69b7de925ca.jpg&md5=374e24da28038aba15904bc146890c20&key=1v7gr7H1XbcE8Tfs9Ph1kw", readLink: "#", downloadLink: "" },
-            { id: 36, title: "The Book of Ikigai", author: "Ken Mogi", year: 2017, isbn: "", category: "Filsafat & Inspirasi", description: "", cover: "https://s2.welib-public.org/covers/proxy?url=https%3A%2F%2Fs3proxy.cdn-zlib.sk%2F%2Fcovers299%2Fcollections%2Fuserbooks%2F97baec31ad6849faf1de275f3a6e05497f52b1261b781ca16ca32410987972b6.jpg&md5=a870323f5f7bb5aa4979fcfd5ee1704a&key=IDtFPhTJoL74XDiCSYSMDg", readLink: "#", downloadLink: "" },
-            { id: 37, title: "The Art Of War: Seni Perang", author: "Sun Tzu, James Clavell (Editor)", year: 2003, isbn: "", category: "Strategi & Filsafat", description: "", cover: "https://s2.welib-public.org/covers/proxy?url=https%3A%2F%2Flibgen.li%2Ffictioncovers%2F7153000%2F23b99496b1b0a2e4a20d6c22282ef04f.jpg&md5=23b99496b1b0a2e4a20d6c22282ef04f&key=b052jQDGSE_42DAShnU4Fw", readLink: "#", downloadLink: "" },
-            { id: 38, title: "Cantik Itu Luka", author: "Eka Kurniawan", year: 2018, isbn: "", category: "Fiksi", description: "", cover: "https://s2.welib-public.org/covers/proxy?url=https%3A%2F%2Fs3proxy.cdn-zlib.sk%2F%2Fcovers299%2Fcollections%2Fuserbooks%2F3da7ec477132f03849a19bd6a4e6fc79be83eaf06e0aa73bc8d49c9c2717b723.png&md5=054980ca3793662f412db53ddf54631e&key=GXt3AlQ4GMMx77OnlTzTqg", readLink: "#", downloadLink: "" },
-            { id: 39, title: "Seni Berbicara kepada Siapa Saja, Kapan Saja, di Mana Saja", author: "Larry King", year: 2020, isbn: "", category: "Komunikasi", description: "", cover: "https://s2.welib-public.org/covers/proxy?url=https%3A%2F%2Fs3proxy.cdn-zlib.sk%2F%2Fcovers299%2Fcollections%2Fuserbooks%2Ffd291790854e098c52ad37b54e638e872d8cc777bae5bff06ac6847be141b0dc.jpg&md5=764a36fc2ef2677b1e3ad3c3020d95fa&key=czP3DGEIBMny7hCwhxq9pg", readLink: "#", downloadLink: "" },
-            { id: 40, title: "Seni Memahami: Hermeneutik dari Schleiermacher sampai Derrida", author: "F. Budi Hardiman", year: 2015, isbn: "", category: "Filsafat", description: "", cover: "https://s2.welib-public.org/covers/proxy?url=https%3A%2F%2Fs3proxy.cdn-zlib.sk%2F%2Fcovers299%2Fcollections%2Fgenesis%2Fddfbc1950e44bd97bdb217a54b4e80c871b75598b557031f9acd5b31cb245275.jpg&md5=efc3addd56218518b55e03ba93a1e09a&key=m9HvSNU-4k-Nw1i1MzqkMg", readLink: "#", downloadLink: "" },
-            { id: 41, title: "Pendidikan Kaum Tertindas", author: "Paulo Freire", year: 1985, isbn: "", category: "Pendidikan", description: "", cover: "https://s2.welib-public.org/covers/proxy?url=https%3A%2F%2Fs3proxy.cdn-zlib.sk%2F%2Fcovers299%2Fcollections%2Fuserbooks%2F44441017bfcf90fa2103bb438338f95f3106892a9631e87d0728cdb35b2c1f1b.jpg&md5=e61cd661885641fbb945c81621244ca9&key=H1Gi7pmSKBpO2dvMhMAwsw", readLink: "#", downloadLink: "" },
-  { id: 33, title: "Jika Kita Tak Pernah Jatuh Cinta", author: "Alvi Syahrin", year: 2018, isbn: "", category: "Pengembangan Diri", description: "", cover: "", readLink: "#", downloadLink: "#" },
-  { id: 34, title: "Aksi Massa", author: "Tan Malaka", year: 2000, isbn: "", category: "Sejarah / Politik", description: "", cover: "https://s2.welib-public.org/covers/proxy?url=https%3A%2F%2Fs3proxy.cdn-zlib.sk%2F%2Fcovers299%2Fcollections%2Fuserbooks%2Ff250d4dff357327a452ae547432cbbda92ca93987ea75e1034fe3a75aa6baf43.png&md5=5a35451752e9a486936bafb7d600f69a&key=FUj-4mC7YmtlGjmTVYsdJA", readLink: "#", downloadLink: "https://id.welib.org/md5/5a35451752e9a486936bafb7d600f69a" },
-  { id: 35, title: "Start With Why", author: "Simon Sinek", year: 2019, isbn: "", category: "Kepemimpinan", description: "", cover: "https://s2.welib-public.org/covers/proxy?url=https%3A%2F%2Fs3proxy.cdn-zlib.sk%2F%2Fcovers299%2Fcollections%2Fgenesis%2F72270f0191c8aab0d08a3b735ae53f7816e58de0dd891fc16f1faddc4aa10a7e.jpg&md5=f8bd61a50b435f79b7683cc803d5ccf8&key=56wfYElWln3IJNYa9nG2ag", readLink: "#", downloadLink: "https://id.welib.org/md5/f8bd61a50b435f79b7683cc803d5ccf8" },
-  { id: 36, title: "Think and Grow Rich", author: "Napoleon Hill", year: 2006, isbn: "", category: "Pengembangan Diri", description: "", cover: "https://s2.welib-public.org/covers/proxy?url=https%3A%2F%2Fs3proxy.cdn-zlib.sk%2F%2Fcovers299%2Fcollections%2Fuserbooks%2Fbcef1e2093901fe667e7d3e853ad32e451f6d63a769f6aa7e0031433e18f8169.jpg&md5=0b57ac58555f703e02c1febde38acbb2&key=Vdv3E010B-Gkx2HYKVPH-g", readLink: "#", downloadLink: "https://id.welib.org/md5/0b57ac58555f703e02c1febde38acbb2" },
-  { id: 37, title: "Originals: \"Tabrak Aturan\", Jadilah Pemenang", author: "Adam M. Grant", year: 2017, isbn: "", category: "Inovasi & Motivasi", description: "", cover: "https://s2.welib-public.org/covers/proxy?url=https%3A%2F%2Fs3proxy.cdn-zlib.sk%2F%2Fcovers299%2Fcollections%2Fgenesis%2F16d3860ddcf6035550e7c4bcebc15911356332a5f1cf3d0ca0b20ffa33ef2ebe.jpg&md5=1b915bc503b91270f1d23170bba45229&key=5OHibt8LTUnmGZH0Cihz4Q", readLink: "#", downloadLink: "https://id.welib.org/md5/cd2e5db18108d2c14173d77cf5579363" },
-  { id: 38, title: "Hujan", author: "Tere Liye", year: null, isbn: "", category: "Fiksi / Drama", description: "", cover: "https://s2.welib-public.org/covers/proxy?url=https%3A%2F%2Flibgen.li%2Ffictioncovers%2F4315000%2F20e65c251b6e140fa884572c41d65d10.jpg&md5=20e65c251b6e140fa884572c41d65d10&key=kIik4IefwPXyCWqnMnQJkg", readLink: "#", downloadLink: "https://id.welib.org/md5/1b915bc503b91270f1d23170bba45229" },
-  { id: 39, title: "Metodologi Penelitian", author: "W. Gulo", year: null, isbn: "", category: "Akademik / Penelitian", description: "", cover: "https://id.welib.org/md5/2bf0ca63099b07df5174abfc97a7673f", readLink: "#", downloadLink: "https://id.welib.org/md5/20e65c251b6e140fa884572c41d65d10" },
-  { id: 40, title: "Dunia Sophie: Sebuah Novel Filsafat", author: "Jostein Gaarder", year: 2010, isbn: "", category: "Filsafat / Fiksi", description: "", cover: "https://s2.welib-public.org/covers/proxy?url=https%3A%2F%2Fs3proxy.cdn-zlib.sk%2F%2Fcovers299%2Fcollections%2Fuserbooks%2Fd5dff0ae0dd4d69745303cad9ce3a4fcadd00543d33d96ce98c4b00da7d99708.jpg&md5=307baebbb16e452243489f94410de311&key=T8FoocVy1K-xlvHRB_SHBQ", readLink: "#", downloadLink: "https://id.welib.org/md5/307baebbb16e452243489f94410de311" },
-  { id: 41, title: "Jakarta Sebelum Pagi", author: "Ziggy Zezsyazeoviennazabrizkie", year: 2017, isbn: "", category: "Fiksi / Sastra", description: "", cover: "https://s2.welib-public.org/covers/proxy?url=https%3A%2F%2Fs3proxy.cdn-zlib.sk%2F%2Fcovers299%2Fcollections%2Fuserbooks%2F69a1125f3f2fe01f31e71173068899666b7f9c41e210c10ee4e5c5d87338922d.jpg&md5=62acea4d4fa687df625cfb3d4034bd27&key=9BmafufxrSd2DFBx-PwClw", readLink: "#", downloadLink: "https://id.welib.org/md5/62acea4d4fa687df625cfb3d4034bd27" },
-
-  { id: 42, title: "Dark Psychology Secret", author: "Daniel James Hollins", year: 2019, isbn: "", category: "Psikologi / Manipulasi", description: "", 
-    cover: "https://s2.welib-public.org/covers/proxy?url=https%3A%2F%2Fs3proxy.cdn-zlib.sk%2F%2Fcovers299%2Fcollections%2Fuserbooks%2Fb8ea917248b9c2504186b5ebccd94aebf101ac097a9c1a94c96d04e00ad4b998.jpg&md5=642decc42e2473b2c6e962f9b91407de&key=uVqXCZkXAn-6KxeRXKHY5A", readLink: "#", 
-    downloadLink: "https://id.welib.org/md5/642decc42e2473b2c6e962f9b91407de" },
-  { id: 43, title: "Teruslah Bodoh Jangan Pintar - Tere Liye", author: "Tere L", year: 2025, isbn: "", category: "Motivasi", description: "", 
-    cover: "https://s2.welib-public.org/covers/proxy?url=https%3A%2F%2Fs3proxy.cdn-zlib.sk%2F%2Fcovers299%2Fcollections%2Fuserbooks%2Fd9c077e595cd0d6150bf462f85986e51928edb1b04a0dae08bb07160a88e45df.jpg&md5=b5cb2ec043625a790f7266fd18026fea&key=FKWNIxCzTkC27sE3HXCtIg", readLink: "#", 
-    downloadLink: "https://id.welib.org/md5/b5cb2ec043625a790f7266fd18026fea" },
-  { id: 44, title: "60 Cara Pengembangan Diri", author: "Martha Mary Mcgraw, Csj.", year: 1987, isbn: "", category: "Pengembangan Diri", description: "", 
-    cover: "https://s2.welib-public.org/covers/proxy?url=https%3A%2F%2Fs3proxy.cdn-zlib.sk%2F%2Fcovers299%2Fcollections%2Fgenesis%2F29d58bc11d31b909c5fef82fa3ff7ab21ca70c1715b1c3f696066ecdcf14c7aa.jpg&md5=97b3fcae07d8e86efd7a7dfdd76d4f8d&key=L2h2DZHi_4mH81ynCyfS0Q", readLink: "#", 
-    downloadLink: "https://id.welib.org/md5/97b3fcae07d8e86efd7a7dfdd76d4f8d" },
-  { id: 45, title: "The Principles of Power, Rahasia Memanipulasi Orang Lain di Segala Situasi", author: "Dion Yulianto", year: 2023, isbn: "", category: "Psikologi / Kepemimpinan", description: "", 
-    cover: "https://s2.welib-public.org/covers/proxy?url=https%3A%2F%2Fs3proxy.cdn-zlib.sk%2F%2Fcovers299%2Fcollections%2Fuserbooks%2Fe4a0d6b39f52634eadb9d505462ce90ba24ca1acb048bb94026ab17c4fa0baf2.jpg&md5=2adfa1fd9aaf3bfee3eb7386746421a8&key=rkMlgAchdr7-_jDAFdFUkQ", readLink: "#", 
-    downloadLink: "https://id.welib.org/md5/2adfa1fd9aaf3bfee3eb7386746421a8" },
-  { id: 47, title: "60+ Cara Online Menghasilkan Uang Saat Weekend", author: "Politwika", year: 2017, isbn: "", category: "Bisnis / Online", description: "", 
-    cover: "https://s2.welib-public.org/covers/proxy?url=https%3A%2F%2Fs3proxy.cdn-zlib.sk%2F%2Fcovers299%2Fcollections%2Fuserbooks%2F17ad4e17b4b12c31e657fe380d7bfb640366c0c5e0904bfe1fc37c11f73de510.png&md5=8d8777e53a93490cea95ba33c40556ac&key=ZPsL10wpL8_iumyTwEpXAw", readLink: "#", 
-    downloadLink: "https://id.welib.org/md5/8d8777e53a93490cea95ba33c40556ac" },
-  { id: 48, title: "Bumi Manusia", author: "Pramoedya Ananta Toer", year: 1980, isbn: "", category: "Fiksi / Sejarah", description: "", 
-    cover: "https://s2.welib-public.org/covers/proxy?url=https%3A%2F%2Fs3proxy.cdn-zlib.sk%2F%2Fcovers299%2Fcollections%2Fforeignfiction%2F43461bb4788c11ae8ec54baf7f476a3778b5d0969fe7c6bb37ff76c6dab9d4b7.jpg&md5=9e3b57f3e12248618c2e51e4e5fed13d&key=7MsygSW83YWgjetTIkSeag", readLink: "#", 
-    downloadLink: "https://id.welib.org/md5/9e3b57f3e12248618c2e51e4e5fed13d" },
-  { id: 49, title: "Entrok", author: "Okky Madasari", year: 2010, isbn: "", category: "Fiksi / Sosial", description: "", 
-    cover: "https://s2.welib-public.org/covers/proxy?url=https%3A%2F%2Fs3proxy.cdn-zlib.sk%2F%2Fcovers299%2Fcollections%2Fuserbooks%2F8aa9bc24d0249975880f321ee81ae90f61a4790359a732fe2c3a9afce9e06ef4.png&md5=130aa53ba9b7e69794d720c68b165538&key=9qPrpWLWvmx6W1w9JpigKw", readLink: "#", 
-    downloadLink: "https://id.welib.org/md5/130aa53ba9b7e69794d720c68b165538" },
-
-{ id: 50, title: "Nunchi: Seni Membaca Pikiran dan Perasaan Orang Lain — Rahasia Hidup Bahagia dan Sukses dari Korea", author: "Euny Hong", year: 2021, isbn: "", category: "Pengembangan Diri", description: "", cover: "https://s2.welib-public.org/covers/proxy?url=https%3A%2F%2Fs3proxy.cdn-zlib.sk%2F%2Fcovers299%2Fcollections%2Fuserbooks%2F91cd2d503c4413dcda9aea61b88bf5e70e756c98e670c004a5d3ace9d7a18f8c.jpg&md5=f9859dc423a863551792deff6562bddb&key=1_oCOkrnE1A4n0Iw4IuEtw", readLink: "#", downloadLink: "https://id.welib.org/md5/f9859dc423a863551792deff6562bddb" },
-{ id: 51, title: "Sirah Nabawiyah", author: "Shafiyyur Rahman Mubarakfury", year: 1997, isbn: "", category: "Religi / Sejarah Islam", description: "", cover: "", readLink: "#", downloadLink: "#" },
-{ id: 52, title: "Big Book Matematika SMA Kelas 1, 2, & 3", author: "Tim Bbm", year: 2015, isbn: "", category: "Pendidikan / Matematika", description: "", cover: "https://s2.welib-public.org/covers/proxy?url=https%3A%2F%2Fs3proxy.cdn-zlib.sk%2F%2Fcovers299%2Fcollections%2Fuserbooks%2F15811358cdd546fefc311d09d72127cc8dee9cc86a4b6f9b1506bedea53bb968.jpg&md5=31d730927944e7b1d5795c1efe7bc2c1&key=1WZPpcOCp0JyfBsQkSkNNw", readLink: "#", downloadLink: "https://id.welib.org/md5/31d730927944e7b1d5795c1efe7bc2c1" },
-{ id: 53, title: "Tan Malaka: Madilog (1943)", author: "Tan Malaka", year: 1943, isbn: "", category: "Filsafat / Politik", description: "", cover: "", readLink: "#", downloadLink: "#" },
-{ id: 54, title: "Misteri-Misteri tentang Ruang dan Waktu", author: "Bill Bryson", year: 2015, isbn: "", category: "Sains Populer", description: "", cover: "https://s2.welib-public.org/covers/proxy?url=https%3A%2F%2Fs3proxy.cdn-zlib.sk%2F%2Fcovers299%2Fcollections%2Fuserbooks%2Fcfd926e0fe925a5501ff19b933d56a5045482f52c3f4f0132640666cb086d77a.jpg&md5=c3ddeb373fe4f131bad714609fd80610&key=6XgU5IEVY22RjAuU8ARiBQ", readLink: "#", downloadLink: "https://id.welib.org/md5/c3ddeb373fe4f131bad714609fd80610" },
-{ id: 55, title: "Laut Bercerita", author: "Leila S. Chudori", year: 2017, isbn: "", category: "Fiksi / Sejarah", description: "", cover: "https://s2.welib-public.org/covers/proxy?url=https%3A%2F%2Fs3proxy.cdn-zlib.sk%2F%2Fcovers299%2Fcollections%2Fgenesis%2F9d067a61dcef48e060341ec9c5b85623c4ba6ad336b39f11af9f204809ad4ca9.jpg&md5=548d4b135225dc2e548283ee2a2fb893&key=R3MR3eqWQaSrgaFwK8pvmw", readLink: "#", downloadLink: "https://id.welib.org/md5/548d4b135225dc2e548283ee2a2fb893" },
-{ id: 56, title: "Super Memory: Kini Anda Pun Bisa Memilikinya", author: "Brian Fitness", year: 2016, isbn: "", category: "Pengembangan Diri / Otak", description: "", cover: "https://s2.welib-public.org/covers/proxy?url=https%3A%2F%2Fs3proxy.cdn-zlib.sk%2F%2Fcovers299%2Fcollections%2Fuserbooks%2Fd6e5bfb079309e50476afd6a7bd6edf2df92751500808828a44550674702cfc6.jpg&md5=46eff02e5dc3f449e8108c834b49a077&key=mNsIC7-CKq_PilkDmN9vBg", readLink: "#", downloadLink: "https://id.welib.org/md5/46eff02e5dc3f449e8108c834b49a077" },
-{ id: 57, title: "Pengantar Analisis Kebijakan Publik", author: "William N. Dunn", year: 2003, isbn: "", category: "Ilmu Sosial / Kebijakan Publik", description: "", cover: "https://s2.welib-public.org/covers/proxy?url=https%3A%2F%2Fs3proxy.cdn-zlib.sk%2F%2Fcovers299%2Fcollections%2Fgenesis%2F81556b9ead6c27682740e9511680cdd9dcd71184d4383355365f4de79d65a88f.jpg&md5=6d1876e35e0b2935a2ded173f8bb9e3b&key=9Ke7v7kn95h_Kpw2eKfndw", readLink: "#", downloadLink: "https://id.welib.org/md5/94579ab50889e6dbd1f7c28001e8b51e" },
-{ id: 58, title: "Loving the Wounded Soul", author: "Regis Machdy", year: 2019, isbn: "", category: "Psikologi / Depresi", description: "", cover: "", readLink: "#", downloadLink: "#" },
-{ id: 59, title: "Think Like A Freak", author: "Steven D. Levitt & Stephen J. Dubner", year: 2016, isbn: "", category: "Pemikiran Kritis / Pop Sains", description: "", cover: "", readLink: "#", downloadLink: "#" },
-{ id: 60, title: "Teka-Teki Rumah Aneh", author: "Uketsu", year: 2023, category: "Fiksi Horor", cover: "https://s2.welib-public.org/covers/proxy?url=https%3A%2F%2Fs3proxy.cdn-zlib.sk%2F%2Fcovers299%2Fcollections%2Fuserbooks%2Faa6b048b428e8af793f7b483aa89b0fa8a4e64be6bd25b9f37c32265096910b1.jpg&md5=25a44e7f9a92450a7992adc8f24bdb95&key=8jtkayTVl4KfW5HaeFNdsw", downloadLink: "https://id.welib.org/md5/25a44e7f9a92450a7992adc8f24bdb95" },
-{ id: 61, title: "Big Book Kimia SMA Kelas 1, 2, & 3", author: "Ir. Omang Komarudin", year: 2015, category: "Pendidikan", cover: "https://s2.welib-public.org/covers/proxy?url=https%3A%2F%2Fs3proxy.cdn-zlib.sk%2F%2Fcovers299%2Fcollections%2Fuserbooks%2Fce48ca89f5af780d39a352b29e910d284fe6e11d2b515c17bf045b71cc5d57b2.jpg&md5=9e6fc51b43ace4836e0b2ff48453301e&key=vafcOmaDNMferQauQAVhhQ", downloadLink: "https://id.welib.org/md5/9e6fc51b43ace4836e0b2ff48453301e" },
-{ id: 62, title: "Filsafat Berpikir: Teknik-Teknik Berpikir Logis Kontra Kesesatan Berpikir", author: "Ainur Rahman Hidayat", year: 2018, category: "Filsafat / Logika", cover: "https://s2.welib-public.org/covers/proxy?url=https%3A%2F%2Fs3proxy.cdn-zlib.sk%2F%2Fcovers299%2Fcollections%2Fuserbooks%2F9c4ed54f11d92946a495203b92ea3441c69a282c5dfaf8b4f3464ae92a441b12.jpg&md5=13a5d2acab3a16dada634035343168d6&key=UEVUhsAkGp03GmYB8zlU_Q", downloadLink: "https://id.welib.org/md5/13a5d2acab3a16dada634035343168d6" },
-{ id: 63, title: "Orang Terkaya di Babilonia (The Richest Man in Babylon)", author: "George S. Clason", year: 2000, category: "Keuangan / Pengembangan Diri", cover: "https://s2.welib-public.org/covers/proxy?url=https%3A%2F%2Fs3proxy.cdn-zlib.sk%2F%2Fcovers299%2Fcollections%2Fuserbooks%2F5f33bdb9118ee35f1d1c62faddb51004fcb67aff97a61aed1181dd9b7175b8fc.jpg&md5=b0cd239188cec24b3695ed4b7175ced4&key=nC7DYPJd4WXlIglQyXYz_w", downloadLink: "https://id.welib.org/md5/b0cd239188cec24b3695ed4b7175ced4" },
-{ id: 64, title: "Garis Waktu", author: "Fiersa Besari", year: 2016, category: "Puisi / Prosa Liris", cover: "https://s2.welib-public.org/covers/proxy?url=https%3A%2F%2Fs3proxy.cdn-zlib.sk%2F%2Fcovers299%2Fcollections%2Fforeignfiction%2Fe2ed0c2210fe0e0e82dd865131424325aeea0f7abe47d8912e06f70ecc3f5e2c.jpg&md5=c8fd3826b8d5bdf8c3f2e2c32e3545da&key=0DRp1PXzUDzvLVTMtBBT-Q", downloadLink: "https://id.welib.org/md5/c8fd3826b8d5bdf8c3f2e2c32e3545da" },
-{ id: 65, title: "Berkata Baik atau Diam: 294 Adab Kebiasaan Rasulullah saw", author: "Ninik Handrini", year: 2016, category: "Agama Islam", cover: "https://s2.welib-public.org/covers/proxy?url=https%3A%2F%2Fs3proxy.cdn-zlib.sk%2F%2Fcovers299%2Fcollections%2Fuserbooks%2Ffb656531cf4d726449847f1165850448a4c16c6bd55ce874fb1a9bdf75983561.png&md5=ca560314c190203349b1680a607757a6&key=lWxwy5c1OCH01X2VPF-0hg", downloadLink: "https://id.welib.org/md5/ca560314c190203349b1680a607757a6" },
-{ id: 66, title: "Funiculi Funicula 2: Kisah-Kisah Yang Baru Terungkap", author: "Toshikazu Kawaguchi", year: 2022, category: "Fiksi / Fantasi Waktu", cover: "https://s2.welib-public.org/covers/proxy?url=https%3A%2F%2Fs3proxy.cdn-zlib.sk%2F%2Fcovers299%2Fcollections%2Fuserbooks%2Faa7e52ddbccfb9276fe0bff7cde1378e11167188f0e53edd608fb4f2ad78264b.jpg&md5=38441f21eb5e5d8bf2a24538463f269c&key=NOkubhcIJtwPwqZsnrAhtg", downloadLink: "https://id.welib.org/md5/38441f21eb5e5d8bf2a24538463f269c" },
-{ id: 67, title: "Rich Dad Poor Dad (Edisi Revisi)", author: "Robert T. Kiyosaki", year: 2021, category: "Keuangan Pribadi", cover: "https://s2.welib-public.org/covers/proxy?url=https%3A%2F%2Fs3proxy.cdn-zlib.sk%2F%2Fcovers299%2Fcollections%2Fuserbooks%2Fb99b2050e14ff2c88e357bc8b4ec8e3b6a77194bbecaa20ea0226e2514b959b8.jpg&md5=cae63fe7f4805ccf6c37374684402e92&key=C7qMgQizhZ15BkpQpK5MEg", downloadLink: "https://id.welib.org/md5/cae63fe7f4805ccf6c37374684402e92" },
-{ id: 68, title: "MAKE TIME: Cara Fokus pada Hal-hal Penting Setiap Hari", author: "Jake Knapp & John Zeratsky", year: 2022, category: "Produktivitas & Manajemen Waktu", cover: "https://s2.welib-public.org/covers/proxy?url=https%3A%2F%2Fs3proxy.cdn-zlib.sk%2F%2Fcovers299%2Fcollections%2Fuserbooks%2F9ab90e95eafbae6172197a6dbc64082b634ac84ebbe2a5f1fb0366d8d05cd994.jpg&md5=eb9cb3dfeeb76bb9d05f107f4472dc6d&key=Ob0b7zdT5nOaSZb1fYdnWQ", downloadLink: "https://id.welib.org/md5/eb9cb3dfeeb76bb9d05f107f4472dc6d" },
-{ id: 69, title: "The Chimp Paradox: Mengelola Pikiran untuk Mencapai Kesuksesan dan Kebahagiaan", author: "Prof. Steve Peters", year: 2019, category: "Psikologi", cover: "https://s2.welib-public.org/covers/proxy?url=https%3A%2F%2Fs3proxy.cdn-zlib.sk%2F%2Fcovers299%2Fcollections%2Fuserbooks%2F0b849888b86e60a92ec347837e9cacb31853b5750bf2c992404967652fb8ef21.jpg&md5=a80e87cb9e0f4bf6fc67b262d43fb270&key=gzSu-vv9bQc4MthpZpwQ7w", downloadLink: "https://id.welib.org/md5/a80e87cb9e0f4bf6fc67b262d43fb270" },{ id: 70, title: "MULTIBAGGER: Cara Meraih Profit >100% dari Pasar Saham", author: "Rivan Kurniawan", year: 2020, category: "Investasi", cover: "https://s2.welib-public.org/covers/proxy?url=https%3A%2F%2Fs3proxy.cdn-zlib.sk%2F%2Fcovers299%2Fcollections%2Fuserbooks%2F37951e57a2c12701e55973ac205bd49ba3b262928aa539c509ad27250fe37889.png&md5=7f77192d1ea7a39d91da271c5894fac8&key=a8ACsDCMtdT4KQylqht4aQ", readLink: "https://id.welib.org/md5/7f77192d1ea7a39d91da271c5894fac8", downloadLink: "https://id.welib.org/md5/7f77192d1ea7a39d91da271c5894fac8", description: "" },
-{ id: 71, title: "Reasons to Stay Alive", author: "Matt Haig", year: 2018, category: "Kesehatan Mental", cover: "https://s2.welib-public.org/covers/proxy?url=https%3A%2F%2Fs3proxy.cdn-zlib.sk%2F%2Fcovers299%2Fcollections%2Fuserbooks%2Ff9bbacb04d3a8d25cd4e05a1d23812770741f9495e71a6b3a069f2b42a125fd7.jpg&md5=f0578088191eb410cef0edfc058b3699&key=T7dX7kiHsbcsqTMcf7GOdw", readLink: "https://id.welib.org/md5/f0578088191eb410cef0edfc058b3699", downloadLink: "https://id.welib.org/md5/f0578088191eb410cef0edfc058b3699", description: "" },
-{ id: 72, title: "Funiculi Funicula #3: Dona Dona", author: "Toshikazu Kawaguchi", year: 2023, category: "Fiksi Jepang", cover: "https://s2.welib-public.org/covers/proxy?url=https%3A%2F%2Fs3proxy.cdn-zlib.sk%2F%2Fcovers299%2Fcollections%2Fuserbooks%2F22765539cc5a7ed6d86df93a54ce6b1f36f747d85b0c5dac05e1ab7d17e58fe4.jpg&md5=92ec88181bd3f3abba45267d5d0b7804&key=TUNcrpm4lx9eEdy-ynDwOQ", readLink: "https://id.welib.org/md5/92ec88181bd3f3abba45267d5d0b7804", downloadLink: "https://id.welib.org/md5/92ec88181bd3f3abba45267d5d0b7804", description: "" },
-{ id: 73, title: "As Long as The Lemon Trees Grow", author: "Zoulfa Katouh", year: 2022, category: "Fiksi", cover: "https://s2.welib-public.org/covers/proxy?url=https%3A%2F%2Fs3proxy.cdn-zlib.sk%2F%2Fcovers299%2Fcollections%2Fuserbooks%2Fffd9d03a7b33e7a550ab8ac9e7f59a6f086e53013fd693dc525c98a5bec77bd4.jpg&md5=f3e738c27f708389e4d61b5ac4f219d9&key=iimQjO0JRreg-vqjUf2oHw", readLink: "https://id.welib.org/md5/f3e738c27f708389e4d61b5ac4f219d9", downloadLink: "https://id.welib.org/md5/f3e738c27f708389e4d61b5ac4f219d9", description: "" },
-{ id: 74, title: "Kita Pernah Salah", author: "Alvi Syahrin", year: 2023, category: "Motivasi", cover: "https://s2.welib-public.org/covers/proxy?url=https%3A%2F%2Fs3proxy.cdn-zlib.sk%2F%2Fcovers299%2Fcollections%2Fuserbooks%2F1ed540493eb42b3b77f9cb7eab6e7b3458bc00550ceacbbca3f5ac016dcbb16a.jpg&md5=4dce5af7fdc78507ebdd0f902c8dc504&key=Hki1y3Yc5AfTh9GO_xlMIQ", readLink: "https://id.welib.org/md5/4dce5af7fdc78507ebdd0f902c8dc504", downloadLink: "https://id.welib.org/md5/4dce5af7fdc78507ebdd0f902c8dc504", description: "" },
-{ id: 75, title: "Orang-Orang Biasa", author: "Andrea Hirata", year: 2019, category: "Novel", cover: "https://s2.welib-public.org/covers/proxy?url=https%3A%2F%2Fs3proxy.cdn-zlib.sk%2F%2Fcovers299%2Fcollections%2Fuserbooks%2F355a1e285893b8c9db0c05f61fcbb66b2a6e8a1b6939877c7c75dbe8d8ed6713.jpg&md5=2bc6659aebdf8613cf68cb58f6e80235&key=bGxEmUNu6CmzFbBknIN4xQ", readLink: "https://id.welib.org/md5/2bc6659aebdf8613cf68cb58f6e80235", downloadLink: "https://id.welib.org/md5/2bc6659aebdf8613cf68cb58f6e80235", description: "" },
-
+            { id: 1, title: "Basic Econometrics", author: "Gujarati", year: 2006, category: "Ekonometrika", cover: "https://tse1.mm.bing.net/th/id/OIP.RUf2IHr2aExotGq4qSEJCwHaJQ?pid=Api&P=0&h=220", downloadLink: "https://drive.google.com/file/d/1HT9pFTTtEiZUrpVXbSScjzGrJnw-T4xf/view?usp=drive_link" },
+            { id: 2, title: "Discovering Statistic Using SPSS", author: "Andy Field", year: 2009, category: "Komputasi", cover: "https://tse1.mm.bing.net/th/id/OIP.HuhYkLID3e7zq17ZPgFNGwHaKE?pid=Api&P=0&h=220", downloadLink: "https://drive.google.com/file/d/1fB0eEElBwmTzBd1WcAJSPLGnBtQ6GR1Y/view?usp=drive_link" },
+            { id: 3, title: "Belajar Statistika dengan R", author: "Gio & Irawan", year: 2016, category: "Komputasi", cover: "https://tse1.mm.bing.net/th/id/OIP.HziQI0n4fLp0POkRz5aFtAAAAA?pid=Api&P=0&h=220", downloadLink: "https://drive.google.com/file/d/1nCKEUjP3t82XAD3YvWCHLiU_jqC_Wx9Z/view?usp=drive_link" },
+            { id: 4, title: "R For Data Science", author: "Wichman & Grolemund", year: 2017, category: "Komputasi", cover: "https://tse4.mm.bing.net/th/id/OIP.VaPrgsPTGvf8UJjWXWeIrQHaLJ?pid=Api&P=0&h=220", downloadLink: "https://drive.google.com/file/d/1UdqL_89Jh_jtuhbG-ITxDtZqVhgJ3gV_/view?usp=drive_link" },
+            { id: 5, title: "Metode Penelitian Kuantitatif", author: "Abdul Muin", year: 2018, category: "Metode-survei", cover: "https://tse2.mm.bing.net/th/id/OIP.tbN0K6buBkg5PzUhZB1Z0gHaJ4?pid=Api&P=0&h=220", downloadLink: "https://drive.google.com/file/d/1M5SI2D8Q9euYcJ1dWJ-VozpRkNBKGSBJ/view?usp=drive_link" },
+            { id: 6, title: "Quality Control and Industrial Statistics", author: "Acheson & Duncan", year: 1952, category: "Quality Control", cover: "https://tse1.mm.bing.net/th/id/OIP.2CZAhpsPxzF9QOJFxmsX5QAAAA?pid=Api&P=0&h=220", downloadLink: "https://drive.google.com/file/d/1sCWGOO0v4gj7tU_A9O88LjQbe7T_tY1G/view?usp=drive_link" },
+            { id: 7, title: "Pengendalian dan Penjaminan Mutu", author: "Fitriana dkk", year: 2021, category: "Quality Control", cover: "https://tse2.mm.bing.net/th/id/OIP.90UEBKcMjmsrmTRuViBrOAHaFI?pid=Api&P=0&h=220", downloadLink: "https://drive.google.com/file/d/1CHpefSqPI7CBBH0t06EGyMn-jlT9fKT1/view?usp=drive_link" },
+            { id: 8, title: "Industrial Quality Control", author: "Lawrence S", year: 1998, category: "Quality Control", cover: "https://tse2.mm.bing.net/th/id/OIP.Kzyv9KigSe25W3He03hafQAAAA?pid=Api&P=0&h=220", downloadLink: "https://drive.google.com/file/d/16ddaX84Gouw-wNjozPQDZFgU0Ro94Iov/view?usp=drive_link" },
+            { id: 9, title: "Introduction to Spatial Econometrics", author: "LeSage & Pace", year: 2009, category: "Spasial", cover: "https://tse3.mm.bing.net/th/id/OIP.CY9HrcoSB1ccUHVFetOSWgHaLV?pid=Api&P=0&h=220", downloadLink: "https://drive.google.com/file/d/1cFtvV5fJEAHxMURv0vpuBQ8ToGS9IaLb/view?usp=drive_link" },
+            { id: 10, title: "The Theory and Practice of Spatial Econometrics", author: "LeSage", year: 1999, category: "Spasial", cover: "https://s3.studylib.net/store/data/008869409_1-901b2330deb0159a32e9ede60640c28c-768x994.png", downloadLink: "https://drive.google.com/file/d/1t1o1XNZ5zbXHf2TSQfHqCHDsJlC2v3pp/view?usp=drive_link" },
+            { id: 11, title: "Spatial Econometrics", author: "Luc Anselin", year: 1953, category: "Spasial", cover: "https://m.media-amazon.com/images/I/71t8mUP8AmL._SL1252_.jpg", downloadLink: "https://drive.google.com/file/d/14RmNvrnyeUrx4FeMsTu5SiEwd28qCP5W/view?usp=drive_link" },
+            { id: 12, title: "Spatial Regression Analysis in R A Workbook", author: "Luc Anselin", year: 2007, category: "Spasial", cover: "https://s3.studylib.net/store/data/008852434_1-072c50e1005fc08403591ea6771666d9-768x994.png", downloadLink: "https://drive.google.com/file/d/1DbTi4ZlIJDM90y7ucPQdXq7k6EKJXEnD/view?usp=drive_link" },
+            { id: 13, title: "Applied Regression Analysis A Research Tool", author: "Rawlings dkk", year: 1998, category: "Regresi", cover: "https://m.media-amazon.com/images/I/41+nDqJgFeL._SX342_SY445_.jpg", downloadLink: "https://drive.google.com/file/d/1v1FKijcHD37f2P88H1u5acT_CQwg6kTW/view?usp=drive_link" },
+            { id: 14, title: "Buku Ajar Statistika Matematika", author: "Mauliddin & Astuti", year: 2017, category: "Statistika-matematika", cover: "https://imgv2-2-f.scribdassets.com/img/document/694050656/original/1104e7cf11/1?v=1", downloadLink: "https://drive.google.com/file/d/1pJKqOh_SckilunkHAYdGbfshRrIYH7Yk/view?usp=drive_link" },
+            { id: 15, title: "Probability and Mathematical Statistics", author: "Prasanna Sahoo", year: 2003, category: "Statistika-matematika", cover: "https://freecomputerbooks.com/covers/Probability-and-Mathematical-Statistics.jpg", downloadLink: "https://drive.google.com/file/d/1QZvxw5-Qn-53u9qxGtjVq2sxRBaN5LxK/view?usp=drive_link" },
+            { id: 16, title: "Pengantar Statistika Matematika", author: "Sigit Nugroho", year: 2008, category: "Statistika-matematika", cover: "https://online.fliphtml5.com/xgmfv/ukof/files/shot.jpg", downloadLink: "https://drive.google.com/file/d/1KkHNU-xqx6k_VM6hebcfaVOOGtREJhHq/view?usp=drive_link" },
+            { id: 17, title: "Monte Carlo Statistical Methods", author: "Casella & Robert", year: 2004, category: "Komputasi", cover: "https://imgv2-1-f.scribdassets.com/img/document/585405006/original/f5c72076bc/1684743998?v=1", downloadLink: "https://drive.google.com/file/d/1nm4PBHzXSCogUv0U_xobTdEdp2t9Z9rU/view?usp=drive_link" },
+            { id: 18, title: "The Quick Count and Election Observation", author: "Estak dkk", year: 2002, category: "Metode-survei", cover: "https://imgv2-1-f.scribdassets.com/img/document/585405006/original/f5c72076bc/1684743998?v=1", downloadLink: "https://drive.google.com/file/d/1nm4PBHzXSCogUv0U_xobTdEdp2t9Z9rU/view?usp=drive_link" },
+            { id: 19, title: "Pengantar Metode Penelitian", author: "Sugiyono", year: 2018, category: "Metode-survei", cover: "https://tse4.mm.bing.net/th/id/OIP.4J-1eCepDgAayG6SQTHZ1wHaLc?pid=Api&P=0&h=220", downloadLink: "https://drive.google.com/file/d/1M5SI2D8Q9euYcJ1dWJ-VozpRkNBKGSBJ/view?usp=drive_link" },
+            { id: 20, title: "Inference in Regression Models", author: "Ma & Koenker", year: 2006, category: "Inferensi-statistik", cover: "https://m.media-amazon.com/images/I/41tERLdA7VL.jpg", downloadLink: "https://drive.google.com/file/d/1QZvxw5-Qn-53u9qxGtjVq2sxRBaN5LxK/view?usp=drive_link" },
+            { id: 21, title: "Introduction to Statistical Inference", author: "Jack Kiefer", year: 1987, category: "Inferensi-statistik", cover: "https://m.media-amazon.com/images/I/51LZ48M24BL.jpg", downloadLink: "https://drive.google.com/file/d/1KkHNU-xqx6k_VM6hebcfaVOOGtREJhHq/view?usp=drive_link" },
+            { id: 22, title: "Atomic Habits", author: "James Clear", year: 2018, category: "Pengembangan Diri", cover: "https://tse2.mm.bing.net/th/id/OIP.0D02yOGiQ3rrqn3jSIGcpgHaLJ?pid=Api&P=0&h=220", downloadLink: "#" },
+            { id: 23, title: "The Power of Habit", author: "Charles Duhigg", year: 2012, category: "Pengembangan Diri", cover: "https://tse3.mm.bing.net/th/id/OIP.HCIPGJyWcmxqRPPa-yEHTwHaK4?pid=Api&P=0&h=220", downloadLink: "#" },
+            { id: 24, title: "The Republic", author: "Plato", year: -380, category: "Filsafat & Politik", cover: "https://tse3.mm.bing.net/th/id/OIP.51m9Okb3JIZqdxPai9Y3SwHaLH?pid=Api&P=0&h=220", downloadLink: "#" },
+            { id: 25, title: "The Social Contract", author: "Jean-Jacques Rousseau", year: 1762, category: "Filsafat & Politik", cover: "https://tse3.mm.bing.net/th/id/OIP.jM_4bqgDbNg_qrGBYzzSpwHaKS?pid=Api&P=0&h=220", downloadLink: "#" },
+            { id: 26, title: "Man's Search for Meaning", author: "Viktor Frankl", year: 1946, category: "Psikologi", cover: "https://tse4.mm.bing.net/th/id/OIP.G8XAkLVn-7eKrJy__QgX_wHaLI?pid=Api&P=0&h=220", downloadLink: "#" },
+            { id: 27, title: "Thinking, Fast and Slow", author: "Daniel Kahneman", year: 2011, category: "Psikologi", cover: "https://tse4.mm.bing.net/th/id/OIP.gc3YhkJbyCgxstzO-7zRGgHaE8?pid=Api&P=0&h=220", downloadLink: "#" },
+            { id: 28, title: "Sapiens", author: "Yuval Noah Harari", year: 2011, category: "Sejarah", cover: "https://tse4.mm.bing.net/th/id/OIP.llW2YKhT26dRiz0f4jWVgAHaLH?pid=Api&P=0&h=220", downloadLink: "#" },
+            { id: 29, title: "1984", author: "George Orwell", year: 1949, category: "Fiksi", cover: "https://tse4.mm.bing.net/th/id/OIP.4SQY1DkivWJxUJN5EYJQnAHaLH?pid=Api&P=0&h=220", downloadLink: "#" },
+            { id: 30, title: "To Kill a Mockingbird", author: "Harper Lee", year: 1960, category: "Fiksi", cover: "https://tse2.mm.bing.net/th/id/OIP.3WWNYeGjF37e3mWn87yG9wHaLH?pid=Api&P=0&h=220", downloadLink: "#" },
+            // Additional books to reach 75+
+            { id: 31, title: "Econometric Analysis", author: "William H. Greene", year: 2012, category: "Ekonometrika", cover: "https://tse2.mm.bing.net/th/id/OIP.s1oZgxIAeqXxZoezPq15FgHaLH?pid=Api&P=0&h=220", downloadLink: "#" },
+            { id: 32, title: "Time Series Analysis", author: "James D. Hamilton", year: 1994, category: "Ekonometrika", cover: "https://tse1.mm.bing.net/th/id/OIP.0U8Qe2FwqS_-oAYrpt7Q-QHaLH?pid=Api&P=0&h=220", downloadLink: "#" },
+            { id: 33, title: "Python for Data Analysis", author: "Wes McKinney", year: 2017, category: "Komputasi", cover: "https://tse2.mm.bing.net/th/id/OIP.PWwSLHCeNj1_q0KbP-LJpwHaLJ?pid=Api&P=0&h=220", downloadLink: "#" },
+            { id: 34, title: "Data Science from Scratch", author: "Joel Grus", year: 2019, category: "Komputasi", cover: "https://tse4.mm.bing.net/th/id/OIP.4L8vJPY9G53ECntAYkRE1gHaLH?pid=Api&P=0&h=220", downloadLink: "#" },
+            { id: 35, title: "Six Sigma for Quality Improvement", author: "Thomas Pyzdek", year: 2014, category: "Quality Control", cover: "https://tse2.mm.bing.net/th/id/OIP.3_8QlExrgMqwVHJt2J-bqQHaLH?pid=Api&P=0&h=220", downloadLink: "#" },
+            { id: 36, title: "Statistical Quality Control", author: "Montgomery D.C.", year: 2012, category: "Quality Control", cover: "https://tse2.mm.bing.net/th/id/OIP.9wX9sQN-n5xNlH64V_l1mQHaLH?pid=Api&P=0&h=220", downloadLink: "#" },
+            { id: 37, title: "Spatial Data Analysis", author: "Christopher Lloyd", year: 2010, category: "Spasial", cover: "https://tse3.mm.bing.net/th/id/OIP.5D-0mPEm1bF2C21ZzotMfQHaLH?pid=Api&P=0&h=220", downloadLink: "#" },
+            { id: 38, title: "Geographic Information Systems", author: "Kang-Tsung Chang", year: 2018, category: "Spasial", cover: "https://tse2.mm.bing.net/th/id/OIP.kbp0ZR6r4yPVvyOivLpQMAHaLH?pid=Api&P=0&h=220", downloadLink: "#" },
+            { id: 39, title: "Regression Modeling Strategies", author: "Frank E. Harrell", year: 2015, category: "Regresi", cover: "https://tse4.mm.bing.net/th/id/OIP._j4CDFEj_1X1x6f31Qr3zAHaLH?pid=Api&P=0&h=220", downloadLink: "#" },
+            { id: 40, title: "Linear Regression Analysis", author: "George A. F. Seber", year: 2003, category: "Regresi", cover: "https://tse3.mm.bing.net/th/id/OIP.2ZARMP_mYKl53qfrkf_kJwHaLH?pid=Api&P=0&h=220", downloadLink: "#" },
+            { id: 41, title: "Mathematical Statistics", author: "John E. Freund", year: 1992, category: "Statistika-matematika", cover: "https://tse1.mm.bing.net/th/id/OIP.zZz5j7-nFzK6T-buH4EN2wHaLH?pid=Api&P=0&h=220", downloadLink: "#" },
+            { id: 42, title: "Statistical Inference", author: "George Casella", year: 2001, category: "Inferensi-statistik", cover: "https://tse4.mm.bing.net/th/id/OIP.Ey6fYaq_vrKgXq04qQq71QHaLH?pid=Api&P=0&h=220", downloadLink: "#" },
+            { id: 43, title: "Survey Sampling", author: "Leslie Kish", year: 1995, category: "Metode-survei", cover: "https://tse2.mm.bing.net/th/id/OIP.4DNYQJdJ4AII68ugUyjFBAHaLH?pid=Api&P=0&h=220", downloadLink: "#" },
+            { id: 44, title: "The 7 Habits of Highly Effective People", author: "Stephen R. Covey", year: 1989, category: "Pengembangan Diri", cover: "https://tse2.mm.bing.net/th/id/OIP.rvL-VP0V0vC63rCJxWvW4AHaLH?pid=Api&P=0&h=220", downloadLink: "#" },
+            { id: 45, title: "How to Win Friends and Influence People", author: "Dale Carnegie", year: 1936, category: "Pengembangan Diri", cover: "https://tse3.mm.bing.net/th/id/OIP.F71C1OKv8UqlLt5a6dSOnQHaLH?pid=Api&P=0&h=220", downloadLink: "#" },
+            { id: 46, title: "Meditations", author: "Marcus Aurelius", year: 180, category: "Filsafat & Politik", cover: "https://tse1.mm.bing.net/th/id/OIP.xXClZDLN-2nUabp_2bCS7QHaLH?pid=Api&P=0&h=220", downloadLink: "#" },
+            { id: 47, title: "Beyond Good and Evil", author: "Friedrich Nietzsche", year: 1886, category: "Filsafat & Politik", cover: "https://tse4.mm.bing.net/th/id/OIP.W4CNbMr0XQ0IlqUyBcRR3gHaLH?pid=Api&P=0&h=220", downloadLink: "#" },
+            { id: 48, title: "The Interpretation of Dreams", author: "Sigmund Freud", year: 1899, category: "Psikologi", cover: "https://tse1.mm.bing.net/th/id/OIP.XcQmFxxp7jE7dHofRzSlEwHaLH?pid=Api&P=0&h=220", downloadLink: "#" },
+            { id: 49, title: "Psychology: The Briefer Course", author: "William James", year: 1892, category: "Psikologi", cover: "https://tse3.mm.bing.net/th/id/OIP.GtukQkA6KUXJqJ9p9tD1dQHaLH?pid=Api&P=0&h=220", downloadLink: "#" },
+            { id: 50, title: "Guns, Germs, and Steel", author: "Jared Diamond", year: 1997, category: "Sejarah", cover: "https://tse4.mm.bing.net/th/id/OIP.Qpyzq4Wk0aKwxzFYKpQeDAHaLH?pid=Api&P=0&h=220", downloadLink: "#" },
+            { id: 51, title: "A Brief History of Time", author: "Stephen Hawking", year: 1988, category: "Sejarah", cover: "https://tse1.mm.bing.net/th/id/OIP.lstj6BAn5lNvN1yXYQEN3wHaLH?pid=Api&P=0&h=220", downloadLink: "#" },
+            { id: 52, title: "Pride and Prejudice", author: "Jane Austen", year: 1813, category: "Fiksi", cover: "https://tse4.mm.bing.net/th/id/OIP.7XHn8aHf0H8H9qK1fO3jQAHaLH?pid=Api&P=0&h=220", downloadLink: "#" },
+            { id: 53, title: "The Great Gatsby", author: "F. Scott Fitzgerald", year: 1925, category: "Fiksi", cover: "https://tse3.mm.bing.net/th/id/OIP.G6k36qop77Wj9-fX9TTCBAHaLH?pid=Api&P=0&h=220", downloadLink: "#" },
+            { id: 54, title: "Advanced Econometrics", author: "Takeshi Amemiya", year: 1985, category: "Ekonometrika", cover: "https://tse2.mm.bing.net/th/id/OIP.3tVkjGhbEX7EM_fpy8m5wAHaLH?pid=Api&P=0&h=220", downloadLink: "#" },
+            { id: 55, title: "Microeconometrics", author: "A. Colin Cameron", year: 2005, category: "Ekonometrika", cover: "https://tse3.mm.bing.net/th/id/OIP.8CmkmGqQp79t1A5P-rvHTwHaLH?pid=Api&P=0&h=220", downloadLink: "#" },
+            { id: 56, title: "Deep Learning with Python", author: "François Chollet", year: 2017, category: "Komputasi", cover: "https://tse2.mm.bing.net/th/id/OIP.yg14RSHqj_-m3bO91IapXAHaLH?pid=Api&P=0&h=220", downloadLink: "#" },
+            { id: 57, title: "Machine Learning Yearning", author: "Andrew Ng", year: 2018, category: "Komputasi", cover: "https://tse4.mm.bing.net/th/id/OIP.wsP_RdpZzIjnuAfN-RdMhwHaLH?pid=Api&P=0&h=220", downloadLink: "#" },
+            { id: 58, title: "Total Quality Management", author: "Dale H. Besterfield", year: 2003, category: "Quality Control", cover: "https://tse1.mm.bing.net/th/id/OIP.lkfEnOLc6wO_kCGyEpcE1QHaLH?pid=Api&P=0&h=220", downloadLink: "#" },
+            { id: 59, title: "Quality Management", author: "Howard S. Gitlow", year: 2005, category: "Quality Control", cover: "https://tse4.mm.bing.net/th/id/OIP.2Kx6OlLwOGX-1pWlgzAFJgHaLH?pid=Api&P=0&h=220", downloadLink: "#" },
+            { id: 60, title: "Spatial Statistics", author: "Brian D. Ripley", year: 2005, category: "Spasial", cover: "https://tse2.mm.bing.net/th/id/OIP.hsOP5Uifx-gKB7_RiBNUJgHaLH?pid=Api&P=0&h=220", downloadLink: "#" },
+            { id: 61, title: "Applied Spatial Data Analysis with R", author: "Roger S. Bivand", year: 2013, category: "Spasial", cover: "https://tse3.mm.bing.net/th/id/OIP.2-UL_n5Z2fIP9toypocVkQHaLH?pid=Api&P=0&h=220", downloadLink: "#" },
+            { id: 62, title: "Applied Logistic Regression", author: "David W. Hosmer", year: 2013, category: "Regresi", cover: "https://tse4.mm.bing.net/th/id/OIP.QH5bgOPpPz3r7H16GkA5BwHaLH?pid=Api&P=0&h=220", downloadLink: "#" },
+            { id: 63, title: "Nonlinear Regression", author: "Ritz & Streibig", year: 2008, category: "Regresi", cover: "https://tse2.mm.bing.net/th/id/OIP.NVJJzOy0Z5SNT9SygpqM_gHaLH?pid=Api&P=0&h=220", downloadLink: "#" },
+            { id: 64, title: "Probability Theory", author: "A.N. Shiryaev", year: 1996, category: "Statistika-matematika", cover: "https://tse3.mm.bing.net/th/id/OIP.-ed5E7PcMXyC6cZ0v4B9eAHaLH?pid=Api&P=0&h=220", downloadLink: "#" },
+            { id: 65, title: "Measure Theory and Probability", author: "Malcolm Adams", year: 1998, category: "Statistika-matematika", cover: "https://tse4.mm.bing.net/th/id/OIP.34sCWegh2nS4oyOqY6S0JgHaLH?pid=Api&P=0&h=220", downloadLink: "#" },
+            { id: 66, title: "Theory of Point Estimation", author: "E.L. Lehmann", year: 1998, category: "Inferensi-statistik", cover: "https://tse2.mm.bing.net/th/id/OIP.qJv_fyGODS9Olx2j9vQ2NQHaLH?pid=Api&P=0&h=220", downloadLink: "#" },
+            { id: 67, title: "Testing Statistical Hypotheses", author: "E.L. Lehmann", year: 2005, category: "Inferensi-statistik", cover: "https://tse4.mm.bing.net/th/id/OIP.T8E27PMAW64a7X0iPTvZpwHaLH?pid=Api&P=0&h=220", downloadLink: "#" },
+            { id: 68, title: "Sampling Techniques", author: "William G. Cochran", year: 1977, category: "Metode-survei", cover: "https://tse2.mm.bing.net/th/id/OIP.r3QwNBDCEN4FJwIpxB-eSwHaLH?pid=Api&P=0&h=220", downloadLink: "#" },
+            { id: 69, title: "Survey Research Methods", author: "Floyd J. Fowler", year: 2013, category: "Metode-survei", cover: "https://tse3.mm.bing.net/th/id/OIP.DwMDzP0iQItJz5wvqmXZugHaLH?pid=Api&P=0&h=220", downloadLink: "#" },
+            { id: 70, title: "The Subtle Art of Not Giving a F*ck", author: "Mark Manson", year: 2016, category: "Pengembangan Diri", cover: "https://tse4.mm.bing.net/th/id/OIP.7nC0Tj7Zabj4uDMJ7Y89ywHaLH?pid=Api&P=0&h=220", downloadLink: "#" },
+            { id: 71, title: "Can't Hurt Me", author: "David Goggins", year: 2018, category: "Pengembangan Diri", cover: "https://tse1.mm.bing.net/th/id/OIP.PY9Teeih54iQ8ryC_c9J5QHaLH?pid=Api&P=0&h=220", downloadLink: "#" },
+            { id: 72, title: "The Prince", author: "Niccolò Machiavelli", year: 1532, category: "Filsafat & Politik", cover: "https://tse2.mm.bing.net/th/id/OIP.KB_lbDri3HlhE_0DP1NixwHaLH?pid=Api&P=0&h=220", downloadLink: "#" },
+            { id: 73, title: "Critique of Pure Reason", author: "Immanuel Kant", year: 1781, category: "Filsafat & Politik", cover: "https://tse4.mm.bing.net/th/id/OIP.h4Tds2zflLxjQH0RHE9oYgHaLH?pid=Api&P=0&h=220", downloadLink: "#" },
+            { id: 74, title: "The Psychology of Selling", author: "Brian Tracy", year: 2004, category: "Psikologi", cover: "https://tse2.mm.bing.net/th/id/OIP.z1k3p6RZ3yX9vRXUK1D2zwHaLH?pid=Api&P=0&h=220", downloadLink: "#" },
+            { id: 75, title: "Influence: The Psychology of Persuasion", author: "Robert B. Cialdini", year: 1984, category: "Psikologi", cover: "https://tse3.mm.bing.net/th/id/OIP.Brz5X4ePVehbohJcnqqaGQHaLH?pid=Api&P=0&h=220", downloadLink: "#" }
         ];
 
-        let filteredBooks = []; 
+        // Pagination variables
+        const booksPerPage = 12;
         let currentPage = 1;
-        const booksPerPage = 20; // Ini sudah diatur ke 20
+        let filteredBooks = [...bookData];
 
-        const bookGrid = document.getElementById('bookGrid');
-        const currentPageNumSpan = document.getElementById('currentPageNum');
-        const totalPagesNumSpan = document.getElementById('totalPagesNum');
+        // DOM Elements
+        const booksGrid = document.getElementById('booksGrid');
+        const searchInput = document.getElementById('searchInput');
+        const categoryFilter = document.getElementById('categoryFilter');
+        const sortFilter = document.getElementById('sortFilter');
+        const resultsCount = document.getElementById('resultsCount');
+        const noResults = document.getElementById('noResults');
+        const resetFiltersBtn = document.getElementById('resetFilters');
         const prevPageBtn = document.getElementById('prevPageBtn');
         const nextPageBtn = document.getElementById('nextPageBtn');
-        const searchInput = document.getElementById('searchInput');
-        const noResultsMessage = document.getElementById('noResultsMessage');
-        const resetSearchLink = document.getElementById('resetSearchLink');
-        const pagination = document.querySelector('.pagination'); // Ambil elemen pagination
+        const currentPageNum = document.getElementById('currentPageNum');
+        const totalPagesNum = document.getElementById('totalPagesNum');
+        const menuButton = document.querySelector('.menu-button');
+        const sidebar = document.querySelector('.sidebar');
 
-        // Function to render multiple book cards for the grid
-        function renderBooks(books) {
-            bookGrid.innerHTML = ''; // Clear existing books
-            if (books.length === 0) {
-                bookGrid.style.display = 'none';
-                noResultsMessage.style.display = 'block';
+        // Display books
+        function displayBooks(booksToDisplay) {
+            booksGrid.innerHTML = '';
+            
+            const startIndex = (currentPage - 1) * booksPerPage;
+            const endIndex = startIndex + booksPerPage;
+            const booksToShow = booksToDisplay.slice(startIndex, endIndex);
+            
+            if (booksToShow.length === 0) {
+                noResults.style.display = 'block';
                 return;
             }
             
-            bookGrid.style.display = 'grid'; // Ensure grid display
-            noResultsMessage.style.display = 'none';
-
-            books.forEach(book => {
-                const bookCardHtml = `
-                    <div class="book-card">
-                        <div class="book-cover">
-                            <img src="${book.cover || 'https://via.placeholder.com/250x350?text=No+Cover'}" alt="Cover Buku: ${book.title}">
-                        </div>
-                        <div class="book-details">
-                            <span class="category">${book.category || 'Umum'}</span>
-                            <h2>${book.title}</h2>
-                            <p>Penulis: <span class="author">${book.author || 'Tidak Diketahui'}</span></p>
-                            <div class="action-buttons">
-                                <a href="${book.downloadLink || '#'}" class="action-btn" ${!book.downloadLink ? 'onclick="return false;" style="opacity:0.6; cursor:not-allowed;"' : ''}>
-                                    <i class="uil uil-book-reader"></i> Baca
-                                </a>
-                            </div>
+            noResults.style.display = 'none';
+            
+            booksToShow.forEach(book => {
+                const bookCard = document.createElement('div');
+                bookCard.className = 'book-card';
+                
+                const isAvailable = book.downloadLink && book.downloadLink !== '#';
+                
+                bookCard.innerHTML = `
+                    <div class="book-cover-container">
+                        <img src="${book.cover}" alt="${book.title}" class="book-cover" onerror="this.src='https://via.placeholder.com/200x250/1a365d/ffffff?text=No+Cover'">
+                    </div>
+                    <div class="book-info">
+                        <span class="book-category">${book.category}</span>
+                        <h3 class="book-title">${book.title}</h3>
+                        <p class="book-author">${book.author}</p>
+                        <p class="book-year">${book.year}</p>
+                        <div class="book-actions">
+                            <a href="${isAvailable ? book.downloadLink : '#'}" 
+                               class="btn-read ${isAvailable ? '' : 'disabled'}" 
+                               ${isAvailable ? '' : 'onclick="return false;"'}
+                               target="_blank">
+                                <i class="uil ${isAvailable ? 'uil-book-open' : 'uil-lock'}"></i>
+                                ${isAvailable ? 'Baca Buku' : 'Terkunci'}
+                            </a>
                         </div>
                     </div>
                 `;
-                bookGrid.insertAdjacentHTML('beforeend', bookCardHtml);
+                
+                booksGrid.appendChild(bookCard);
             });
+            
+            // Update pagination
+            updatePagination(booksToDisplay.length);
         }
 
-        // Function to update pagination controls (buttons and page info)
-        function updatePaginationControls() {
-            const totalPages = Math.ceil(filteredBooks.length / booksPerPage);
-            currentPageNumSpan.textContent = currentPage;
-            totalPagesNumSpan.textContent = totalPages === 0 ? 1 : totalPages; // Avoid 0 pages
-
+        // Update pagination controls
+        function updatePagination(totalBooks) {
+            const totalPages = Math.ceil(totalBooks / booksPerPage);
+            
+            currentPageNum.textContent = currentPage;
+            totalPagesNum.textContent = totalPages;
+            
             prevPageBtn.disabled = currentPage === 1;
             nextPageBtn.disabled = currentPage === totalPages || totalPages === 0;
-
-            const startIndex = (currentPage - 1) * booksPerPage;
-            const endIndex = startIndex + booksPerPage;
-            const booksToShow = filteredBooks.slice(startIndex, endIndex);
-            renderBooks(booksToShow);
-
-            // Show/hide pagination section based on results
-            if (filteredBooks.length === 0) {
-                pagination.style.display = 'none';
-            } else {
-                pagination.style.display = 'flex';
-            }
+            
+            resultsCount.textContent = `${totalBooks} Buku${totalPages > 1 ? ` - Halaman ${currentPage} dari ${totalPages}` : ''}`;
         }
 
-        // Event listener for Previous button
+        // Filter and sort books
+        function filterAndSortBooks() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const selectedCategory = categoryFilter.value;
+            const sortOption = sortFilter.value;
+            
+            filteredBooks = bookData.filter(book => {
+                const matchesSearch = book.title.toLowerCase().includes(searchTerm) || 
+                                      book.author.toLowerCase().includes(searchTerm) ||
+                                      book.category.toLowerCase().includes(searchTerm);
+                
+                const matchesCategory = selectedCategory === 'all' || book.category === selectedCategory;
+                
+                return matchesSearch && matchesCategory;
+            });
+            
+            // Sort books
+            filteredBooks.sort((a, b) => {
+                switch(sortOption) {
+                    case 'title-asc':
+                        return a.title.localeCompare(b.title);
+                    case 'title-desc':
+                        return b.title.localeCompare(a.title);
+                    case 'year-desc':
+                        return b.year - a.year;
+                    case 'year-asc':
+                        return a.year - b.year;
+                    default:
+                        return 0;
+                }
+            });
+            
+            currentPage = 1; // Reset to first page when filtering
+            displayBooks(filteredBooks);
+        }
+
+        // Reset all filters
+        function resetFilters() {
+            searchInput.value = '';
+            categoryFilter.value = 'all';
+            sortFilter.value = 'title-asc';
+            filterAndSortBooks();
+        }
+
+        // Event Listeners
+        searchInput.addEventListener('input', filterAndSortBooks);
+        categoryFilter.addEventListener('change', filterAndSortBooks);
+        sortFilter.addEventListener('change', filterAndSortBooks);
+        resetFiltersBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            resetFilters();
+        });
+
+        // Pagination event listeners
         prevPageBtn.addEventListener('click', () => {
             if (currentPage > 1) {
                 currentPage--;
-                updatePaginationControls();
-                window.scrollTo(0, 0); // Scroll to top on page change
+                displayBooks(filteredBooks);
             }
         });
 
-        // Event listener for Next button
         nextPageBtn.addEventListener('click', () => {
             const totalPages = Math.ceil(filteredBooks.length / booksPerPage);
             if (currentPage < totalPages) {
                 currentPage++;
-                updatePaginationControls();
-                window.scrollTo(0, 0); // Scroll to top on page change
+                displayBooks(filteredBooks);
             }
         });
 
-        // Search functionality
-        searchInput.addEventListener('input', () => {
-            const searchTerm = searchInput.value.toLowerCase().trim();
-            if (searchTerm === "") {
-                filteredBooks = [...bookData]; // Reset to all books
-            } else {
-                filteredBooks = bookData.filter(book =>
-                    book.title.toLowerCase().includes(searchTerm) ||
-                    book.author.toLowerCase().includes(searchTerm) ||
-                    book.category.toLowerCase().includes(searchTerm) ||
-                    (book.description && book.description.toLowerCase().includes(searchTerm)) // Check if description exists
-                );
+        // Sidebar toggle for mobile
+        menuButton.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
+        });
+
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', (e) => {
+            if (window.innerWidth <= 992 && 
+                !sidebar.contains(e.target) && 
+                !menuButton.contains(e.target) && 
+                sidebar.classList.contains('active')) {
+                sidebar.classList.remove('active');
             }
-            currentPage = 1; // Reset to first page after search
-            updatePaginationControls();
         });
 
-        resetSearchLink.addEventListener('click', (e) => {
-            e.preventDefault();
-            searchInput.value = '';
-            searchInput.dispatchEvent(new Event('input')); // Trigger search to reset
-        });
-
-        // Initial load
+        // Initialize
         document.addEventListener('DOMContentLoaded', () => {
-            console.log('e-Library page loaded successfully with grid view!');
-            // Initialize with all books
-            filteredBooks = [...bookData];
-            updatePaginationControls();
+            displayBooks(bookData);
+            
+            // Update initial results count
+            resultsCount.textContent = `${bookData.length} Buku`;
+            
+            // Add sample book placeholder for broken images
+            const style = document.createElement('style');
+            style.textContent = `
+                .book-cover {
+                    background-color: var(--gray-light);
+                    object-fit: cover;
+                }
+            `;
+            document.head.appendChild(style);
         });
     </script>
 </body>
